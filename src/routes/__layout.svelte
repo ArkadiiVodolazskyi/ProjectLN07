@@ -1,4 +1,12 @@
 <script>
+  import '../css/sanitize/assets.css'
+  import '../css/sanitize/forms.css'
+  import '../css/sanitize/reduce-motion.css'
+  import '../css/sanitize/sanitize.css'
+  import '../css/sanitize/system-ui.css'
+  import '../css/sanitize/typography.css'
+  import '../css/sanitize/ui-monospace.css'
+
   import Header from '$lib/Header.svelte'
   import Footer from '$lib/Footer.svelte'
 </script>
