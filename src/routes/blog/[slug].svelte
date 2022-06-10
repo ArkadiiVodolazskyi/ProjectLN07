@@ -3,8 +3,6 @@
   import Code from '$lib/Code.svelte'
   import Link from '$lib/Link.svelte'
   import ImageBlock from '$lib/ImageBlock.svelte'
-  import AuthorBlock from '$lib/AuthorBlock.svelte'
-  import AuthorCard from '$lib/AuthorCard.svelte'
   import SanityImage from '$lib/SanityImage.svelte'
 
   export let post
@@ -23,10 +21,6 @@
   })}
 </p>
 
-{#each post.authors || [] as author}
-  <AuthorCard {author} />
-{/each}
-
 <hr />
 
 {#if post.image}
@@ -38,8 +32,7 @@
   components={{
     types: {
       code: Code,
-      image: ImageBlock,
-      authorReference: AuthorBlock
+      image: ImageBlock
     },
     marks: {
       link: Link
