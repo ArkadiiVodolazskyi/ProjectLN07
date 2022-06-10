@@ -10,7 +10,7 @@
   <title>Blog</title>
 </svelte:head>
 
-<h1>Recent posts</h1>
+<h1>Recent posts 123</h1>
 
 <PostsGrid {posts} />
 
