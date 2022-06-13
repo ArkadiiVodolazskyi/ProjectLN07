@@ -5,9 +5,9 @@
 </script>
 
 <svelte:head>
-  <title>Blog</title>
+  <title>Literary Note</title>
 </svelte:head>
 
-<h1>Recent posts 123</h1>
+<h2>Последние публикации</h2>
 
 <PostsGrid {posts} />
