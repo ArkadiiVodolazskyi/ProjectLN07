@@ -19,17 +19,7 @@
 
 <Footer />
 
-<style>
-  /* TODO: use Sass inside svelte components */
-
-  /* Default Variables */
-  :root {
-
-  }
-  /* Dark Mode Variables */
-  @media (prefers-color-scheme: dark) {
-    :root {
-
-    }
-  }
+<style lang="sass">
+  main
+    background-color: green
 </style>
