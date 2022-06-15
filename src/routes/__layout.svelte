@@ -26,14 +26,12 @@
 <Footer />
 
 <style lang="sass">
-  // TODO: layout and some default global CSS variables
-  // (maybe it will be nice to place all the global CSS variables into a separate CSS file. Or no.)
-
   :global
 
     html
       font-size: var(--font-size-primary)
       font-family: var(--font-family-general)
+      color: var(--color-text-primary)
 
     body
       background-color: var(--color-bg-primary)

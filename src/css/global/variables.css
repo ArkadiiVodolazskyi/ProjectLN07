@@ -3,6 +3,17 @@
 	/* ----- Colors ----- */
 
 	--color-bg-primary: #2F2F2F;
+	--color-accent-primary: #5E3281;
+	--color-text-primary: #D2D2D2;
+
+	/*
+		Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1)
+		#00c9b0
+		#005b5f
+		#8b0073
+		#307ea6
+		#e15871
+	*/
 
 	/* ----- Fonts----- */
 
