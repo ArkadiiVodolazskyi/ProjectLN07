@@ -1,0 +1,18 @@
+:root {
+
+	/* ----- Colors ----- */
+
+	--color-bg-primary: #2F2F2F;
+
+	/* ----- Fonts----- */
+
+	--font-size-primary: 16px;
+	--font-family-general: 'Bellota Text', sans-serif;
+	--font-family-semiaccent: 'Rubik', sans-serif;
+	--font-family-accent: 'Montserrat', sans-serif;
+
+	/* ----- Sizes ----- */
+
+	--block-width-wrapper: 1200px;
+
+}
