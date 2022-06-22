@@ -5,6 +5,8 @@
 	--color-bg-primary: #2F2F2F;
 	--color-accent-primary: #5E3281;
 	--color-text-primary: #D2D2D2;
+	--color-text-link: hsl(220, 65%, 60%);
+	--color-text-link-hover: hsl(220, 65%, 70%);
 
 	/*
 		Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1)

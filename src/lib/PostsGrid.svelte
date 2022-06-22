@@ -1,18 +1,17 @@
 <script>
-  import Wrapper from '$lib/Wrapper.svelte'
-  import PostCard from '$lib/PostCard.svelte'
-  export let posts = []
+  import PostCard from '$lib/PostCard.svelte';
+  export let posts = [];
 </script>
 
 <section>
-  <Wrapper>
+  <div class="wrapper">
     <h2>Последние публикации</h2>
     <div class="posts">
       {#each posts as post (post.slug.current)}
         <PostCard {post} />
       {/each}
     </div>
-  </Wrapper>
+  </div>
 </section>
 
 <style lang="sass">

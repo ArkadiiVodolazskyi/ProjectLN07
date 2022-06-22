@@ -1,9 +1,8 @@
 <script>
-  import {PortableText} from '@portabletext/svelte'
-  import Link from '$lib/Link.svelte'
-  import ImageBlock from '$lib/ImageBlock.svelte'
-  import SanityImage from '$lib/SanityImage.svelte'
-  import Wrapper from '../../lib/Wrapper.svelte'
+  import {PortableText} from '@portabletext/svelte';
+  import Link from '$lib/Link.svelte';
+  import ImageBlock from '$lib/ImageBlock.svelte';
+  import SanityImage from '$lib/SanityImage.svelte';
 
   export let post
 </script>
@@ -13,7 +12,7 @@
 </svelte:head>
 
 <article>
-  <Wrapper>
+  <div class="wrapper">
     <h1>{post.title}</h1>
     <p>
       Дата публикации: {new Date(post.publishedAt).toLocaleDateString('ru', {
@@ -38,5 +37,5 @@
         }
       }}
     />
-  </Wrapper>
+  </div>
 </article>

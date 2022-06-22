@@ -27,18 +27,29 @@
 
 <style lang="sass">
   :global
-
     html
       font-size: var(--font-size-primary)
       font-family: var(--font-family-general)
       color: var(--color-text-primary)
-
     body
       background-color: var(--color-bg-primary)
-
     h1, h2, h3
       font-family: var(--font-family-accent)
     h4, h5, h6
       font-family: var(--font-family-semiaccent)
-
+    svg
+      fill: inherit
+      stroke: inherit
+      *
+        fill: inherit
+        stroke: inherit
+    a
+      text-decoration: none
+      color: var(--color-text-link)
+      transition: color .2s ease-out
+      &:hover
+        color: var(--color-text-link-hover)
+    .wrapper
+      max-width: var(--block-width-wrapper)
+      margin: 0 auto
 </style>

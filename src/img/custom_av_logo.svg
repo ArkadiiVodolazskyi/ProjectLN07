@@ -1,0 +1,66 @@
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="-30 -55 180 180"
+	fill="none"
+>
+	<linearGradient id="gradient_circle" x1="0" x2="100%" y1="0" y2="100%">
+		<stop stop-color="var(--circle_col_1)" offset="30%" />
+		<stop stop-color="var(--circle_col_2)" offset="100%" />
+	</linearGradient>
+	<linearGradient id="gradient_letter_1" x1="0" x2="100%" y1="0" y2="100%">
+		<stop stop-color="var(--letter_col_1)" offset="30%" />
+		<stop stop-color="var(--letter_col_2)" offset="100%" />
+	</linearGradient>
+	<linearGradient id="gradient_letter_2" x1="0" x2="100%" y1="0" y2="100%">
+		<stop stop-color="var(--letter_col_2)" offset="0%" />
+		<stop stop-color="var(--letter_col_1)" offset="80%" />
+	</linearGradient>
+	<style>
+		:root {
+			--circle_col_1: #020102;
+			--circle_col_2: #4F3C56;
+
+			--letter_col_1: #103783;
+			--letter_col_2: #471069;
+		}
+
+		.circle {
+			fill: url(#gradient_circle);
+			stroke-width: 3;
+			r: 80;
+		}
+		.letter {
+			stroke-opacity: 1;
+			stroke-width: 12;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			shape-rendering: geometricPrecision;
+		}
+		.letter_1 {
+			stroke: url(#gradient_letter_1);
+		}
+		.letter_2 {
+			stroke: url(#gradient_letter_2);
+		}
+	</style>
+	<circle class="circle"
+		cx="60"
+		cy="33"
+	/>
+	<polyline class="letter letter_1"
+		points="
+			10 60,
+			60 60,
+			35 10,
+			17 42
+		"
+	/>
+	<polyline class="letter letter_2"
+		points="
+			90 10,
+			60 10,
+			85 60,
+			110 10
+		"
+	/>
+</svg>

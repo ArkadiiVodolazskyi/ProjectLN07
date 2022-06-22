@@ -1,6 +1,5 @@
 <script context="module">
   import {page} from '$app/stores';
-  import Wrapper from './Wrapper.svelte';
 </script>
 
 <script>
@@ -9,17 +8,12 @@
 </script>
 
 <header>
-  <Wrapper>
-    <a class="logo" data-selected={pathname === '/'} href="/">
-      <!-- TODO: 1. Show gradient in imported SVG.
-      2. Give gradient to imported SVG through Sass. -->
-      <svg class="svg_icon" width="50" height="50">
-        <linearGradient id="linGrad1">
-          <stop stop-color="#7f00ff" offset=".3"></stop>
-          <stop stop-color="#e100ff" offset="1"></stop>
-        </linearGradient>
+  <div class="wrapper">
+    <a class="logo logo_ln" data-selected={pathname === '/'} href='/'>
+      <svg width="50" height="50">
         <use xlink:href="../src/img/icons.svg#bookshelf"></use>
       </svg>
+      <h1>Literary Note</h1>
     </a>
     <nav class="nav">
       <ul class="link_items">
@@ -27,13 +21,21 @@
         <li class="link_item"><a class="link" data-selected={pathname === '/contacts'} href="/contacts">Контакты</a></li>
       </ul>
     </nav>
-  </Wrapper>
+  </div>
 </header>
 
 <style lang="sass">
-  svg
-    border: 3px solid red
-    fill: url(#linGrad1)
-    path, g, use, symbol
-      fill: inherit
+  header
+    font-family: var(--font-family-accent)
+    a
+      padding: 1rem
+    svg
+      fill: var(--color-text-primary)
+    .wrapper
+      display: flex
+      align-items: center
+      justify-content: space-between
+    .logo
+      display: inline-flex
+      align-items: center
 </style>
