@@ -33,10 +33,19 @@
       color: var(--color-text-primary)
     body
       background-color: var(--color-bg-primary)
+      min-height: 100vh
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+    main
+      padding: 2.5rem 0
+      flex-grow: 1
     h1, h2, h3
       font-family: var(--font-family-accent)
+      margin: 0
     h4, h5, h6
       font-family: var(--font-family-semiaccent)
+      margin: 0
     svg
       fill: inherit
       stroke: inherit

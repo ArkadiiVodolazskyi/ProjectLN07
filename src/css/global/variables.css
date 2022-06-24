@@ -2,7 +2,9 @@
 
 	/* ----- Colors ----- */
 
-	--color-bg-primary: #2F2F2F;
+	--tsp: #00000000;
+	--color-bg-primary: hsl(0, 0%, 18%);
+	--color-bg-primary-d: hsl(0, 0%, 13%);
 	--color-accent-primary: #5E3281;
 	--color-text-primary: #D2D2D2;
 	--color-text-link: hsl(220, 65%, 60%);
@@ -27,5 +29,6 @@
 	/* ----- Sizes ----- */
 
 	--block-width-wrapper: 1200px;
+	--links-padding: .8rem;
 
 }

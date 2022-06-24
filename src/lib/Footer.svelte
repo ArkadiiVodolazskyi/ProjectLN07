@@ -30,12 +30,14 @@
 
 <style lang="sass">
   footer
+    background-color: var(--color-bg-primary-d)
     .wrapper
-      padding: 2rem 0
+      padding: .5rem 0
       display: flex
       flex-direction: column
       align-items: center
     .socials
+      margin: 0
       padding: 0
       display: flex
       align-items: center
