@@ -27,33 +27,12 @@
 <Footer />
 
 <style lang="sass" global>
-
-  // Colors
-  $tsp: #00000000
-  $color-bg-primary: hsl(0, 0%, 18%)
-  $color-bg-primary-d: hsl(0, 0%, 13%)
-  $color-accent-primary: #5E3281
-  $color-text-primary: #D2D2D2
-  $color-text-link: hsl(220, 65%, 60%)
-  $color-text-link-hover: hsl(220, 65%, 70%)
-
-  // Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1)
-  // #00c9b0 #005b5f #8b0073 #307ea6  #e15871
-
-  // Fonts
-  $font-size-primary: 16px
-  $font-family-general: 'Bellota Text', sans-serif
-  $font-family-semiaccent: 'Rubik', sans-serif
-  $font-family-accent: 'Montserrat', sans-serif
-
-  // Sizes
-  $block-width-wrapper: 1200px
-  $links-padding: .8rem
-
   :root
     // Colors
     --tsp: #{$tsp}
     --color-bg-primary: #{$color-bg-primary}
+    --color-bg-primary-o: #{rgba($color-bg-primary, .5)}
+    --color-bg-primary-inveted: #{invert($color-bg-primary, $weight: 100%)}
     --color-bg-primary-d: #{$color-bg-primary-d}
     --color-accent-primary: #{$color-accent-primary}
     --color-text-primary: #{$color-text-primary}
@@ -67,6 +46,11 @@
     // Sizes
     --block-width-wrapper: #{$block-width-wrapper}
     --links-padding: #{$links-padding}
+    --radius: #{$radius}
+
+  @media (max-width: $block-width-wrapper)
+    :root
+      --block-width-wrapper: 90%
 
   html
     font-size: var(--font-size-primary)

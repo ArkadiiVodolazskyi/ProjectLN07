@@ -16,9 +16,17 @@
 
 <style lang="sass">
   .post_card
+    background-color: var(--color-bg-primary-inveted)
+    box-shadow: 0 .1rem .2rem .2rem var(--color-bg-primary-d)
+    border-radius: var(--radius)
+    overflow: hidden
     .thumnail_wrapper
+      border-radius: var(--radius)
+      overflow: hidden
+      box-shadow: 0 .2rem .25rem .1rem var(--color-bg-primary-o)
     .tumbnail_img
       object-fit: contain
+      aspect-ratio: 1 / 1
     .card_title
     .card_description
 </style>
