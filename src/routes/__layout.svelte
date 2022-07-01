@@ -34,8 +34,10 @@
     --color-bg-primary-o: #{rgba($color-bg-primary, .5)}
     --color-bg-primary-inveted: #{invert($color-bg-primary, $weight: 100%)}
     --color-bg-primary-d: #{$color-bg-primary-d}
+    --color-bg-primary-do: #{$color-bg-primary-do}
     --color-accent-primary: #{$color-accent-primary}
     --color-text-primary: #{$color-text-primary}
+    --color-text-secondary: #{$color-text-secondary}
     --color-text-link: #{$color-text-link}
     --color-text-link-hover: #{darken($color-text-link, 10%)}
     // Fonts
@@ -68,9 +70,11 @@
   h1, h2, h3
     font-family: var(--font-family-accent)
     margin: 0
+    font-weight: 700
   h4, h5, h6
     font-family: var(--font-family-semiaccent)
     margin: 0
+    font-weight: 500
   svg
     fill: inherit
     stroke: inherit

@@ -49,6 +49,11 @@ export default {
       ]
     },
     {
+      name: 'shortdescription',
+      title: 'Short description',
+      type: 'portableText',
+    },
+    {
       name: 'body',
       title: 'Post body',
       type: 'portableText',

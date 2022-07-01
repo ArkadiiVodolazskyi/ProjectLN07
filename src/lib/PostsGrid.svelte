@@ -3,7 +3,7 @@
   export let posts = [];
 </script>
 
-<section>
+<section class="section_posts">
   <div class="wrapper">
     <div class="posts">
       {#each posts as post (post.slug.current)}
@@ -16,7 +16,7 @@
 <style lang="sass">
   .posts
     display: grid
-    grid-template-columns: repeat(4, 1fr)
+    grid-template-columns: repeat(3, 1fr)
     gap: 3rem 2rem
     margin-top: 3rem
 
