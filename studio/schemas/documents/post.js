@@ -1,5 +1,10 @@
 import {DocumentIcon} from '@sanity/icons'
 
+const angles = [];
+for (let i = 0; i <= 35; i++) {
+  angles.push(i * 10);
+}
+
 export default {
   name: 'post',
   type: 'document',
@@ -34,6 +39,24 @@ export default {
       name: 'image',
       type: 'image',
       title: 'Main image'
+    },
+    // TODO: use these fields in PostCard
+    {
+      name: 'color',
+      title: 'Background gradient settings',
+      type: 'object',
+      fields: [
+        { name: 'color_1', title: 'First color', type: 'colorPicker' },
+        { name: 'color_2', title: 'Second color', type: 'colorPicker' },
+        {
+          name: 'angle',
+          title: 'Gradient angle',
+          type: 'number',
+          options: {
+            list: angles
+          }
+        },
+      ]
     },
     {
       name: 'categories',
