@@ -1,7 +1,7 @@
 <script>
   import {urlFor} from './sanityClient';
+  import {PortableText} from '@portabletext/svelte';
   export let post;
-  console.log(post, post.body);
   const post_thumbnail_url = post.image ? urlFor(post.image) : null; // TODO: тут должна быть заглушка для изображения
 
   // TODO: add two-three fields into Sanity post for gradient colors and angle
@@ -37,9 +37,12 @@
   <div class="card_info">
     <h4 class="card_title">{post.title}</h4>
 
-    <!-- TODO: get new shortdescription field -->
     {#if post.short_description}
-      <p class="card_description">{post.shortdescription}</p>
+      <div class="card_short_description">
+        <PortableText
+          value={post.short_description}
+        />
+      </div>
     {/if}
   </div>
 </a>
@@ -50,10 +53,16 @@
     box-shadow: 0 .1rem .2rem .2rem var(--color-bg-primary-d)
     border-radius: var(--radius)
     overflow: hidden
+    transition: all .2s ease-out
+    box-shadow: 0 0 .1rem .1rem var(--color-bg-primary-o)
+    &:hover
+      transform: scale(1.02)
+      .card_title
+        color: var(--color-text-link)
     .thumnail_wrapper
       border-radius: var(--radius)
       overflow: hidden
-      box-shadow: 0 .2rem .25rem .1rem var(--color-bg-primary-o)
+      box-shadow: 0 .2rem .3rem .1rem var(--color-bg-primary-o)
       position: relative
       padding-top: 100%
     .tumbnail_img
@@ -74,6 +83,8 @@
       font-size: 1.3rem
       line-height: 1.1
       text-align: center
-    .card_description
+      transition: color .2s ease-out
+    .card_short_description
       margin: 1rem 0 0
+      font-weight: 600
 </style>

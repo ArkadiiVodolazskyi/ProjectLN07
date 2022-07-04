@@ -1,4 +1,4 @@
-// Colors
+// ----- Colors -----
 $tsp: #00000000
 $color-bg-primary: hsl(0, 0%, 18%)
 $color-bg-primary-d: hsl(0, 0%, 13%)
@@ -12,20 +12,94 @@ $color-text-link-hover: hsl(220, 65%, 70%)
 // Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1)
 // #00c9b0 #005b5f #8b0073 #307ea6  #e15871
 
-// Fonts
+// ----- Fonts -----
 $font-size-primary: 16px
 $font-family-general: 'Bellota Text', sans-serif
 $font-family-semiaccent: 'Rubik', sans-serif
 $font-family-accent: 'Montserrat', sans-serif
 
-// Sizes
+// ----- Sizes -----
 $block-width-wrapper: 1200px
 $links-padding: .8rem
 $radius: 1.5rem
 
-// Breakpoints
+// ----- Breakpoints -----
 $xxl: 1440px
 $xl: 1200px
 $lg: 1024px
 $md: 768px
 $sm: 480px
+
+// ----- CSS variables -----
+
+:root
+	// Colors
+	--tsp: #{$tsp}
+	--color-bg-primary: #{$color-bg-primary}
+	--color-bg-primary-o: #{rgba($color-bg-primary, .4)}
+	--color-bg-primary-inveted: #{invert($color-bg-primary, $weight: 100%)}
+	--color-bg-primary-d: #{$color-bg-primary-d}
+	--color-bg-primary-do: #{$color-bg-primary-do}
+	--color-accent-primary: #{$color-accent-primary}
+	--color-text-primary: #{$color-text-primary}
+	--color-text-secondary: #{$color-text-secondary}
+	--color-text-link: #{$color-text-link}
+	--color-text-link-hover: #{darken($color-text-link, 10%)}
+	// Fonts
+	--font-size-primary: #{$font-size-primary}
+	--font-family-general: #{$font-family-general}
+	--font-family-semiaccent: #{$font-family-semiaccent}
+	--font-family-accent: #{$font-family-accent}
+	// Sizes
+	--block-width-wrapper: #{$block-width-wrapper}
+	--links-padding: #{$links-padding}
+	--radius: #{$radius}
+
+@media (max-width: $block-width-wrapper)
+	:root
+		--block-width-wrapper: 90%
+
+// ----- Tags -----
+
+html
+	font-size: var(--font-size-primary)
+	font-family: var(--font-family-general)
+	color: var(--color-text-primary)
+	line-height: 1.4
+body
+	background-color: var(--color-bg-primary)
+	min-height: 100vh
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+h1, h2, h3
+	font-family: var(--font-family-accent)
+	margin: 0
+	font-weight: 700
+h4, h5, h6
+	font-family: var(--font-family-semiaccent)
+	margin: 0
+	font-weight: 500
+p
+	margin: 0
+svg
+	fill: inherit
+	stroke: inherit
+	transition: all .3s ease
+	*
+		fill: inherit
+		stroke: inherit
+a
+	text-decoration: none
+	color: var(--color-text-link)
+	transition: color .2s ease-out
+	&:hover
+		color: var(--color-text-link-hover)
+		fill: var(--color-accent-primary)
+		stroke: var(--color-accent-primary)
+
+// ----- Classes -----
+
+.wrapper
+	max-width: var(--block-width-wrapper)
+	margin: 0 auto

@@ -49,7 +49,7 @@ export default {
       ]
     },
     {
-      name: 'shortdescription',
+      name: 'short_description',
       title: 'Short description',
       type: 'portableText',
     },

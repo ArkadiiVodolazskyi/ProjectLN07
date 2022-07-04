@@ -38,7 +38,6 @@
     box-shadow: 0 5px 5px 0 var(--color-bg-primary)
     a
       padding: var(--links-padding)
-    svg
       fill: var(--color-text-primary)
     .wrapper
       display: flex

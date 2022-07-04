@@ -8,10 +8,5 @@ export function getPostsQuery(extraFilter) {
     defined(slug.current) &&
     publishedAt < now()
     ${extraFilter ? `&& ${extraFilter}` : ''}
-  ] | order(publishedAt desc) {
-    title,
-    slug,
-    image,
-    publishedAt,
-  }`
+  ] | order(publishedAt desc)`
 }
