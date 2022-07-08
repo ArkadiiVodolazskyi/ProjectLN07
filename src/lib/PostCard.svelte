@@ -1,10 +1,14 @@
 <script>
   import {urlFor} from './sanityClient';
-  import {PortableText} from '@portabletext/svelte';
   export let post;
   const post_thumbnail_url = post.image ? urlFor(post.image) : null; // TODO: default 'blank' image
   const gradient = post.gradient;
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%);`;
+  const book_first_published = post.book_first_published;
+
+  // TODO: retrieve author title, array, not reference
+  const author = post.author;
+  console.log(post);
 </script>
 
 <div class="post_card">
@@ -16,25 +20,20 @@
       style="background: {build_css_gradient};"
     >
       <img class="tumbnail_img" src="{post_thumbnail_url}" alt="{post.title}">
+      {#if book_first_published}
+        <time class="book_publish_date">{book_first_published}</time>
+      {/if}
     </a>
   {/if}
   <div class="card_info">
     <h4 class="card_title">
       <a rel="prefetch" href="/blog/{post.slug.current}">
         {post.title}
-        <!-- TODO: add author -->
-        <!-- TODO: add date published -->
+        {#if post.author}
+          {post.author}
+        {/if}
       </a>
     </h4>
-
-    <!-- TODO: remove short description - not needed since single post loads fast or we can use modal window -->
-    {#if post.short_description}
-      <div class="card_short_description">
-        <PortableText
-          value={post.short_description}
-        />
-      </div>
-    {/if}
   </div>
 </div>
 
@@ -46,6 +45,9 @@
     transition: all .2s ease-out
     box-shadow: 0 0 .1rem .1rem var(--color-bg-primary-o)
     &:hover
+      .book_publish_date
+        opacity: .92
+        visibility: visible
       .card_info
         opacity: 1
         visibility: visible
@@ -68,6 +70,21 @@
       width: auto
       height: auto
       box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-do)
+    .book_publish_date
+      position: absolute
+      z-index: 15
+      bottom: 0
+      left: 50%
+      transform: translate(-50%, -.5rem)
+      background-color: var(--color-bg-primary-inveted)
+      color: var(--color-text-secondary)
+      user-select: none
+      border-radius: var(--radius)
+      padding: .1rem .7rem
+      font-weight: 600
+      transition: opacity .2s linear
+      opacity: 0
+      visibility: hidden
     .card_info
       position: absolute
       z-index: 10
@@ -79,7 +96,7 @@
       border-radius: 0 0 var(--radius) var(--radius)
       background-color: var(--color-bg-primary-inveted)
       color: var(--color-text-secondary)
-      transition: all .3s ease
+      transition: opacity .2s linear
       opacity: 0
       visibility: hidden
     .card_title

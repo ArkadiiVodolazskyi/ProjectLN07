@@ -33,7 +33,8 @@ export default {
       name: 'book_first_published',
       type: 'number',
       title: 'Year of first publishing',
-      validation: (Rule) => Rule.max(today.getFullYear().toISOString())
+      validation: (Rule) => Rule.max(parseInt(today.getFullYear())),
+      initialValue: 2000
     },
     {
       name: 'slug',
