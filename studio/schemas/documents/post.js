@@ -1,8 +1,19 @@
 import {DocumentIcon} from '@sanity/icons'
 
+const today = new Date();
+
 const angles = [];
 for (let i = 0; i <= 35; i++) {
   angles.push(i * 10);
+}
+
+const hexString = "0123456789abcdef";
+const randomColor = () => {
+  let hexCode = "#";
+  for (let i = 0; i < 6; i++) {
+    hexCode += hexString[Math.floor(Math.random() * hexString.length)];
+  }
+  return hexCode;
 }
 
 export default {
@@ -19,6 +30,12 @@ export default {
       validation: (Rule) => Rule.required()
     },
     {
+      name: 'book_first_published',
+      type: 'number',
+      title: 'Year of first publishing',
+      validation: (Rule) => Rule.max(today.getFullYear().toISOString())
+    },
+    {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
@@ -30,32 +47,16 @@ export default {
       validation: (Rule) => Rule.required()
     },
     {
-      name: 'publishedAt',
-      type: 'datetime',
-      title: 'Published at',
-      description: 'This can be used to schedule post for publishing'
-    },
-    {
-      name: 'image',
-      type: 'image',
-      title: 'Main image'
-    },
-    // TODO: use these fields in PostCard
-    {
-      name: 'color',
-      title: 'Background gradient settings',
-      type: 'object',
-      fields: [
-        { name: 'color_1', title: 'First color', type: 'colorPicker' },
-        { name: 'color_2', title: 'Second color', type: 'colorPicker' },
+      name: 'author',
+      type: 'array',
+      title: 'Author',
+      of: [
         {
-          name: 'angle',
-          title: 'Gradient angle',
-          type: 'number',
-          options: {
-            list: angles
+          type: 'reference',
+          to: {
+            type: 'author'
           }
-        },
+        }
       ]
     },
     {
@@ -70,6 +71,40 @@ export default {
           }
         }
       ]
+    },
+    {
+      name: 'publishedAt',
+      type: 'datetime',
+      title: 'Published at',
+      description: 'This can be used to schedule post for publishing',
+      initialValue: today.toISOString()
+    },
+    {
+      name: 'image',
+      type: 'image',
+      title: 'Main image'
+    },
+    {
+      name: 'gradient',
+      title: 'Background gradient settings',
+      type: 'object',
+      fields: [
+        { name: 'color_1', title: 'First color', type: 'colorPicker' },
+        { name: 'color_2', title: 'Second color', type: 'colorPicker' },
+        {
+          name: 'angle',
+          title: 'Gradient angle',
+          type: 'number',
+          options: {
+            list: angles
+          }
+        },
+      ],
+      initialValue: {
+        color_1: randomColor(),
+        color_2: randomColor(),
+        angle: 180
+      }
     },
     {
       name: 'short_description',

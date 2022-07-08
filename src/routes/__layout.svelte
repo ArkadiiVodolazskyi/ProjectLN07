@@ -16,6 +16,10 @@
   // Import components
   import Header from '$lib/Header.svelte'
   import Footer from '$lib/Footer.svelte'
+
+  // TODO: create components:
+  // 1 Cite or Cites
+  // 2 Chapter / Section
 </script>
 
 <Header />
