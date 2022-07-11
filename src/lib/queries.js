@@ -10,3 +10,8 @@ export function getPostsQuery(extraFilter) {
     ${extraFilter ? `&& ${extraFilter}` : ''}
   ] | order(publishedAt desc)`
 }
+
+export const taxonomies_data = `
+  _id,
+  title
+`

@@ -4,9 +4,6 @@ import createSchema from 'part:@sanity/base/schema-creator'
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
-// TODO: add taxonomies
-// 1 Author (of the book)
-
 // document schemas
 import author from './documents/author'
 import category from './documents/category'

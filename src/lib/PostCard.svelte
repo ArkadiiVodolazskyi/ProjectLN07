@@ -5,10 +5,6 @@
   const gradient = post.gradient;
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%);`;
   const book_first_published = post.book_first_published;
-
-  // TODO: retrieve author title, array, not reference
-  const author = post.author;
-  console.log(post);
 </script>
 
 <div class="post_card">
@@ -20,17 +16,23 @@
       style="background: {build_css_gradient};"
     >
       <img class="tumbnail_img" src="{post_thumbnail_url}" alt="{post.title}">
+
       {#if book_first_published}
         <time class="book_publish_date">{book_first_published}</time>
       {/if}
+
+      {#if post.categories_array}
+        <div class="post_categoies">{post.categories_array.join(', ')}</div>
+      {/if}
+
     </a>
   {/if}
   <div class="card_info">
     <h4 class="card_title">
       <a rel="prefetch" href="/blog/{post.slug.current}">
         {post.title}
-        {#if post.author}
-          {post.author}
+        {#if post.authors_array}
+          {post.authors_array.join(', ')}
         {/if}
       </a>
     </h4>
