@@ -26,15 +26,7 @@ export default {
       name: 'title',
       type: 'string',
       title: 'Title',
-      description: 'Titles should be catchy, descriptive, and not too long',
       validation: (Rule) => Rule.required()
-    },
-    {
-      name: 'book_first_published',
-      type: 'number',
-      title: 'Year of first publishing',
-      validation: (Rule) => Rule.max(parseInt(today.getFullYear())),
-      initialValue: 2000
     },
     {
       name: 'slug',
@@ -48,30 +40,25 @@ export default {
       validation: (Rule) => Rule.required()
     },
     {
-      name: 'author',
-      type: 'array',
-      title: 'Author',
-      of: [
-        {
-          type: 'reference',
-          to: {
-            type: 'author'
-          }
-        }
-      ]
+      name: 'book_first_published',
+      type: 'number',
+      title: 'Year of first publishing',
+      validation: (Rule) => Rule.max(parseInt(today.getFullYear())),
+      initialValue: 2000
     },
     {
-      name: 'categories',
+      name: 'authors',
+      title: 'Authors',
       type: 'array',
+      of: [{type: 'string'}],
+      options: { layout: 'tags' }
+    },
+    {
+      name: 'cats',
       title: 'Categories',
-      of: [
-        {
-          type: 'reference',
-          to: {
-            type: 'category'
-          }
-        }
-      ]
+      type: 'array',
+      of: [{type: 'string'}],
+      options: { layout: 'tags' }
     },
     {
       name: 'publishedAt',
@@ -105,6 +92,9 @@ export default {
         color_1: randomColor(),
         color_2: randomColor(),
         angle: 180
+      },
+      options: {
+        columns: 3
       }
     },
     {

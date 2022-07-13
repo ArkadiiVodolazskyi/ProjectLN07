@@ -1,12 +1,12 @@
 <script>
   import PostCard from '$lib/PostCard.svelte';
-  export let extended_posts = [];
+  export let posts = [];
 </script>
 
 <section class="section_posts">
   <div class="wrapper">
     <div class="posts">
-      {#each extended_posts as post (post.slug.current)}
+      {#each posts as post (post.slug.current)}
         <PostCard {post} />
       {/each}
     </div>

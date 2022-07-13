@@ -1,10 +1,15 @@
 <script>
   import {urlFor} from './sanityClient';
   export let post;
+  const {
+    book_first_published,
+    gradient,
+    cats: categories,
+    authors
+  } = post;
+
   const post_thumbnail_url = post.image ? urlFor(post.image) : null; // TODO: default 'blank' image
-  const gradient = post.gradient;
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%);`;
-  const book_first_published = post.book_first_published;
 </script>
 
 <div class="post_card">
@@ -18,11 +23,11 @@
       <img class="tumbnail_img" src="{post_thumbnail_url}" alt="{post.title}">
 
       {#if book_first_published}
-        <time class="book_publish_date">{book_first_published}</time>
+        <time class="tag book_publish_date">{book_first_published}</time>
       {/if}
 
-      {#if post.categories_array}
-        <div class="post_categoies">{post.categories_array.join(', ')}</div>
+      {#if categories && categories.length}
+        <div class="tag post_categoies">{categories.join(', ')}</div>
       {/if}
 
     </a>
@@ -31,8 +36,10 @@
     <h4 class="card_title">
       <a rel="prefetch" href="/blog/{post.slug.current}">
         {post.title}
-        {#if post.authors_array}
-          {post.authors_array.join(', ')}
+        {#if authors && authors.length}
+          <p>
+            {authors.join(', ')}
+          </p>
         {/if}
       </a>
     </h4>
@@ -47,7 +54,7 @@
     transition: all .2s ease-out
     box-shadow: 0 0 .1rem .1rem var(--color-bg-primary-o)
     &:hover
-      .book_publish_date
+      .tag
         opacity: .92
         visibility: visible
       .card_info
@@ -72,12 +79,7 @@
       width: auto
       height: auto
       box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-do)
-    .book_publish_date
-      position: absolute
-      z-index: 15
-      bottom: 0
-      left: 50%
-      transform: translate(-50%, -.5rem)
+    .tag
       background-color: var(--color-bg-primary-inveted)
       color: var(--color-text-secondary)
       user-select: none
@@ -87,6 +89,18 @@
       transition: opacity .2s linear
       opacity: 0
       visibility: hidden
+    .book_publish_date
+      position: absolute
+      z-index: 15
+      bottom: 0
+      left: 50%
+      transform: translate(-50%, -.5rem)
+    .post_categoies
+      position: absolute
+      z-index: 15
+      left: 0
+      top: 0
+      transform: translate(1rem, 1rem)
     .card_info
       position: absolute
       z-index: 10
