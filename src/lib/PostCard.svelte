@@ -10,6 +10,8 @@
 
   const post_thumbnail_url = post.image ? urlFor(post.image) : null; // TODO: default 'blank' image
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%);`;
+
+  // TODO: add post views counter
 </script>
 
 <div class="post_card">
@@ -33,20 +35,39 @@
     </a>
   {/if}
   <div class="card_info">
-    <h4 class="card_title">
-      <a rel="prefetch" href="/blog/{post.slug.current}">
-        {post.title}
-        {#if authors && authors.length}
-          <p>
-            {authors.join(', ')}
-          </p>
-        {/if}
-      </a>
-    </h4>
+
+    {#if authors && authors.length}
+      <p class="card_authors">
+        {authors.join(', ')}
+      </p>
+    {/if}
+
+    <a class="card_title" rel="prefetch" href="/blog/{post.slug.current}">
+      <h4>{post.title}</h4>
+    </a>
+
   </div>
 </div>
 
 <style lang="sass">
+  @keyframes show_card_info
+    0%
+      transform: translate(-50%, calc(-2 * var(--radius)))
+      opacity: 0
+      visibility: hidden
+    40%
+      transform: translate(-50%, calc(-1.5 * var(--radius)))
+      opacity: .7
+      visibility: visible
+    70%
+      transform: translate(-50%, calc(-.9 * var(--radius)))
+      opacity: 1
+      visibility: visible
+    100%
+      transform: translate(-50%, calc(-1 * var(--radius)))
+      opacity: 1
+      visibility: visible
+
   .post_card
     box-shadow: 0 .1rem .2rem .2rem var(--color-bg-primary-d)
     border-radius: calc( var(--radius) + .3rem )
@@ -58,8 +79,7 @@
         opacity: .92
         visibility: visible
       .card_info
-        opacity: 1
-        visibility: visible
+        animation: show_card_info .3s linear forwards
     .thumnail_wrapper
       display: block
       border-radius: var(--radius)
@@ -68,6 +88,7 @@
       position: relative
       z-index: 20
       padding-top: 100%
+      background-color: var(--color-bg-primary-d)
     .tumbnail_img
       position: absolute
       z-index: 10
@@ -107,23 +128,30 @@
       width: 100%
       top: 100%
       left: 50%
-      transform: translate(-50%, calc(-1 * var(--radius)))
       padding: calc( 1.5rem + var(--radius) ) 1.5rem 1.5rem
       border-radius: 0 0 var(--radius) var(--radius)
       background-color: var(--color-bg-primary-inveted)
       color: var(--color-text-secondary)
-      transition: opacity .2s linear
+      transform: translate(-50%, calc(-2 * var(--radius)))
       opacity: 0
       visibility: hidden
+    .card_authors,
     .card_title
       font-size: 1.2rem
-      line-height: 1.1
+      line-height: 1.2
       text-align: center
-      transition: color .2s ease-out
-      a
-        color: inherit
-      &:hover
+      text-transform: uppercase
+    .card_authors
+      font-family: var(--font-family-semiaccent)
+      font-size: 1.1rem
+      margin-bottom: .3rem
+    .card_title
+      h4
+        font-weight: 500
+        transition: color .2s ease-out
         color: var(--color-text-link)
+      &:hover h4
+        color: var(--color-text-link-hover)
     .card_short_description
       margin: 1rem 0 0
       font-weight: 600
