@@ -10,22 +10,22 @@
 <header>
   <div class="wrapper">
     <div class="logo_wrapper">
-      <a class="logo logo_ln" data-selected={pathname === '/'} href='/'>
+      <a class="logo logo_ln" href='/'>
         <svg width="20" height="20">
           <use xlink:href="../src/img/icons.svg#bookshelf"></use>
         </svg>
       </a>
     </div>
     <div class="site_title_wrapper">
-      <a class="site_title" data-selected={pathname === '/'} href='/'>
+      <a class="site_title" href='/'>
         <h1>Literary Note</h1>
       </a>
     </div>
     <nav class="nav">
       <ul class="link_items">
-        <li class="link_item"><a class="link" data-selected={pathname === '/'} href="/">Главная</a></li>
-        <li class="link_item"><a class="link" data-selected={pathname === '/blog'} href="/blog">Блог</a></li>
-        <li class="link_item"><a class="link" data-selected={pathname === '/contacts'} href="/contacts">Контакты</a></li>
+        <li class="link_item"><a class="link" href="/">Главная</a></li>
+        <li class="link_item"><a class="link" href="/blog">Блог</a></li>
+        <li class="link_item"><a class="link" href="/about">Обо мне</a></li>
       </ul>
     </nav>
   </div>

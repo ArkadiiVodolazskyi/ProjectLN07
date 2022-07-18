@@ -3,6 +3,10 @@
   import SanityImage from '$components/SanityImage.svelte';
 
   export let post;
+
+  // TODO: create components:
+  // 1 Cite or Cites
+  // 2 Chapter / Section
 </script>
 
 <svelte:head>
