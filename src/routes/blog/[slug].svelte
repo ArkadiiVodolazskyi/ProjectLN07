@@ -4,9 +4,9 @@
 
   export let post;
 
-  // TODO: create components:
-  // 1 Cite or Cites
-  // 2 Chapter / Section
+  const date_post_published = new Date(post.publishedAt);
+  const options = {dateStyle: 'full'};
+  const date_post_published_formatted = Intl.DateTimeFormat('ru', options).format(date_post_published);
 </script>
 
 <svelte:head>
@@ -17,11 +17,7 @@
   <div class="wrapper">
     <h1>{post.title}</h1>
     <p>
-      Дата публикации: {new Date(post.publishedAt).toLocaleDateString('ru', {
-        month: 'long',
-        day: '2-digit',
-        year: 'numeric'
-      })}
+      Дата публикации: {date_post_published_formatted}
     </p>
 
     {#if post.image}
