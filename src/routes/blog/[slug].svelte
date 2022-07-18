@@ -1,10 +1,8 @@
 <script>
   import {PortableText} from '@portabletext/svelte';
-  import Link from '$lib/Link.svelte';
-  import ImageBlock from '$lib/ImageBlock.svelte';
-  import SanityImage from '$lib/SanityImage.svelte';
+  import SanityImage from '$components/SanityImage.svelte';
 
-  export let post
+  export let post;
 </script>
 
 <svelte:head>
@@ -28,14 +26,6 @@
 
     <PortableText
       value={post.body}
-      components={{
-        types: {
-          image: ImageBlock
-        },
-        marks: {
-          link: Link
-        }
-      }}
     />
   </div>
 </article>

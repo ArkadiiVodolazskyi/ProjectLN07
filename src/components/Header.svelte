@@ -3,8 +3,8 @@
 </script>
 
 <script>
-  let path
-  $: ({pathname} = $page)
+  let path;
+  $: ({pathname} = $page);
 </script>
 
 <header>

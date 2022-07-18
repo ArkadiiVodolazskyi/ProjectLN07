@@ -1,7 +1,5 @@
 <footer>
   <div class="wrapper">
-
-
     <ul class="socials">
       <li class="socials_item">
         <a class="socials_link" href="https://www.instagram.com/literary_note/" target="_blank" title="Открыть профиль Instagram в новой вкладке">

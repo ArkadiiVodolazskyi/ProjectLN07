@@ -1,5 +1,6 @@
 <script>
-  import {urlFor} from './sanityClient';
+  import {urlFor} from '$src/service/sanityClient.js';
+
   export let post;
   const {
     book_first_published,
