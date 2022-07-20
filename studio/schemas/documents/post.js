@@ -1,5 +1,3 @@
-import {DocumentIcon} from '@sanity/icons'
-
 const today = new Date();
 
 const angles = [];
@@ -20,7 +18,6 @@ export default {
   name: 'post',
   type: 'document',
   title: 'Blog Post',
-  icon: DocumentIcon,
   fields: [
     {
       name: 'title',

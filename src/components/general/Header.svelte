@@ -1,10 +1,5 @@
-<script context="module">
-  import {page} from '$app/stores';
-</script>
-
 <script>
-  let path;
-  $: ({pathname} = $page);
+
 </script>
 
 <header>
@@ -14,12 +9,12 @@
         <svg width="20" height="20">
           <use xlink:href="../src/img/icons.svg#bookshelf"></use>
         </svg>
+        <h1>Literary Note</h1>
       </a>
     </div>
     <div class="site_title_wrapper">
-      <a class="site_title" href='/'>
-        <h1>Literary Note</h1>
-      </a>
+      <!-- TODO: get page title somehow from route component -->
+      <h2>Current page</h2>
     </div>
     <nav class="nav">
       <ul class="link_items">
@@ -56,8 +51,7 @@
         width: 3.5rem
         height: 3.5rem
         margin-right: .5rem
-    .site_title h1
-      font-size: 1.2rem
+    .site_title_wrapper
       text-transform: uppercase
       text-align: center
     .link_items

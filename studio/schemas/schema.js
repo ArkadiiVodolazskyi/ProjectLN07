@@ -1,13 +1,15 @@
 import createSchema from 'part:@sanity/base/schema-creator';
 import schemaTypes from 'all:part:@sanity/base/schema-type';
 
-import post from './documents/post';
 import portableText from './objects/portableText';
+import post from './documents/post';
+import work from './documents/work';
 
 export default createSchema({
-  name: 'blog',
+  name: 'default',
   types: schemaTypes.concat([
     post,
     portableText,
+    work
   ])
 })

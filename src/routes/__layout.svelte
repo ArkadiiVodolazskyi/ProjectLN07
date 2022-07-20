@@ -14,8 +14,8 @@
   import '../css/fonts/Montserrat.css';
 
   // Import components
-  import Header from '$components/Header.svelte';
-  import Footer from '$components/Footer.svelte';
+  import Header from '$components/general/Header.svelte';
+  import Footer from '$components/general/Footer.svelte';
 </script>
 
 <Header />

@@ -1,5 +1,5 @@
 <script>
-  import PostsGrid from '$components/PostsGrid.svelte';
+  import PostsGrid from '$components/blog/PostsGrid.svelte';
   export let posts;
 </script>
 

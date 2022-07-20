@@ -1,5 +1,11 @@
-<h1>Портфолио</h1>
+<script>
+	export let portfolios;
 
-TODO: create components:
-- work
-- works
+	import Works from "$components/about/Works.svelte";
+</script>
+
+<svelte:head>
+  <title>Портфолио</title>
+</svelte:head>
+
+<Works {portfolios} />

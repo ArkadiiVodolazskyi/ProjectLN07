@@ -1,6 +1,6 @@
 <script>
   import {PortableText} from '@portabletext/svelte';
-  import SanityImage from '$components/SanityImage.svelte';
+  import SanityImage from '$components/general/SanityImage.svelte';
 
   export let post;
 
