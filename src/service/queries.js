@@ -10,3 +10,7 @@ export const getPostsQuery = extraFilter => {
 export const getPortfoliosQuery = () => {
   return /* groq */ `*[_type == "work"]`;
 }
+
+export const getToolsQuery = () => {
+  return /* groq */ `*[_type == "tool"]`;
+}
