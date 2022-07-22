@@ -10,6 +10,11 @@ export default {
       validation: (Rule) => Rule.required()
     },
     {
+      name: 'description',
+      type: 'string',
+      title: 'Description'
+    },
+    {
       name: 'link',
       type: 'slug',
       title: 'External link'
@@ -22,21 +27,14 @@ export default {
     {
       name: 'subcategory',
       title: 'Subcategory',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-      // TODO: use taxonomies instead of list
-      options: {
-        list: [
-          'Цветовая палитра',
-          'Шрифты',
-          'Иконки',
-          'Изображения',
-          'Экосистема',
-          'Образовательные ресурсы',
-          'Документация',
-          'Задачи по программированию',
-        ]
-      }
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'tool_category'}]
+        }
+      ],
+      validation: (Rule) => Rule.required().max(1),
     },
   ],
   preview: {

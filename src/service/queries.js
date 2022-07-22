@@ -14,3 +14,7 @@ export const getPortfoliosQuery = () => {
 export const getToolsQuery = () => {
   return /* groq */ `*[_type == "tool"]`;
 }
+
+export const getToolsCategoriesQuery = () => {
+  return /* groq */ `*[_type == "tool_category"]`;
+}

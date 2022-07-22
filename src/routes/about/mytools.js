@@ -1,9 +1,10 @@
-import {getToolsQuery} from '$src/service/queries.js';
+import {getToolsQuery, getToolsCategoriesQuery} from '$src/service/queries.js';
 import {client} from '$src/service/sanityClient.js';
 
 export async function get() {
   const data = await client.fetch(/* groq */ `{
-		"tools": ${getToolsQuery()}
+		"tools": ${getToolsQuery()},
+		"tool_categories": ${getToolsCategoriesQuery()},
   }`)
 
   if (data) {
