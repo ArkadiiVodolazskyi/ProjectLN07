@@ -5,13 +5,29 @@
   const {
     title,
 		link,
-		image
+		image,
+		description
   } = tool;
 
 	const post_thumbnail_url = image ? urlFor(image) : null; // TODO: default 'blank' image
 </script>
 
-<a class="card tool" href={link.current}>
-	<img src={post_thumbnail_url} alt={title}>
-	<h4>{title}</h4>
+<a class="card tool" href={link.current} title={description}>
+	<img class="card_image" src={post_thumbnail_url} alt={title}>
+	<h6 class="card_title">{title}</h6>
 </a>
+
+<style lang="sass">
+.card
+	text-align: center
+	padding: .5rem
+	border-radius: calc( var(--radius) / 3 )
+	&:hover
+		background-color: var(--color-bg-primary-inverted-50)
+	.card_image
+		height: 3rem
+		width: auto
+	.card_title
+		margin-top: .5rem
+		font-size: 1.1rem
+</style>

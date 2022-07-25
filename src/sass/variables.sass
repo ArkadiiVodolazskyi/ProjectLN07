@@ -1,59 +1,41 @@
-// ----- Colors -----
-$tsp: #00000000
-$color-bg-primary: hsl(0, 0%, 18%)
-$color-bg-primary-d: hsl(0, 0%, 13%)
-$color-bg-primary-do: hsla(0, 0%, 13%, .6)
-$color-accent-primary: #5E3281
-$color-text-primary: #D2D2D2
-$color-text-secondary: hsl(0, 0%, 20%)
-$color-text-link: hsl(220, 65%, 60%)
-$color-text-link-hover: hsl(220, 65%, 70%)
-
-// Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1)
-// #00c9b0 #005b5f #8b0073 #307ea6  #e15871
-
-// ----- Fonts -----
-$font-size-primary: 16px
-$font-family-general: 'Bellota Text', sans-serif
-$font-family-semiaccent: 'Rubik', sans-serif
-$font-family-accent: 'Montserrat', sans-serif
-
-// ----- Sizes -----
-$block-width-wrapper: 1200px
-$links-padding: .8rem
-$radius: 1.5rem
-
 // ----- Breakpoints -----
+
+$block-width-wrapper: 1200px
+
 $xxl: 1440px
 $xl: 1200px
 $lg: 1024px
 $md: 768px
 $sm: 480px
 
+// Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1)
+// #00c9b0 #005b5f #8b0073 #307ea6  #e15871
+
 // ----- CSS variables -----
 
 :root
 	// Colors
-	--tsp: #{$tsp}
-	--color-bg-primary: #{$color-bg-primary}
-	--color-bg-primary-o: #{rgba($color-bg-primary, .4)}
-	--color-bg-primary-inveted: #{invert($color-bg-primary, $weight: 100%)}
-	--color-bg-primary-d: #{$color-bg-primary-d}
-	--color-bg-primary-do: #{$color-bg-primary-do}
-	--color-accent-primary: #{$color-accent-primary}
-	--color-text-primary: #{$color-text-primary}
-	--color-text-secondary: #{$color-text-secondary}
-	--color-text-link: #{$color-text-link}
-	--color-text-link-hover: #{darken($color-text-link, 10%)}
+	--tsp: #00000000
+	--color-bg-primary: hsl(0, 0%, 18%)
+	--color-bg-primary-o: hsla(0, 0%, 18%, .4)
+	--color-bg-primary-inverted: hsl(0, 0%, 82%)
+	--color-bg-primary-inverted-50: hsl(0, 0%, 42%)
+	--color-bg-primary-d: hsl(0, 0%, 13%)
+	--color-bg-primary-do: hsla(0, 0%, 13%, .6)
+	--color-accent-primary: hsl(273, 44%, 35%)
+	--color-text-primary: hsl(0, 0%, 82%)
+	--color-text-secondary: hsl(0, 0%, 20%)
+	--color-text-link: hsl(220, 65%, 60%)
+	--color-text-link-hover: hsl(220, 65%, 70%)
 	// Fonts
-	--font-size-primary: #{$font-size-primary}
-	--font-family-general: #{$font-family-general}
-	--font-family-semiaccent: #{$font-family-semiaccent}
-	--font-family-accent: #{$font-family-accent}
+	--font-size-primary: 16px
+	--font-family-general: 'Bellota Text', sans-serif
+	--font-family-semiaccent: 'Rubik', sans-serif
+	--font-family-accent: 'Montserrat', sans-serif
 	// Sizes
 	--block-width-wrapper: #{$block-width-wrapper}
-	--links-padding: #{$links-padding}
-	--radius: #{$radius}
+	--links-padding: .8rem
+	--radius: 1.5rem
 
 @media (max-width: $block-width-wrapper)
 	:root
@@ -76,10 +58,14 @@ h1, h2, h3
 	font-family: var(--font-family-accent)
 	margin: 0
 	font-weight: 700
-h4, h5, h6
+h4, h5
 	font-family: var(--font-family-semiaccent)
 	margin: 0
 	font-weight: 500
+h6
+	font-family: var(--font-family-general)
+	margin: 0
+	font-weight: 700
 p
 	margin: 0
 svg
@@ -91,7 +77,7 @@ svg
 		stroke: inherit
 a
 	text-decoration: none
-	color: var(--color-text-link)
+	color: inherit
 	transition: color .2s ease-out
 	&:hover
 		color: var(--color-text-link-hover)

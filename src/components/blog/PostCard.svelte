@@ -102,7 +102,7 @@
       height: auto
       box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-do)
     .tag
-      background-color: var(--color-bg-primary-inveted)
+      background-color: var(--color-bg-primary-inverted)
       color: var(--color-text-secondary)
       user-select: none
       border-radius: var(--radius)
@@ -131,7 +131,7 @@
       left: 50%
       padding: calc( 1.5rem + var(--radius) ) 1.5rem 1.5rem
       border-radius: 0 0 var(--radius) var(--radius)
-      background-color: var(--color-bg-primary-inveted)
+      background-color: var(--color-bg-primary-inverted)
       color: var(--color-text-secondary)
       transform: translate(-50%, calc(-2 * var(--radius)))
       opacity: 0
