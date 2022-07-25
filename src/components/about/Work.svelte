@@ -20,3 +20,11 @@
 		<PortableText value={short_description} />
 	</div>
 </a>
+
+<style lang="sass">
+.card
+	padding: .5rem
+	border-radius: calc( var(--radius) / 3 )
+	&:hover
+		background-color: var(--color-bg-primary-inverted-50)
+</style>
