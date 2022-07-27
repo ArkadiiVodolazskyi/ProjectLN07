@@ -1,5 +1,20 @@
 <script>
+  import { page } from '$app/stores';
 
+  const links = [
+    {
+      title: 'Главная',
+      path: '/'
+    },
+    {
+      title: 'Блог',
+      path: '/blog'
+    },
+    {
+      title: 'Обо мне',
+      path: '/about'
+    },
+  ];
 </script>
 
 <header>
@@ -12,16 +27,23 @@
         <h1>Literary Note</h1>
       </a>
     </div>
-    <div class="site_title_wrapper">
-      <!-- TODO: get page title somehow from route component -->
-      <h2>Current page</h2>
-    </div>
     <nav class="nav">
-      <ul class="link_items">
-        <li class="link_item"><a class="link" href="/">Главная</a></li>
-        <li class="link_item"><a class="link" href="/blog">Блог</a></li>
-        <li class="link_item"><a class="link" href="/about">Обо мне</a></li>
-      </ul>
+
+      {#if links.length}
+        <ul class="link_items">
+          {#each links as link}
+            <li class="link_item">
+              <a
+                href={link.path}
+                class="link {$page.url.pathname === link.path ? 'active' : ''}"
+              >
+                {link.title}
+              </a>
+            </li>
+          {/each}
+        </ul>
+      {/if}
+
     </nav>
   </div>
 </header>
@@ -66,6 +88,8 @@
     .link
       text-transform: uppercase
       position: relative
+      &.active
+        font-weight: 900
       &::after
         content: ''
         position: absolute
