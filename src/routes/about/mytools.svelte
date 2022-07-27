@@ -16,4 +16,8 @@
   <title>Инструменты</title>
 </svelte:head>
 
-<Tools {tools_categorized} />
+<section class="tools">
+	<div class="wrapper">
+		<Tools {tools_categorized} />
+	</div>
+</section>

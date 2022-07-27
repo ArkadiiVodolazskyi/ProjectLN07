@@ -12,8 +12,8 @@
     },
     {
       title: 'Обо мне',
-      path: '/about'
-    },
+      path: '/about',
+    }
   ];
 </script>
 
@@ -21,9 +21,6 @@
   <div class="wrapper">
     <div class="logo_wrapper">
       <a class="logo logo_ln" href='/'>
-        <svg width="20" height="20">
-          <use xlink:href="../src/img/icons.svg#bookshelf"></use>
-        </svg>
         <h1>Literary Note</h1>
       </a>
     </div>

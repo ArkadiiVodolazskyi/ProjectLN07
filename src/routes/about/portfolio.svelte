@@ -8,4 +8,8 @@
   <title>Портфолио</title>
 </svelte:head>
 
-<Works {portfolios} />
+<section class="portfolio">
+	<div class="wrapper">
+		<Works {portfolios} />
+	</div>
+</section>

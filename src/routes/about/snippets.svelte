@@ -1,5 +1,13 @@
-<h1>Сниппеты</h1>
+<svelte:head>
+  <title>Сниппеты</title>
+</svelte:head>
 
-TODO: create components:
-- snippet
-- snippets
+<section class="portfolio">
+	<div class="wrapper">
+		Сниппеты
+
+		TODO: create components:
+		- snippet
+		- snippets
+	</div>
+</section>

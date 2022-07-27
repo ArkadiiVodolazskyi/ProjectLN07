@@ -3,15 +3,11 @@
 	import Work from "./Work.svelte";
 </script>
 
-<section class="portfolio">
-	<div class="wrapper">
-		<div class="cards">
-			{#each portfolios as portfolio}
-				<Work {portfolio} />
-			{/each}
-		</div>
-	</div>
-</section>
+<div class="cards">
+	{#each portfolios as portfolio}
+		<Work {portfolio} />
+	{/each}
+</div>
 
 <style lang="sass">
 .cards
