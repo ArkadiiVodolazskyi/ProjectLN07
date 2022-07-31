@@ -108,15 +108,17 @@ export default {
   preview: {
     select: {
       title: 'title',
-      slug: 'slug',
-      media: 'image'
+      media: 'image',
+      authors: 'authors',
+      book_first_published: 'book_first_published'
     },
-    prepare({title = 'No title', slug, media}) {
-      const path = `/blog/${slug.current}/`
+    prepare({title = '-', media, authors = '-', book_first_published = ''}) {
+      const preparedTitle = `${title} (${book_first_published})`;
+      const preparedAuthors = Array.isArray(authors) ? authors.join(', ') : authors;
       return {
-        title,
+        title: preparedTitle,
         media,
-        subtitle: path
+        subtitle: preparedAuthors
       }
     }
   }

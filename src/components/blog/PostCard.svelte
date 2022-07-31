@@ -39,7 +39,7 @@
     transition: all .2s ease-out
     box-shadow: 0 0 .1rem .1rem var(--color-bg-primary-o)
     &:hover .backgrop
-      transform: translate(-50%, -40%)
+      transform: translate(-50%, -30%)
     .thumnail_wrapper
       display: block
       border-radius: var(--radius)
