@@ -8,7 +8,7 @@ import preprocess from 'svelte-preprocess'
 const config = {
   preprocess: preprocess({
       scss: {
-        prependData: `@import './src/sass/variables.sass'`
+        prependData: `@import './src/sass/variables.sass'\n@import './src/sass/_portable_text.sass'`
       }
    }),
 
