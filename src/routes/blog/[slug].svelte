@@ -13,6 +13,11 @@
   const date_published = new Date(post.publishedAt);
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
   const content = post.body;
+  const build_css_gradient = `linear-gradient(${post.gradient.angle}deg, ${post.gradient.color_1} 0%, ${post.gradient.color_2} 100%);`;
+
+  // TODO: create custom block for PortableText 'chapter';
+  // The block will render it as h4 id=... and put its id to the list of 'Contents' to page aside
+  console.log(content);
 </script>
 
 <svelte:head>
@@ -23,6 +28,7 @@
   <div class="wrapper">
     {#if thumbnail_url}
       <div class="intro">
+        <div class="backdrop" style="background: {build_css_gradient};"></div>
         <h2 class="title">
           {title}
         </h2>
@@ -64,17 +70,33 @@
     height: 70vh
     display: grid
     grid-template-columns: 25% 50% 25%
+    grid-template-rows: 100%
     align-items: center
-  .title
-    text-align: right
+    position: relative
+    z-index: 10
+    padding: 2rem
+  .backdrop
+    position: absolute
+    z-index: -1
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    opacity: .7
+    border-radius: var(--radius)
   .image_wrapper
-    padding: 0 5em
+    padding: 1rem 2em
+    width: 100%
+    height: 100%
     .image
       display: block
       width: auto
       height: auto
       max-width: 100%
       max-height: 100%
+      box-shadow: 0 0 .5rem .2rem var(--color-bg-primary-d)
+  .title
+    text-align: right
   .authors
     text-align: left
 </style>

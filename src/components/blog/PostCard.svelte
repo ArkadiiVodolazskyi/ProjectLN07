@@ -33,7 +33,6 @@
 
 <style lang="sass">
   .post_card
-    box-shadow: 0 .1rem .2rem .2rem var(--color-bg-primary-d)
     border-radius: calc( var(--radius) + .3rem )
     position: relative
     transition: all .2s ease-out
