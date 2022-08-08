@@ -24,29 +24,43 @@
       </li>
     </ul>
   </div>
+
+  <!-- TODO: style book shadow -->
+
+  <!-- TODO: show conditionally on blog pages only -->
+
+  <svg class="opened_book" width="100%" height="110">
+    <use xlink:href="../src/img/icons.svg#opened_book"></use>
+  </svg>
 </footer>
 
 <style lang="sass">
   footer
     background-color: var(--color-bg-primary-d)
-    .wrapper
-      padding: .5rem 0
-      display: flex
-      flex-direction: column
-      align-items: center
-    .socials
-      margin: 0
-      padding: 0
-      display: flex
-      align-items: center
-    .socials_item
-      display: inline-flex
-      align-items: center
-      justify-content: center
-      a
-        padding: 1rem
-        fill: var(--color-text-primary)
-        stroke: none
-        &:hover
-          fill: var(--color-accent-primary)
+  .wrapper
+    padding: .5rem 0
+    display: flex
+    flex-direction: column
+    align-items: center
+  .socials
+    margin: 0
+    padding: 0
+    display: flex
+    align-items: center
+  .socials_item
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    a
+      padding: 1rem
+      fill: var(--color-text-primary)
+      stroke: none
+      &:hover
+        fill: var(--color-accent-primary)
+  .wave
+    width: 100%
+    height: auto
+    transform: rotate(180deg)
+    transform-origin: center
+    fill: #000
 </style>

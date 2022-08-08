@@ -1,5 +1,7 @@
 <script>
-  import SanityImage from '$components/general/SanityImage.svelte'
+  import SanityImage from '$components/general/SanityImage.svelte';
+
+  // TODO: add interactivity - click on image -> open fullscreen
 
   export let portableText
   $: ({value} = portableText)

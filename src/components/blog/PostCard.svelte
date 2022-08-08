@@ -9,7 +9,7 @@
     authors
   } = post;
 
-  const post_thumbnail_url = post.image ? urlFor(post.image) : null; // TODO: default 'blank' image
+  const post_thumbnail_url = post.image ? urlFor(post.image) : null;
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%);`;
 
   // TODO: add post views counter

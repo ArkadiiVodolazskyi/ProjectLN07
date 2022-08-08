@@ -5,7 +5,7 @@
   import ImageBlock from '$components/general/ImageBlock.svelte';
 
   export let post;
-  const thumbnail_url = post.image ? urlFor(post.image) : null; // TODO: default 'blank' image
+  const thumbnail_url = post.image ? urlFor(post.image) : null;
   const title = post.title;
   const authors = post.authors.length ? (
     post.authors.reduce((prev_author, author) => `<li><h2>${author}</h2></li>`, '')
@@ -14,9 +14,6 @@
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
   const content = post.body;
   const build_css_gradient = `linear-gradient(${post.gradient.angle}deg, ${post.gradient.color_1} 0%, ${post.gradient.color_2} 100%);`;
-
-  // TODO: create custom block for PortableText 'chapter';
-  // The block will render it as h4 id=... and put its id to the list of 'Contents' to page aside
   console.log(content);
 </script>
 

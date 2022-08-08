@@ -10,10 +10,11 @@
 		short_description
   } = portfolio;
 
-	const post_thumbnail_url = image ? urlFor(image) : null; // TODO: default 'blank' image
+	const post_thumbnail_url = image ? urlFor(image) : null;
 </script>
 
 <a class="card work" href={link.current}>
+	<!-- TODO: conditional tag -->
 	<img src={post_thumbnail_url} alt={title}>
 	<h4>{title}</h4>
 	<div class="short_description">

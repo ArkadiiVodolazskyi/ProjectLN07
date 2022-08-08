@@ -9,10 +9,11 @@
 		description
   } = tool;
 
-	const post_thumbnail_url = image ? urlFor(image) : null; // TODO: default 'blank' image
+	const post_thumbnail_url = image ? urlFor(image) : null;
 </script>
 
 <a class="card tool" href={link.current} title={description}>
+	<!-- TODO: Conditional tag -->
 	<img class="card_image" src={post_thumbnail_url} alt={title}>
 	<h6 class="card_title">{title}</h6>
 </a>
