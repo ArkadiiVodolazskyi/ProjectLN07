@@ -14,9 +14,12 @@
 </script>
 
 <a class="card work" href={link.current}>
-	<!-- TODO: conditional tag -->
-	<img src={post_thumbnail_url} alt={title}>
+	{#if post_thumbnail_url}
+		<img src={post_thumbnail_url} alt={title}>
+	{/if}
+
 	<h4>{title}</h4>
+
 	<div class="short_description">
 		<PortableText value={short_description} />
 	</div>

@@ -1,4 +1,9 @@
-<footer>
+<script>
+  import { page } from '$app/stores';
+  const is_blog = $page.routeId.includes('blog');
+</script>
+
+<footer class={is_blog ? 'blog' : ''}>
   <div class="wrapper">
     <ul class="socials">
       <li class="socials_item">
@@ -25,18 +30,29 @@
     </ul>
   </div>
 
-  <!-- TODO: style book shadow -->
+  {#if is_blog}
+    <svg class="opened_book" width="100%">
+      <use xlink:href="../src/img/icons.svg#opened_book"></use>
+    </svg>
+  {/if}
 
-  <!-- TODO: show conditionally on blog pages only -->
-
-  <svg class="opened_book" width="100%" height="110">
-    <use xlink:href="../src/img/icons.svg#opened_book"></use>
-  </svg>
 </footer>
 
 <style lang="sass">
   footer
     background-color: var(--color-bg-primary-d)
+    &.blog
+      background-color: var(--tsp)
+      position: relative
+      .wrapper
+        position: absolute
+        z-index: 10
+        bottom: 0
+        left: 50%
+        transform: translate(-50%, 0)
+        padding: 0
+      .opened_book
+        fill: var(--color-bg-primary-d)
   .wrapper
     padding: .5rem 0
     display: flex
@@ -52,7 +68,7 @@
     align-items: center
     justify-content: center
     a
-      padding: 1rem
+      padding: .8rem .6rem
       fill: var(--color-text-primary)
       stroke: none
       &:hover

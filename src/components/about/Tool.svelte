@@ -13,8 +13,11 @@
 </script>
 
 <a class="card tool" href={link.current} title={description}>
-	<!-- TODO: Conditional tag -->
-	<img class="card_image" src={post_thumbnail_url} alt={title}>
+
+	{#if post_thumbnail_url}
+		<img class="card_image" src={post_thumbnail_url} alt={title}>
+	{/if}
+
 	<h6 class="card_title">{title}</h6>
 </a>
 
