@@ -13,19 +13,18 @@
   const date_published = new Date(post.publishedAt);
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
   const content = post.body;
-  const build_css_gradient = `linear-gradient(${post.gradient.angle}deg, ${post.gradient.color_1} 0%, ${post.gradient.color_2} 100%);`;
-  console.log(content);
+  const build_css_gradient = `linear-gradient(${post.gradient.angle}deg, ${post.gradient.color_1} 0%, ${post.gradient.color_2} 100%)`;
 </script>
 
 <svelte:head>
   <title>{post.title}</title>
 </svelte:head>
 
-<article>
+<article style="--gradient: {build_css_gradient};">
   <div class="wrapper">
     {#if thumbnail_url}
       <div class="intro">
-        <div class="backdrop" style="background: {build_css_gradient};"></div>
+        <div class="backdrop"></div>
         <h2 class="title">
           {title}
         </h2>
@@ -81,6 +80,7 @@
     bottom: 0
     opacity: .7
     border-radius: var(--radius)
+    background: var(--gradient)
   .image_wrapper
     padding: 1rem 2em
     width: 100%

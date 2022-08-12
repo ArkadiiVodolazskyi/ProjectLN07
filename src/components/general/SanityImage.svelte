@@ -38,8 +38,8 @@
 
 <style lang="sass">
   img
-    opacity: 0
     transition: opacity .3s ease-out
+    opacity: 0
     cursor: pointer
     &.loaded
       opacity: 1

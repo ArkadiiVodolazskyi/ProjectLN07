@@ -1,6 +1,38 @@
 .portable_text
+	max-width: 900px
+	margin: 2em auto 0
+	background-color: var(--color-bg-primary-d)
+	border-radius: var(--radius)
+	padding: 3rem
+	line-height: 1.5rem
+	> *:not(:first-child)
+		margin-top: 1.3rem
 	.image_figure img
 		max-width: 50vw
 		max-height: 50vh
 		border-radius: var(--radius)
 		box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-do)
+	a
+		color: var(--color-text-link)
+	h4
+		font-size: 1.5rem
+		padding: 1rem 0
+		font-weight: bold
+	blockquote
+		margin-left: 0
+		padding: 1rem 1.2rem
+		position: relative
+		background-color: var(--color-bg-primary)
+		border-radius: calc( var(--radius) * .4 )
+		&::after
+			content: ''
+			position: absolute
+			z-index: 10
+			left: 0
+			top: 50%
+			width: .2rem
+			height: calc( 100% - 1.5rem )
+			background-color: rgba(#000, 0.2)
+			background: var(--gradient)
+			opacity: .5
+			transform: translate(-50%, -50%)

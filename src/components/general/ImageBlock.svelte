@@ -5,7 +5,6 @@
   $: ({value} = portableText);
 
   const toggle_preview = e => {
-    console.log(e.target);
     if (e.target.classList.contains('main')) {
       e.target.closest('.image_figure').querySelector('.preview')?.classList.add('active');
     } else if (e.target.classList.contains('preview')) {
