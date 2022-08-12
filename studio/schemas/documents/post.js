@@ -47,15 +47,23 @@ export default {
       name: 'authors',
       title: 'Authors',
       type: 'array',
-      of: [{type: 'string'}],
-      options: { layout: 'tags' }
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'post_author'}]
+        }
+      ]
     },
     {
-      name: 'cats',
+      name: 'categories',
       title: 'Categories',
       type: 'array',
-      of: [{type: 'string'}],
-      options: { layout: 'tags' }
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'post_category'}]
+        }
+      ]
     },
     {
       name: 'publishedAt',
@@ -109,16 +117,16 @@ export default {
     select: {
       title: 'title',
       media: 'image',
-      authors: 'authors',
+      // authors: 'authors', // TODO: preview for author names
       book_first_published: 'book_first_published'
     },
-    prepare({title = '-', media, authors = '-', book_first_published = ''}) {
+    prepare({title = '-', media, book_first_published = ''}) {
       const preparedTitle = `${title} (${book_first_published})`;
-      const preparedAuthors = Array.isArray(authors) ? authors.join(', ') : authors;
+      // const preparedAuthors = authors.map(author => { console.log(1, author, get_authors(author._ref)); });
       return {
         title: preparedTitle,
         media,
-        subtitle: preparedAuthors
+        // subtitle: preparedAuthors
       }
     }
   }

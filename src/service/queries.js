@@ -1,3 +1,5 @@
+// Categories to taxonomies
+
 export const getPostsQuery = extraFilter => {
   return /* groq */ `*[
     _type == "post" &&
