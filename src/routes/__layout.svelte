@@ -28,6 +28,6 @@
 
 <style lang="sass" global>
 main
-	padding: 4rem 0
+	padding: 3rem 0
 	flex-grow: 1
 </style>

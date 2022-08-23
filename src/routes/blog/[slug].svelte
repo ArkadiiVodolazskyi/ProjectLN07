@@ -30,7 +30,6 @@
   <div class="wrapper">
     {#if image}
       <div class="intro">
-        <div class="backdrop"></div>
         <h2 class="title">
           {title}
         </h2>
@@ -40,6 +39,9 @@
         <ul class="authors">
           {@html authors.map(author => `<li>${author.name}</li>`)}
         </ul>
+        <time class="book_first_published">
+          {book_first_published}
+        </time>
       </div>
     {/if}
 
@@ -59,36 +61,53 @@
       </div>
     {/if}
 
-    {#if date_published_formatted}
-      <time class='post_publush_date' datetime={publishedAt}>
-        Дата публикации: {date_published_formatted}
-      </time>
-    {/if}
+    <div class="meta">
+      {#if categories.length}
+        <div class="categories">
+          <h6>Категории: </h6>
+          <ul class="categories">
+            {@html categories.map(category => `<li>${category.title}</li>`)}
+          </ul>
+        </div>
+      {/if}
+
+      {#if date_published_formatted}
+        <div class="post_publish_date">
+          <h6>Дата публикации: </h6>
+          <time datetime={publishedAt}>
+            {date_published_formatted}
+          </time>
+        </div>
+      {/if}
+    </div>
+
   </div>
 </article>
 
 <style lang="sass">
   .intro
+    font-size: 1.7rem
     height: 70vh
     display: grid
     grid-template-columns: 25% 50% 25%
-    grid-template-rows: 100%
+    grid-template-rows: 95% 5%
     align-items: center
     position: relative
     z-index: 10
-    padding: 2rem
-  .backdrop
-    position: absolute
-    z-index: -1
-    left: 0
-    top: 0
-    right: 0
-    bottom: 0
-    opacity: .7
-    border-radius: var(--radius)
-    background: var(--gradient)
+    padding: 1rem
+    &::before
+      content: ''
+      position: absolute
+      z-index: -1
+      left: 0
+      top: 0
+      right: 0
+      bottom: 0
+      opacity: .7
+      border-radius: var(--radius)
+      background: var(--gradient)
   .image_wrapper
-    padding: 1rem 2em
+    padding: 1rem
     width: 100%
     height: 100%
     .image
@@ -100,6 +119,21 @@
       box-shadow: 0 0 .5rem .2rem var(--color-bg-primary-d)
   .title
     text-align: right
+    font-size: inherit
   .authors
     text-align: left
+    font-size: inherit
+  .book_first_published
+    grid-column: span 3
+    text-align: center
+  .meta
+    text-align: center
+    > *:not(:first-child)
+      margin-top: .5rem
+  .categories, .post_publish_date
+    display: flex
+    align-items: center
+    justify-content: center
+    h6
+      margin-right: 0.5rem
 </style>

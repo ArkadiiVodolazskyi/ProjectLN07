@@ -1,10 +1,14 @@
-.portable_text
+.portable_text,
+.portable_text + .meta
 	max-width: 900px
 	margin: 2em auto 0
-	background-color: var(--color-bg-primary-d)
 	border-radius: var(--radius)
-	padding: 3rem
 	line-height: 1.5rem
+	padding-inline: 3rem
+
+.portable_text
+	padding-block: 3rem
+	background-color: var(--color-bg-primary-d)
 	> *:not(:first-child)
 		margin-top: 1.3rem
 	.image_figure img
