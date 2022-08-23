@@ -13,6 +13,8 @@ export default {
         {title: 'H2', value: 'h2'},
         {title: 'H3', value: 'h3'},
         {title: 'H4', value: 'h4'},
+        {title: 'H5', value: 'h5'},
+        {name: 'h6', title: 'H6', value: 'h6'},
         {title: 'Quote', value: 'blockquote'}
       ],
       lists: [
@@ -36,7 +38,8 @@ export default {
               {
                 title: 'URL',
                 name: 'href',
-                type: 'url'
+                type: 'url',
+                validation: Rule => Rule.uri({ allowRelative: true }) // https://www.sanity.io/docs/url-type
               }
             ]
           }
