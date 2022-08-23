@@ -103,11 +103,6 @@ export default {
       }
     },
     {
-      name: 'short_description',
-      title: 'Short description',
-      type: 'portableText',
-    },
-    {
       name: 'body',
       title: 'Post body',
       type: 'portableText',

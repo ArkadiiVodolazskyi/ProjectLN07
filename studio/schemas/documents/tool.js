@@ -23,19 +23,7 @@ export default {
       name: 'image',
       type: 'image',
       title: 'Image'
-    },
-    {
-      name: 'subcategory',
-      title: 'Subcategory',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'tool_category'}]
-        }
-      ],
-      validation: (Rule) => Rule.required().max(1),
-    },
+    }
   ],
   preview: {
     select: {

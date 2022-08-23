@@ -7,6 +7,18 @@ export default {
       title: 'Title',
       name: 'title',
       type: 'string',
+    },
+    {
+      name: 'tools',
+      title: 'Tools',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'tool'}]
+        }
+      ],
+      validation: (Rule) => Rule.unique()
     }
   ]
 }

@@ -2,15 +2,15 @@
 	import Tool from "./Tool.svelte";
 	export let tools_block = [];
 	const {
-		category_title,
-		tools_of_category
+		title,
+		tools
 	} = tools_block;
 </script>
 
 <div class="tools_block">
-	<h4 class="category_title">{category_title}</h4>
+	<h4 class="category_title">{title}</h4>
 	<div class="cards">
-		{#each tools_of_category as tool}
+		{#each tools as tool}
 			<Tool {tool} />
 		{/each}
 	</div>

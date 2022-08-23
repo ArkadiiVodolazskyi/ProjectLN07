@@ -3,10 +3,10 @@
 
 	export let tool;
   const {
-    title,
-		link,
-		image,
-		description
+    description,
+    image,
+    link,
+    title
   } = tool;
 
 	const post_thumbnail_url = image ? urlFor(image) : null;

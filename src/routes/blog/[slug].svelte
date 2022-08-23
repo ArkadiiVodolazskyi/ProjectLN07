@@ -5,42 +5,48 @@
   import ImageBlock from '$components/general/ImageBlock.svelte';
 
   export let post;
-  const thumbnail_url = post.image ? urlFor(post.image) : null;
-  const title = post.title;
-  const authors = post.authors.length ? (
-    post.authors.reduce((prev_author, author) => `<li><h2>${author}</h2></li>`, '')
-  ) : null;
-  const date_published = new Date(post.publishedAt);
+  const {
+    authors,
+    body,
+    book_first_published,
+    categories,
+    gradient,
+    image,
+    publishedAt,
+    slug,
+    title
+  } = post;
+
+  const date_published = new Date(publishedAt);
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
-  const content = post.body;
-  const build_css_gradient = `linear-gradient(${post.gradient.angle}deg, ${post.gradient.color_1} 0%, ${post.gradient.color_2} 100%)`;
+  const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%)`;
 </script>
 
 <svelte:head>
-  <title>{post.title}</title>
+  <title>{title}</title>
 </svelte:head>
 
 <article style="--gradient: {build_css_gradient};">
   <div class="wrapper">
-    {#if thumbnail_url}
+    {#if image}
       <div class="intro">
         <div class="backdrop"></div>
         <h2 class="title">
           {title}
         </h2>
         <div class="image_wrapper">
-          <img class="image" src="{thumbnail_url}" alt="{title}">
+          <img class="image" src="{urlFor(image)}" alt="{title}">
         </div>
         <ul class="authors">
-          {@html authors}
+          {@html authors.map(author => `<li>${author.name}</li>`)}
         </ul>
       </div>
     {/if}
 
-    {#if content}
+    {#if body}
       <div class="portable_text content">
         <PortableText
-          value={content}
+          value={body}
           components={{
             types: {
               image: ImageBlock
@@ -54,9 +60,9 @@
     {/if}
 
     {#if date_published_formatted}
-      <p>
+      <time class='post_publush_date' datetime={publishedAt}>
         Дата публикации: {date_published_formatted}
-      </p>
+      </time>
     {/if}
   </div>
 </article>

@@ -2,13 +2,15 @@ import {client} from '$src/service/sanityClient.js';
 
 export async function get({params: {slug}}) {
   const post = await client.fetch(/* groq */ `*[_type == "post" && slug.current == "${slug}"][0]{
-    ...,
-    body[] {
-      ...,
-			children[] {
-				...,
-			}
-    }
+    authors[]->{name},
+    body,
+    book_first_published,
+    categories[]->{title},
+    gradient,
+    image,
+    publishedAt,
+    slug,
+    title
   }`)
 
   if (post) {
