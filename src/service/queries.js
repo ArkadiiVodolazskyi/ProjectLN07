@@ -9,6 +9,7 @@ export const getPostsQuery = extraFilter => {
     body,
     book_first_published,
     categories[]->{title},
+    contents,
     gradient,
     image,
     publishedAt,

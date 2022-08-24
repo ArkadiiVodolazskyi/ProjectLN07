@@ -3,6 +3,7 @@
   import {PortableText} from '@portabletext/svelte';
   import Link from '$components/general/Link.svelte';
   import ImageBlock from '$components/general/ImageBlock.svelte';
+  import CustomH4 from '$components/general/CustomH4.svelte';
 
   export let post;
   const {
@@ -10,6 +11,7 @@
     body,
     book_first_published,
     categories,
+    contents,
     gradient,
     image,
     publishedAt,
@@ -20,6 +22,19 @@
   const date_published = new Date(publishedAt);
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%)`;
+
+  const contents_list = contents.length ? (
+    contents.map(citem => {
+      const chapter = body.find(bitem => bitem.children?.[0].text.replaceAll(/[«|»]/g, '"') === citem.chapter_title);
+      chapter['id'] = citem.chapter_id.current;
+
+      return `<li>
+        <a href='#${citem.chapter_id.current}'>
+          ${citem.chapter_title}
+        </a>
+      </li>`;
+    })
+  ) : null;
 </script>
 
 <svelte:head>
@@ -45,6 +60,16 @@
       </div>
     {/if}
 
+    <!-- TODO: enhance svelte Portable text: https://github.com/portabletext/svelte-portabletext -->
+
+    {#if contents_list}
+      <div class="contents">
+        <ul>
+          {@html contents_list}
+        </ul>
+      </div>
+    {/if}
+
     {#if body}
       <div class="portable_text content">
         <PortableText
@@ -55,6 +80,9 @@
             },
             marks: {
               link: Link
+            },
+            block: {
+              h4: CustomH4
             }
           }}
         />

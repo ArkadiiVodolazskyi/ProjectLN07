@@ -6,6 +6,7 @@ export async function get({params: {slug}}) {
     body,
     book_first_published,
     categories[]->{title},
+    contents,
     gradient,
     image,
     publishedAt,
