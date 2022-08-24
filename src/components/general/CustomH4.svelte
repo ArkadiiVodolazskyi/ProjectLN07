@@ -1,9 +1,9 @@
 <script>
   export let portableText;
 	const text = portableText.value.children[0].text;
-	const id = portableText.value.id || '';
+	const chapter_id = portableText.value.chapter_id || '';
 </script>
 
-<h4 id={id}>
+<h4 id={chapter_id}>
 	{text}
 </h4>

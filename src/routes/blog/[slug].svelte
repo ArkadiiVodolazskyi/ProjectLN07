@@ -4,6 +4,7 @@
   import Link from '$components/general/Link.svelte';
   import ImageBlock from '$components/general/ImageBlock.svelte';
   import CustomH4 from '$components/general/CustomH4.svelte';
+  import { slugify } from '$src/service/helpers.js';
 
   export let post;
   const {
@@ -23,18 +24,21 @@
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%)`;
 
-  const contents_list = contents.length ? (
-    contents.map(citem => {
-      const chapter = body.find(bitem => bitem.children?.[0].text.replaceAll(/[«|»]/g, '"') === citem.chapter_title);
-      chapter['id'] = citem.chapter_id.current;
+  let contents_list = '';
+  const body_chaptered = body.map(item => {
+    if (item.style === 'h4') {
+      const text = item.children[0].text;
+      const chapter_id = `ch-${slugify(text)}`;
 
-      return `<li>
-        <a href='#${citem.chapter_id.current}'>
-          ${citem.chapter_title}
+      item.chapter_id = chapter_id;
+      contents_list += `<li>
+        <a href='#${chapter_id}'>
+          ${text}
         </a>
       </li>`;
-    })
-  ) : null;
+    }
+    return item;
+  });
 </script>
 
 <svelte:head>
@@ -70,10 +74,10 @@
       </div>
     {/if}
 
-    {#if body}
+    {#if body_chaptered}
       <div class="portable_text content">
         <PortableText
-          value={body}
+          value={body_chaptered}
           components={{
             types: {
               image: ImageBlock

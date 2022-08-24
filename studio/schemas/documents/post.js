@@ -103,25 +103,6 @@ export default {
       }
     },
     {
-      name: 'contents',
-      title: 'Contents',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            { name: 'chapter_title', title: 'Chapter Title', type: 'string' },
-            { name: 'chapter_id', title: 'Chapter ID', type: 'slug', options: {
-              source: (doc, options) => options.parent.chapter_title
-            } }
-          ],
-          options: {
-            columns: 2
-          }
-        }
-      ]
-    },
-    {
       name: 'body',
       title: 'Post body',
       type: 'portableText',
