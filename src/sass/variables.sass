@@ -21,6 +21,8 @@ $sm: 480px
 
 // ----- CSS variables -----
 
+// TODO: move variables to separate files - problem: root vars are linked many times
+
 :root
 	// Colors
 	--tsp: #00000000
@@ -42,6 +44,7 @@ $sm: 480px
 	--font-family-accent: 'Montserrat', sans-serif
 	// Sizes
 	--block-width-wrapper: #{$block-width-wrapper}
+	--block-width-content: 900px
 	--links-padding: .8rem
 	--radius: 1.5rem
 
@@ -56,6 +59,7 @@ html
 	font-family: var(--font-family-general)
 	color: var(--color-text-primary)
 	line-height: 1.4
+	scroll-behavior: smooth
 body
 	background-color: var(--color-bg-primary)
 	min-height: 100vh

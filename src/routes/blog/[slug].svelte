@@ -1,10 +1,7 @@
 <script>
   import {urlFor} from '$src/service/sanityClient.js';
-  import {PortableText} from '@portabletext/svelte';
-  import Link from '$components/general/Link.svelte';
-  import ImageBlock from '$components/general/ImageBlock.svelte';
-  import CustomH4 from '$components/general/CustomH4.svelte';
-  import { slugify } from '$src/service/helpers.js';
+  import {slugify} from '$src/service/helpers.js';
+  import BlogArticle from '$components/blog/BlogArticle.svelte';
 
   export let post;
   const {
@@ -24,18 +21,18 @@
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%)`;
 
-  let contents_list = '';
+  const contents_list = [];
   const body_chaptered = body.map(item => {
     if (item.style === 'h4') {
       const text = item.children[0].text;
       const chapter_id = `ch-${slugify(text)}`;
 
       item.chapter_id = chapter_id;
-      contents_list += `<li>
-        <a href='#${chapter_id}'>
-          ${text}
-        </a>
-      </li>`;
+      contents_list.push({
+        text,
+        chapter_id,
+        node: null
+      });
     }
     return item;
   });
@@ -46,6 +43,7 @@
 </svelte:head>
 
 <article style="--gradient: {build_css_gradient};">
+
   <div class="wrapper">
     {#if image}
       <div class="intro">
@@ -63,57 +61,30 @@
         </time>
       </div>
     {/if}
+  </div>
 
-    <!-- TODO: enhance svelte Portable text: https://github.com/portabletext/svelte-portabletext -->
+  <BlogArticle contents_list={contents_list} body_chaptered={body_chaptered} />
 
-    {#if contents_list}
-      <div class="contents">
-        <ul>
-          {@html contents_list}
+  <div class="meta">
+    {#if categories.length}
+      <div class="categories">
+        <h6>Категории: </h6>
+        <ul class="categories">
+          {@html categories.map(category => `<li>${category.title}</li>`)}
         </ul>
       </div>
     {/if}
 
-    {#if body_chaptered}
-      <div class="portable_text content">
-        <PortableText
-          value={body_chaptered}
-          components={{
-            types: {
-              image: ImageBlock
-            },
-            marks: {
-              link: Link
-            },
-            block: {
-              h4: CustomH4
-            }
-          }}
-        />
+    {#if date_published_formatted}
+      <div class="post_publish_date">
+        <h6>Дата публикации: </h6>
+        <time datetime={publishedAt}>
+          {date_published_formatted}
+        </time>
       </div>
     {/if}
-
-    <div class="meta">
-      {#if categories.length}
-        <div class="categories">
-          <h6>Категории: </h6>
-          <ul class="categories">
-            {@html categories.map(category => `<li>${category.title}</li>`)}
-          </ul>
-        </div>
-      {/if}
-
-      {#if date_published_formatted}
-        <div class="post_publish_date">
-          <h6>Дата публикации: </h6>
-          <time datetime={publishedAt}>
-            {date_published_formatted}
-          </time>
-        </div>
-      {/if}
-    </div>
-
   </div>
+
 </article>
 
 <style lang="sass">
@@ -138,34 +109,39 @@
       opacity: .7
       border-radius: var(--radius)
       background: var(--gradient)
-  .image_wrapper
-    padding: 1rem
-    width: 100%
-    height: 100%
-    .image
-      display: block
-      width: auto
-      height: auto
-      max-width: 100%
-      max-height: 100%
-      box-shadow: 0 0 .5rem .2rem var(--color-bg-primary-d)
-  .title
-    text-align: right
-    font-size: inherit
-  .authors
-    text-align: left
-    font-size: inherit
-  .book_first_published
-    grid-column: span 3
-    text-align: center
+    .image_wrapper
+      padding: 1rem
+      width: 100%
+      height: 100%
+      .image
+        display: block
+        width: auto
+        height: auto
+        max-width: 100%
+        max-height: 100%
+        box-shadow: 0 0 .5rem .2rem var(--color-bg-primary-d)
+    .title
+      text-align: right
+      font-size: inherit
+    .authors
+      text-align: left
+      font-size: inherit
+    .book_first_published
+      grid-column: span 3
+      text-align: center
+
   .meta
+    margin: 2em auto 0
+    border-radius: var(--radius)
+    line-height: 1.5rem
+    padding-inline: 2rem
     text-align: center
     > *:not(:first-child)
       margin-top: .5rem
-  .categories, .post_publish_date
-    display: flex
-    align-items: center
-    justify-content: center
-    h6
-      margin-right: 0.5rem
+    .categories, .post_publish_date
+      display: flex
+      align-items: center
+      justify-content: center
+      h6
+        margin-right: 0.5rem
 </style>

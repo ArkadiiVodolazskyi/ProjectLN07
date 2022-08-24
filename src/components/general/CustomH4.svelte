@@ -4,6 +4,6 @@
 	const chapter_id = portableText.value.chapter_id || '';
 </script>
 
-<h4 id={chapter_id}>
+<h4 id={chapter_id} class="chapter_title">
 	{text}
 </h4>
