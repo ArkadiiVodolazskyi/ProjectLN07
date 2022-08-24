@@ -50,6 +50,7 @@
     background-color: var(--color-bg-primary-d)
     font-family: var(--font-family-accent)
     box-shadow: 0 5px 5px 0 var(--color-bg-primary)
+    border-radius: 0 0 calc( var(--radius) * .7 ) calc( var(--radius) * .7 )
     a
       padding: var(--links-padding)
       fill: var(--color-text-primary)
