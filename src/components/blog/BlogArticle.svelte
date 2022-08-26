@@ -7,7 +7,8 @@
 
   export let contents_list;
   export let body_chaptered;
-	let content = null;
+	$: active_chapter_index = null;
+	const scroll_padding = 250;
 
   onMount(() => {
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
@@ -16,12 +17,25 @@
 				offsetTop: node.offsetTop
 			}
 		});
-		console.log(contents_list, chapters_list);
 
     window.addEventListener('scroll', e => {
 			const scroll = window.pageYOffset;
+			active_chapter_index = null;
 			chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
-			// TODO: finish onscroll toggle active anchor
+
+			for (let i = 0; i < chapters_list.length; i++) {
+				if (scroll > chapters_list[0].offsetTop && i === chapters_list.length - 1) {
+					console.log(1);
+					active_chapter_index = chapters_list.length - 1;
+					break;
+				}
+				if (scroll >= chapters_list[i].offsetTop - scroll_padding && scroll <= chapters_list[i + 1].offsetTop - scroll_padding) {
+					console.log(2);
+					active_chapter_index = i;
+					chapters_list[active_chapter_index].node.classList.add('active');
+					break;
+				}
+			}
 		});
   })
 </script>
@@ -30,8 +44,8 @@
   <div class="contents">
     {#if contents_list.length}
       <ul class="contents_list">
-        {#each contents_list as contents_item}
-          <li class="contents_item" bind:this={contents_item.node}>
+        {#each contents_list as contents_item, index}
+          <li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`} bind:this={contents_item.node}>
             <a href={`#${contents_item.chapter_id}`}>
               {contents_item.text}
             </a>
@@ -41,7 +55,7 @@
     {/if}
   </div>
 
-  <div class="portable_text content" data-watch="scroll" bind:this={content}>
+  <div class="portable_text content" data-watch="scroll">
     {#if body_chaptered}
       <PortableText
         value={body_chaptered}
@@ -81,14 +95,15 @@
 		padding-top: 3rem
 		position: sticky
 		top: 0
-	.contents_item a
-		display: flex
-		align-items: center
-		justify-content: space-between
-		padding: .3rem 0
-		position: relative
+	.contents_item
 		transition: all .25s ease
 		opacity: .5
 		&:hover, &.active
 			opacity: 1
+		a
+			display: flex
+			align-items: center
+			justify-content: space-between
+			padding: .3rem 0
+			position: relative
 </style>
