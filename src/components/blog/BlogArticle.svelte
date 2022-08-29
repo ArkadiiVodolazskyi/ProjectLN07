@@ -25,12 +25,10 @@
 
 			for (let i = 0; i < chapters_list.length; i++) {
 				if (scroll > chapters_list[0].offsetTop && i === chapters_list.length - 1) {
-					console.log(1);
 					active_chapter_index = chapters_list.length - 1;
 					break;
 				}
 				if (scroll >= chapters_list[i].offsetTop - scroll_padding && scroll <= chapters_list[i + 1].offsetTop - scroll_padding) {
-					console.log(2);
 					active_chapter_index = i;
 					chapters_list[active_chapter_index].node.classList.add('active');
 					break;
