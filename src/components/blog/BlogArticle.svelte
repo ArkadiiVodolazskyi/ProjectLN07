@@ -18,6 +18,8 @@
 			}
 		});
 
+		// TODO: reduce number of scroll triggers with intervals
+
     window.addEventListener('scroll', e => {
 			const scroll = window.pageYOffset;
 			active_chapter_index = null;

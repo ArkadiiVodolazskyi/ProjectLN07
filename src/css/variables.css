@@ -2,6 +2,8 @@
 
 	/* Colors */
 
+	/* TODO: refacotor colors and color names */
+
 	--tsp: #00000000;
 	--color-bg-primary: hsl(0, 0%, 18%);
 	--color-bg-primary-o: hsla(0, 0%, 18%, .4);
