@@ -19,7 +19,7 @@
     grid-template-columns: repeat(3, 1fr)
     gap: 3rem 2rem
 
-  @media (max-width: $lg)
+  @media (max-width: 1280px)
     .posts
       grid-template-columns: repeat(2, 1fr)
 </style>
