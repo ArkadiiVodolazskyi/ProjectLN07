@@ -38,7 +38,7 @@
 
 <style lang="sass">
   img
-    transition: opacity .3s ease-out
+    transition: all .25s ease
     opacity: 0
     cursor: pointer
     &.loaded
@@ -52,7 +52,7 @@
       visibility: hidden
       max-width: 80vw
       max-height: 80vh
-      box-shadow: 0 0 20rem 20rem var(--color-bg-primary-do)
+      box-shadow: 0 0 20rem 20rem var(--color-bg-primary-d)
     &.active
       opacity: 1
       visibility: visible

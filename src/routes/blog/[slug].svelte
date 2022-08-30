@@ -65,6 +65,8 @@
 
   <BlogArticle contents_list={contents_list} body_chaptered={body_chaptered} />
 
+  <!-- TODO: add 'share' buttons -->
+
   <div class="meta">
     {#if categories.length}
       <div class="categories">

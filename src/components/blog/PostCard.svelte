@@ -10,6 +10,7 @@
   } = post;
 
   const post_thumbnail_url = post.image ? urlFor(post.image) : null;
+  // TODO: use gradient options as CSS variables
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%);`;
 
   // TODO: add post views counter

@@ -109,9 +109,17 @@
       max-width: 50vw
       max-height: 50vh
       border-radius: var(--radius)
-      box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-do)
+      box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-d)
     a
       color: var(--color-text-link)
+      text-decoration: underline
+      text-decoration-thickness: .08em
+      text-underline-offset: .3em
+      transition: all .3s ease
+      text-decoration-color: var(--tsp)
+      &:hover
+        color: var(--color-text-link-hover)
+        text-decoration-color: var(--color-text-link-hover)
     h4
       font-size: 1.5rem
       font-weight: bold
@@ -119,35 +127,34 @@
       &::before
         content: ''
         position: absolute
-        z-index: 10
+        z-index: 5
         left: 0
         top: 50%
-        width: 1rem
+        width: 1.25rem
         height: .15rem
-        transform: translate(-2rem, -50%)
+        border-radius: var(--radius)
+        transform: translate( calc( -100% - 2rem ) , -50%)
         background-color: var(--color-text-primary)
-        transition: all .25s ease
+        transition: all .3s ease
         opacity: 0
       &.active::before
-        opacity: 1
+        opacity: .75
+        transform: translate( -2rem, -50%)
     .chapter_title
       scroll-margin-top: 2rem
     blockquote
-      margin-left: 0
+      margin-inline: 0
       padding: 1rem 1.2rem
-      position: relative
       background-color: var(--color-bg-primary)
       border-radius: calc( var(--radius) * .4 )
-      &::after
-        content: ''
-        position: absolute
-        z-index: 10
-        left: 0
-        top: 50%
-        width: .2rem
-        height: calc( 100% - 1.5rem )
-        background-color: rgba(#000, 0.2)
-        background: var(--gradient)
-        opacity: .5
-        transform: translate(-50%, -50%)
+    ul, ol
+      padding-left: 1rem
+      line-height: 1.4rem
+      li
+        display: list-item
+        list-style-position: inside
+        &:not(:first-child)
+          margin-top: .5rem
+    ul
+      list-style-type: square
 </style>

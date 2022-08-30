@@ -7,12 +7,13 @@
 	--tsp: #00000000;
 	--color-bg-primary: hsl(0, 0%, 18%);
 	--color-bg-primary-o: hsla(0, 0%, 18%, .4);
-	--color-bg-primary-inverted: hsl(0, 0%, 82%);
+	--color-bg-primary-inverted: hsl(0, 0%, 75%);
 	--color-bg-primary-inverted-50: hsl(0, 0%, 42%);
 	--color-bg-primary-d: hsl(0, 0%, 13%);
 	--color-bg-primary-do: hsla(0, 0%, 13%, .6);
 	--color-accent-primary: hsl(273, 44%, 35%);
 	--color-text-primary: hsl(0, 0%, 82%);
+	--color-text-primary-o: hsla(0, 0%, 82%, 0.5);
 	--color-text-secondary: hsl(0, 0%, 20%);
 	--color-text-link: hsl(220, 65%, 60%);
 	--color-text-link-hover: hsl(220, 65%, 70%);

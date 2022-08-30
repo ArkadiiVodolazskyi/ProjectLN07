@@ -1,9 +1,10 @@
 <script>
-  import {onMount} from 'svelte'
-  import {PortableText} from '@portabletext/svelte'
-  import Link from '$components/general/Link.svelte'
-  import ImageBlock from '$components/general/ImageBlock.svelte'
-  import CustomH4 from '$components/general/CustomH4.svelte'
+  import {onMount} from 'svelte';
+  import {PortableText} from '@portabletext/svelte';
+  import Link from '$components/general/Link.svelte';
+  import ImageBlock from '$components/general/ImageBlock.svelte';
+  import Chapter from '$components/general/Chapter.svelte';
+	import Footnote from '$components/general/Footnote.svelte';
 
   export let contents_list;
   export let body_chaptered;
@@ -64,15 +65,22 @@
             image: ImageBlock
           },
           marks: {
-            link: Link
+            link: Link,
+						code: Footnote
           },
           block: {
-            h4: CustomH4
+            h4: Chapter
           }
         }}
       />
     {/if}
   </div>
+
+	<div class="footnotes">
+		<div class="footnote">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro iste, dignissimos, omnis, mollitia voluptatem ipsa odit consequuntur quibusdam doloribus quod assumenda officia perferendis vel vero blanditiis sit voluptatibus earum officiis culpa voluptate sed soluta dolore. Sequi, suscipit repellendus pariatur quos optio natus dolore dignissimos totam! Molestias doloremque deserunt recusandae unde!
+		</div>
+	</div>
 </div>
 
 <style lang="sass">
@@ -80,16 +88,12 @@
 		display: grid
 		grid-template-columns: 1fr var(--block-width-content) 1fr
 		grid-template-rows: auto
-	.contents,
-	.portable_text
+	.contents, .footnotes
 		margin: 2em auto 0
-		border-radius: var(--radius)
 		line-height: 1.5rem
 		padding-inline: 2rem
-	.contents
 		position: relative
-		font-size: 1.1rem
-	.contents_list
+	.contents_list, .footnote
 		display: flex
 		flex-direction: column
 		padding-top: 3rem
@@ -97,7 +101,7 @@
 		top: 0
 	.contents_item
 		transition: all .25s ease
-		opacity: .5
+		opacity: .4
 		&:hover, &.active
 			opacity: 1
 		a
@@ -106,4 +110,18 @@
 			justify-content: space-between
 			padding: .3rem 0
 			position: relative
+	.content
+		text-align: justify
+		margin: 2em auto 0
+		border-radius: var(--radius)
+		line-height: 1.5rem
+		padding-inline: 3rem
+	// TODO: add line, animate while active in Footnote.svelte
+	.footnote
+		padding: 0
+		border: 1px solid var(--color-accent-primary)
+		border-radius: calc(var(--radius) * .2)
+		padding: .5rem
+		top: 50%
+		transform: translateY(-50%)
 </style>
