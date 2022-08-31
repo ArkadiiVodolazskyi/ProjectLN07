@@ -79,7 +79,8 @@
   svg
     fill: inherit
     stroke: inherit
-    transition: all .3s ease
+    transform-origin: center
+    transition: all .25s ease
     *
       fill: inherit
       stroke: inherit
@@ -94,6 +95,9 @@
   img
     display: block
     margin: 0 auto
+  button
+    cursor: pointer
+    transition: all .25s ease
 
   // Classes
 

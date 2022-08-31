@@ -10,6 +10,7 @@
   export let body_chaptered;
 	$: active_chapter_index = null;
 	const scroll_padding = -400;
+	let close_footnote;
 
   onMount(() => {
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
@@ -17,6 +18,10 @@
 				node: node,
 				offsetTop: node.offsetTop
 			}
+		});
+
+		close_footnote.addEventListener('click', e => {
+			e.target.closest('.footnote').classList.remove('active');
 		});
 
 		// TODO: reduce number of scroll triggers with intervals
@@ -78,7 +83,10 @@
 
 	<div class="footnotes">
 		<div class="footnote">
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro iste, dignissimos, omnis, mollitia voluptatem ipsa odit consequuntur quibusdam doloribus quod assumenda officia perferendis vel vero blanditiis sit voluptatibus earum officiis culpa voluptate sed soluta dolore. Sequi, suscipit repellendus pariatur quos optio natus dolore dignissimos totam! Molestias doloremque deserunt recusandae unde!
+			<div class="text"></div>
+			<button class="close" data-action="close_footnote" bind:this={close_footnote}>
+				<svg><use xlink:href="../src/img/icons.svg#cross"></use></svg>
+			</button>
 		</div>
 	</div>
 </div>
@@ -116,7 +124,7 @@
 		border-radius: var(--radius)
 		line-height: 1.5rem
 		padding-inline: 3rem
-	// TODO: add line, animate while active in Footnote.svelte
+	// TODO: add box-shadow
 	.footnotes
 		width: 100%
 		font-size: .95rem
@@ -125,10 +133,34 @@
 		position: relative
 	.footnote
 		position: absolute
+		z-index: 5
 		width: calc( 100% - 4rem )
 		left: 50%
 		transform: translate(-50%, -25%)
 		border: 1px solid var(--color-accent-primary)
 		border-radius: calc(var(--radius) * .2)
 		padding: .5rem
+		.close
+			position: absolute
+			z-index: 6
+			top: 0
+			right: 0
+			width: 1.6rem
+			height: 1.6rem
+			transform: translate(50%, -50%)
+			display: inline-flex
+			align-items: center
+			justify-content: center
+			border-radius: 50%
+			background-color: var(--color-bg-primary)
+			border: 2px solid var(--trs)
+			svg
+				width: 100%
+				height: 100%
+				fill: var(--color-text-primary-o)
+			&:hover
+				border-color: var(--color-accent-primary)
+				svg
+					fill: var(--color-accent-primary)
+					transform: rotate(90deg) scale(1.3)
 </style>

@@ -14,7 +14,8 @@
 	onMount(() => {
 		footnote.node.addEventListener('click', e => {
 			const footnote_box = document.querySelector('.footnotes .footnote');
-			footnote_box.innerText = footnote.text;
+			const footnote_box_text = footnote_box.querySelector('.text');
+			footnote_box_text.innerText = footnote.text;
 			footnote_box.style.top = `${footnote.node.offsetTop}px`;
 			footnote_box.classList.toggle('active');
 			e.target.classList.toggle('active');
