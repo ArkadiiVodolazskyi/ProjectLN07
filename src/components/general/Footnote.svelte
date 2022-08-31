@@ -15,6 +15,7 @@
 		footnote.node.addEventListener('click', e => {
 			const footnote_box = document.querySelector('.footnotes .footnote');
 			footnote_box.innerText = footnote.text;
+			footnote_box.style.top = `${footnote.node.offsetTop}px`;
 			footnote_box.classList.toggle('active');
 			e.target.classList.toggle('active');
 		});
@@ -30,6 +31,7 @@
 		border-radius: calc(var(--radius) * .2)
 		padding: 0 .2rem
 		cursor: pointer
+		position: relative
 		transition: all .3s ease
 		border: 1px solid var(--color-text-primary-o)
 		&:hover, &.active

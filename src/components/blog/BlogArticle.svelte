@@ -9,7 +9,7 @@
   export let contents_list;
   export let body_chaptered;
 	$: active_chapter_index = null;
-	const scroll_padding = 250;
+	const scroll_padding = -400;
 
   onMount(() => {
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
@@ -88,12 +88,12 @@
 		display: grid
 		grid-template-columns: 1fr var(--block-width-content) 1fr
 		grid-template-rows: auto
-	.contents, .footnotes
+	.contents
 		margin: 2em auto 0
 		line-height: 1.5rem
 		padding-inline: 2rem
 		position: relative
-	.contents_list, .footnote
+	.contents_list
 		display: flex
 		flex-direction: column
 		padding-top: 3rem
@@ -117,11 +117,18 @@
 		line-height: 1.5rem
 		padding-inline: 3rem
 	// TODO: add line, animate while active in Footnote.svelte
+	.footnotes
+		width: 100%
+		font-size: .95rem
+		margin-top: 2em
+		line-height: 1.25rem
+		position: relative
 	.footnote
-		padding: 0
+		position: absolute
+		width: calc( 100% - 4rem )
+		left: 50%
+		transform: translate(-50%, -25%)
 		border: 1px solid var(--color-accent-primary)
 		border-radius: calc(var(--radius) * .2)
 		padding: .5rem
-		top: 50%
-		transform: translateY(-50%)
 </style>

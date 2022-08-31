@@ -48,6 +48,9 @@
     display: flex
     flex-direction: column
     justify-content: space-between
+    max-width: 100vw
+    overflow-x: hidden
+    overflow-y: auto
   main
     padding: 3rem 0
     flex-grow: 1
@@ -103,6 +106,7 @@
   .portable_text
     padding-block: 3rem
     background-color: var(--color-bg-primary-d)
+    position: relative
     > *:not(:first-child)
       margin-top: 1.3rem
     .image_figure img
