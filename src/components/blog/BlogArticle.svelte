@@ -9,7 +9,7 @@
   export let contents_list;
   export let body_chaptered;
 	$: active_chapter_index = null;
-	const scroll_padding = -400;
+	const scroll_padding = -200;
 	let close_footnote;
 
   onMount(() => {

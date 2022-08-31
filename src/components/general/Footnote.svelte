@@ -9,14 +9,16 @@
 		node: null
 	};
 
-	// TODO: remove active on scroll or something
-
 	onMount(() => {
 		footnote.node.addEventListener('click', e => {
 			const footnote_box = document.querySelector('.footnotes .footnote');
 			const footnote_box_text = footnote_box.querySelector('.text');
 			footnote_box_text.innerText = footnote.text;
-			footnote_box.style.top = `${footnote.node.offsetTop}px`;
+
+			const chapter_parent = e.target.closest('.chapter_title');
+			const top = chapter_parent ? chapter_parent.offsetTop : footnote.node.offsetTop;
+			footnote_box.style.top = `${top}px`;
+
 			footnote_box.classList.toggle('active');
 			e.target.classList.toggle('active');
 		});

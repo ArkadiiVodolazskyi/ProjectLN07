@@ -7,7 +7,6 @@
 </script>
 
 <h4 id={chapter_id} class="chapter_title">
-	<!-- TODO: check -->
 	{#if text.includes('[')}
 		<Footnote portableText={portableText} />
 	{:else}
