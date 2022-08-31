@@ -1,10 +1,16 @@
 <script>
+	import Footnote from '$components/general/Footnote.svelte';
   export let portableText;
-	const text = portableText.value.children.reduce((sum, child) => sum + child.text, '');
 	const chapter_id = portableText.value.chapter_id || '';
-	// TODO: use Footnote
+	const text = portableText.value.children.reduce((sum, child) => sum + child.text, '');
+	portableText.plainTextContent = text;
 </script>
 
 <h4 id={chapter_id} class="chapter_title">
-	{text}
+	<!-- TODO: check -->
+	{#if text.includes('[')}
+		<Footnote portableText={portableText} />
+	{:else}
+		{text}
+	{/if}
 </h4>

@@ -24,7 +24,7 @@
   const contents_list = [];
   const body_chaptered = body.map(item => {
     if (item.style === 'h4') {
-      const text = item.children[0].text;
+      const text = item.children.reduce((sum, child) => sum + child.text, '');
       const chapter_id = `ch-${slugify(text)}`;
 
       item.chapter_id = chapter_id;
