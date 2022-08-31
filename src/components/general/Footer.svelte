@@ -18,9 +18,9 @@
         </a>
       </li>
       <li class="socials_item">
-        <a class="socials_link" href="https://t.me/TheSouthernCity" target="_blank" title="Написать мне в Telegram">
+        <a class="socials_link" href="https://www.linkedin.com/in/vodolazskyi/" target="_blank" title="Написать мне в LinkedIn">
           <svg>
-            <use xlink:href="../src/img/icons.svg#telegram2"></use>
+            <use xlink:href="../src/img/icons.svg#linkedin"></use>
           </svg>
         </a>
       </li>
