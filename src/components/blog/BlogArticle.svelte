@@ -10,6 +10,7 @@
   export let body_chaptered;
 	$: active_chapter_index = null;
 	const scroll_padding = -200;
+	let footnote;
 	let close_footnote;
 
   onMount(() => {
@@ -20,9 +21,8 @@
 			}
 		});
 
-		close_footnote.addEventListener('click', e => {
-			e.target.closest('.footnote').classList.remove('active');
-		});
+		footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
+		close_footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 
 		// TODO: reduce number of scroll triggers with intervals
 
@@ -82,7 +82,7 @@
   </div>
 
 	<div class="footnotes">
-		<div class="footnote">
+		<div class="footnote" bind:this={footnote}>
 			<div class="text"></div>
 			<button class="close" data-action="close_footnote" bind:this={close_footnote}>
 				<svg><use xlink:href="../src/img/icons.svg#cross"></use></svg>
@@ -137,9 +137,13 @@
 		width: calc( 100% - 4rem )
 		left: 50%
 		transform: translate(-50%, -25%)
-		border: 1px solid var(--color-accent-primary)
+		border: 2px solid var(--color-accent-primary)
 		border-radius: calc(var(--radius) * .2)
 		padding: .5rem
+		cursor: pointer
+		transition: all .25s ease
+		&:hover
+			border-color: var(--color-accent-primary-d)
 		.close
 			position: absolute
 			z-index: 6

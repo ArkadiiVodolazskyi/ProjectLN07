@@ -12,6 +12,10 @@
 	--color-bg-primary-d: hsl(0, 0%, 13%);
 	--color-bg-primary-do: hsla(0, 0%, 13%, .6);
 	--color-accent-primary: hsl(273, 44%, 35%);
+
+	/* TODO: more clear accent onhover color */
+	--color-accent-primary-d: hsl(273, 44%, 25%);
+
 	--color-text-primary: hsl(0, 0%, 82%);
 	--color-text-primary-o: hsla(0, 0%, 82%, 0.5);
 	--color-text-secondary: hsl(0, 0%, 20%);
