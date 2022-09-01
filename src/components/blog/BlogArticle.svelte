@@ -124,24 +124,24 @@
 		border-radius: var(--radius)
 		line-height: 1.5rem
 		padding-inline: 3rem
-	// TODO: add box-shadow
 	.footnotes
 		width: 100%
-		font-size: .95rem
+		font-size: .9rem
 		margin-top: 2em
-		line-height: 1.25rem
+		line-height: 1.3rem
 		position: relative
 	.footnote
 		position: absolute
 		z-index: 5
 		width: calc( 100% - 4rem )
 		left: 50%
-		transform: translate(-50%, -25%)
-		border: 2px solid var(--color-accent-primary)
 		border-radius: calc(var(--radius) * .2)
-		padding: .5rem
+		padding: .8rem
 		cursor: pointer
+		background-color: var(--color-bg-primary-do)
+		box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-d)
 		transition: all .25s ease
+		transform: translate(-50%, -15%) scale(.95)
 		&:hover
 			border-color: var(--color-accent-primary-d)
 		.close

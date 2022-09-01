@@ -46,4 +46,5 @@
 		&.active
 			opacity: 1
 			visibility: visible
+			transform: translate(-50%, -25%) scale(1) !important
 </style>
