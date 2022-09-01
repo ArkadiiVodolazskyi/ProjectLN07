@@ -10,23 +10,25 @@
   } = post;
 
   const post_thumbnail_url = post.image ? urlFor(post.image) : null;
-  // TODO: use gradient options as CSS variables
-  const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%);`;
 
   // TODO: add post views counter
 </script>
 
-<div class="post_card">
+<div
+  class="post_card"
+  style={`
+    --grad1: ${gradient.color_1};
+    --grad2: ${gradient.color_2};
+    --angle: ${gradient.angle};
+  `}
+>
   {#if post_thumbnail_url}
     <a
       rel="prefetch"
       href="/blog/{post.slug.current}"
       class="thumnail_wrapper"
     >
-      <div
-        class="backgrop"
-        style="background: {build_css_gradient};"
-      ></div>
+      <div class="backgrop"></div>
       <img class="tumbnail_img" src="{post_thumbnail_url}" alt="{post.title}">
     </a>
   {/if}
@@ -59,6 +61,7 @@
       transform-origin: center
       transition: all .3s ease
       transform: translate(-50%, -50%)
+      background: linear-gradient((calc(var(--angle) * 1deg)), var(--grad1) 0%, var(--grad2) 100%)
     .tumbnail_img
       position: absolute
       z-index: 50
