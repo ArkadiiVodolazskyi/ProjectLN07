@@ -31,6 +31,7 @@
 
 <style lang="sass" global>
 
+  // TODO: try / add more / use better colors
   // Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1)
   // #00c9b0 #005b5f #8b0073 #307ea6  #e15871
 
@@ -43,6 +44,8 @@
     line-height: 1.4
     scroll-behavior: smooth
   body
+    // TODO: use smooth background instead of plain color
+    // TODO: maybe use relief pattern, like crumpled paper or something
     background-color: var(--color-bg-primary)
     min-height: 100vh
     display: flex
@@ -108,7 +111,7 @@
   // Portable text
 
   .portable_text
-    padding-block: 2rem
+    padding-block: 3rem
     background-color: var(--color-bg-primary-d)
     position: relative
     > *:not(:first-child)

@@ -46,6 +46,9 @@
 <article style="--gradient: {build_css_gradient};">
 
   <div class="wrapper">
+
+    <!-- TODO: add button 'back to all posts' -->
+    <!-- TODO: simplify the intro, try to think about mobile versions -->
     {#if image}
       <div class="intro">
         <h2 class="title">
@@ -73,6 +76,7 @@
   />
 
   <div class="meta">
+    <!-- TODO: add spaces between categories -->
     {#if categories.length}
       <div class="categories">
         <h6>Категории: </h6>
@@ -95,6 +99,8 @@
 </article>
 
 <style lang="sass">
+  // TODO: add box-shadow
+  // TODO: use different font-family
   .intro
     font-size: 1.7rem
     height: 70vh

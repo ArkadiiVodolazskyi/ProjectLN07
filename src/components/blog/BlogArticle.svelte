@@ -55,6 +55,8 @@
   })
 </script>
 
+<!-- TODO: check for larger screens, add max-width -->
+
 <div class="main_content">
   <div class="contents">
     {#if contents_list.length}
@@ -140,6 +142,7 @@
 			justify-content: space-between
 			padding: .3rem 0
 			position: relative
+	// TODO: add box-shadow
 	.content
 		text-align: justify
 		margin: 2em auto 0
