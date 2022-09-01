@@ -14,7 +14,8 @@
     image,
     publishedAt,
     slug,
-    title
+    title,
+    printed_version
   } = post;
 
   const date_published = new Date(publishedAt);
@@ -63,7 +64,13 @@
     {/if}
   </div>
 
-  <BlogArticle contents_list={contents_list} body_chaptered={body_chaptered} />
+  <BlogArticle
+    contents_list={contents_list}
+    body_chaptered={body_chaptered}
+    printed_version={printed_version}
+    authors={authors}
+    title={title}
+  />
 
   <div class="meta">
     {#if categories.length}

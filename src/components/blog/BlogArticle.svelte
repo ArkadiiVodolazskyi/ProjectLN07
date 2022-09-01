@@ -6,12 +6,18 @@
   import Chapter from '$components/general/Chapter.svelte';
 	import Footnote from '$components/general/Footnote.svelte';
 
+	// TODO: tidy up the code, maybe split into components
+
   export let contents_list;
   export let body_chaptered;
+	export let printed_version;
+	export let authors;
+	export let title;
 	$: active_chapter_index = null;
 	const scroll_padding = -200;
 	let footnote;
 	let close_footnote;
+	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
 
   onMount(() => {
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
@@ -65,6 +71,19 @@
   </div>
 
   <div class="portable_text content" data-watch="scroll">
+		{#if printed_version}
+			<div class="printed_wrapper">
+				<a
+					class="download_printed"
+					href={`${printed_version}?dl=<${filename}.pdf>`}
+					data-action="download_printed_version"
+				>
+					<span>Скачать PDF версию</span>
+					<svg><use xlink:href="../src/img/icons.svg#download"></use></svg>
+				</a>
+			</div>
+		{/if}
+
     {#if body_chaptered}
       <PortableText
         value={body_chaptered}
@@ -126,7 +145,21 @@
 		margin: 2em auto 0
 		border-radius: var(--radius)
 		line-height: 1.5rem
-		padding-inline: 3rem
+		padding-inline: 4rem
+	.printed_wrapper
+		text-align: center
+		margin: 0 0 2rem
+		font-family: var(--font-family-semiaccent)
+		font-weight: 300
+	.download_printed
+		display: flex
+		align-items: center
+		justify-content: center
+		svg
+			margin-left: .4rem
+			width: 1rem
+			height: 1rem
+			stroke: var(--color-text-link)
 	.footnotes
 		width: 100%
 		font-size: .9rem

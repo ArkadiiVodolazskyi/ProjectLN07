@@ -11,7 +11,8 @@ export async function get({params: {slug}}) {
     image,
     publishedAt,
     slug,
-    title
+    title,
+    "printed_version": printed_version.asset->url
   }`)
 
   if (post) {

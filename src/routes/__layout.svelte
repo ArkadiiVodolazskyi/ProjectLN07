@@ -108,7 +108,7 @@
   // Portable text
 
   .portable_text
-    padding-block: 3rem
+    padding-block: 2rem
     background-color: var(--color-bg-primary-d)
     position: relative
     > *:not(:first-child)

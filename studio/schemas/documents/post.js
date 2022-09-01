@@ -106,6 +106,15 @@ export default {
       name: 'body',
       title: 'Post body',
       type: 'portableText',
+    },
+    {
+      name: 'printed_version',
+      title: 'PDF Version',
+      type: 'file',
+      options: {
+        storeOriginalFilename: true,
+        accept: '.docx,.pdf'
+      }
     }
   ],
   preview: {

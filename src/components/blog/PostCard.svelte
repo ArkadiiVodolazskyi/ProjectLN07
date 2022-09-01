@@ -10,8 +10,6 @@
   } = post;
 
   const post_thumbnail_url = post.image ? urlFor(post.image) : null;
-
-  // TODO: add post views counter
 </script>
 
 <div
