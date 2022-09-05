@@ -39,6 +39,7 @@
     &.blog
       background-color: var(--tsp)
       position: relative
+      // TODO: use svg to easily change color
       background-image: url('../../img/opened_book.png')
       background-size: 100% 100%
       background-position: center bottom

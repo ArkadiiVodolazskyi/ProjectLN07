@@ -6,10 +6,12 @@
 
 	--tsp: #00000000;
 	--color-bg-primary: hsl(0, 0%, 18%);
+	--color-bg-primary2: hsl(213, 48%, 5%);
+	--color-bg-primary3: hsl(273, 44%, 15%);
 	--color-bg-primary-o: hsla(0, 0%, 18%, .4);
 	--color-bg-primary-inverted: hsl(0, 0%, 75%);
 	--color-bg-primary-inverted-50: hsl(0, 0%, 42%);
-	--color-bg-primary-d: hsl(0, 0%, 13%);
+	--color-bg-primary-d: hsl(0, 0%, 10%);
 	--color-bg-primary-do: hsla(0, 0%, 13%, .6);
 	--color-accent-primary: hsl(273, 44%, 35%);
 

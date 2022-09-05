@@ -47,6 +47,8 @@
     // TODO: use smooth background instead of plain color
     // TODO: maybe use relief pattern, like crumpled paper or something
     background-color: var(--color-bg-primary)
+    background: radial-gradient(ellipse at bottom, var(--color-bg-primary3) 0%, var(--color-bg-primary2) 100%)
+    background-position: center
     min-height: 100vh
     display: flex
     flex-direction: column
