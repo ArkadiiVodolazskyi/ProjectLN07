@@ -49,6 +49,8 @@
 
 <style lang="sass">
   header
+    --links-padding: .8rem
+    padding: calc( var(--links-padding) * .2 ) 0
     background-color: var(--color-bg-primary-d)
     font-family: var(--font-family-accent)
     a
@@ -78,6 +80,7 @@
       display: flex
       align-items: center
       justify-content: flex-end
+      font-size: .9rem
       font-weight: 500
     .link_item
       display: inline-flex
@@ -86,20 +89,6 @@
     .link
       text-transform: uppercase
       position: relative
-      &.active
-        font-weight: 900
-      &::after
-        content: ''
-        position: absolute
-        z-index: 10
-        inset: calc( 100% - .8rem ) 0 0 50%
-        width: calc( 100% - var(--links-padding) * 2 )
-        max-width: 0
-        height: .1rem
-        transform: translate(-50%, 0)
-        background-color: var(--tsp)
-        transition: background-color .2s ease-out, max-width .45s ease
-      &:hover::after
-        max-width: 100%
-        background-color: var(--color-text-link-hover)
+      &:hover, &.active
+        color: var(--color-text-link-hover)
 </style>
