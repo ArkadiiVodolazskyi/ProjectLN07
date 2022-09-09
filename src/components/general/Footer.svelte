@@ -1,50 +1,64 @@
 <script></script>
 
-<footer class='blog'>
-  <div class="wrapper">
-    <ul class="socials">
-      <li class="socials_item">
-        <a class="socials_link" href="https://www.instagram.com/literary_note/" target="_blank" title="Открыть профиль Instagram в новой вкладке">
-          <svg>
-            <use xlink:href="../src/img/icons.svg#int"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="socials_item centered">
-        <a class="socials_link logo logo_av" href="https://github.com/ArkadiiVodolazskyi" target="_blank" title="Открыть профиль GitHub в новой вкладке">
-          <svg>
-            <use xlink:href="../src/img/icons.svg#av"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="socials_item">
-        <a class="socials_link" href="https://www.linkedin.com/in/vodolazskyi/" target="_blank" title="Написать мне в LinkedIn">
-          <svg>
-            <use xlink:href="../src/img/icons.svg#linkedin"></use>
-          </svg>
-        </a>
-      </li>
-    </ul>
+<footer>
+
+  <div class="bg_shadow">
+    <svg class="opened_book" width="100%">
+      <use xlink:href="../src/img/icons.svg#opened_book"></use>
+    </svg>
+  </div>
+
+  <div class="content">
+    <div class="wrapper">
+      <ul class="socials">
+        <li class="socials_item">
+          <a class="socials_link" href="https://www.instagram.com/literary_note/" target="_blank" title="Открыть профиль Instagram в новой вкладке">
+            <svg>
+              <use xlink:href="../src/img/icons.svg#int"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="socials_item centered">
+          <a class="socials_link logo logo_av" href="https://github.com/ArkadiiVodolazskyi" target="_blank" title="Открыть профиль GitHub в новой вкладке">
+            <svg>
+              <use xlink:href="../src/img/icons.svg#av"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="socials_item">
+          <a class="socials_link" href="https://www.linkedin.com/in/vodolazskyi/" target="_blank" title="Написать мне в LinkedIn">
+            <svg>
+              <use xlink:href="../src/img/icons.svg#linkedin"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
 </footer>
 
 <style lang="sass">
   footer
-    border-radius: var(--radius) var(--radius) 0 0
-    background-color: var(--color-bg-primary-d)
-    height: 7rem
+    --bg-opacity: .4
+    display: grid
+  .bg_shadow, .content
+    grid-row: 1 / -1
+    grid-column: 1 / -1
+  .bg_shadow
+    position: relative
+    z-index: 0
+    backdrop-filter: blur(10px)
+    svg
+      fill: hsl(0, 0%, 7%, .3)
+  .content
+    position: relative
+    z-index: 5
     display: flex
     align-items: flex-end
-    &.blog
-      background-color: var(--tsp)
-      position: relative
-      // TODO: use svg to easily change color
-      background-image: url('../../img/opened_book.png')
-      background-size: 100% 100%
-      background-position: center bottom
+    justify-content: center
+    padding-bottom: 1rem
   .wrapper
-    padding: 0 1rem .6rem
     display: flex
     flex-direction: column
     align-items: center

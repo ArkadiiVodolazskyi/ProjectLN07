@@ -51,8 +51,9 @@
   header
     --links-padding: .8rem
     padding: calc( var(--links-padding) * .2 ) 0
-    background-color: var(--color-bg-primary-d)
     font-family: var(--font-family-accent)
+    background-color: hsl(0, 0%, 10%, .3)
+    backdrop-filter: blur(5px)
     a
       padding: var(--links-padding)
       fill: var(--color-text-primary)

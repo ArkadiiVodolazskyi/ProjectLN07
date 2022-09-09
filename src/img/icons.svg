@@ -77,7 +77,7 @@
 		<path d="M1200,0H0V120H281.94C572.9,116.24,602.45,3.86,602.45,3.86h0S632,116.24,923,120h277Z"></path>
 	</symbol>
 
-	<symbol id="opened_book" viewBox="0 0 1600 150">
+	<symbol id="opened_book" viewBox="0 0 1600 150" preserveAspectRatio="none">
 		<path d="M1600 150H800H0V-1.19209e-06H375.92C763.867 4.7 800 68.8636 800 68.8636C800 68.8636 842.667 4.7 1230.67 -1.19209e-06H1600V150Z" />
 	</symbol>
 
