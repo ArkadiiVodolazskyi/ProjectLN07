@@ -149,6 +149,7 @@
 		border-radius: var(--radius)
 		line-height: 1.5rem
 		padding-inline: 4rem
+		background-color: hsl(0, 0%, 25%, .5)
 	.printed_wrapper
 		text-align: center
 		margin: 0 0 2rem

@@ -31,10 +31,6 @@
 
 <style lang="sass" global>
 
-  // TODO: try / add more / use better colors
-  // Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1)
-  // #00c9b0 #005b5f #8b0073 #307ea6  #e15871
-
   // Tags
 
   html
@@ -44,8 +40,8 @@
     line-height: 1.4
     scroll-behavior: smooth
   body
-    // TODO: use smooth background instead of plain color
     // TODO: maybe use relief pattern, like crumpled paper or something
+    // TODO: style scrollbar, check in Chrome
     background-color: hsl(0, 0%, 18%)
     background: radial-gradient(ellipse at bottom, hsl(273, 44%, 15%) 0%, hsl(213, 48%, 5%) 100%)
     background-position: center
@@ -114,7 +110,6 @@
 
   .portable_text
     padding-block: 3rem
-    background-color: hsl(0, 0%, 10%)
     position: relative
     > *:not(:first-child)
       margin-top: 1.3rem
