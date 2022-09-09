@@ -40,14 +40,14 @@
   html
     font-size: var(--font-size-primary)
     font-family: var(--font-family-general)
-    color: var(--color-text-primary)
+    color: hsl(0, 0%, 82%)
     line-height: 1.4
     scroll-behavior: smooth
   body
     // TODO: use smooth background instead of plain color
     // TODO: maybe use relief pattern, like crumpled paper or something
-    background-color: var(--color-bg-primary)
-    background: radial-gradient(ellipse at bottom, var(--color-bg-primary3) 0%, var(--color-bg-primary2) 100%)
+    background-color: hsl(0, 0%, 18%)
+    background: radial-gradient(ellipse at bottom, hsl(273, 44%, 15%) 0%, hsl(213, 48%, 5%) 100%)
     background-position: center
     min-height: 100vh
     display: flex
@@ -94,9 +94,9 @@
     color: inherit
     transition: color .2s ease-out
     &.link:hover
-      color: var(--color-text-link-hover)
-      fill: var(--color-accent-primary)
-      stroke: var(--color-accent-primary)
+      color: hsl(220, 65%, 70%)
+      fill: hsl(273, 44%, 35%)
+      stroke: hsl(273, 44%, 35%)
   img
     display: block
     margin: 0 auto
@@ -114,7 +114,7 @@
 
   .portable_text
     padding-block: 3rem
-    background-color: var(--color-bg-primary-d)
+    background-color: hsl(0, 0%, 10%)
     position: relative
     > *:not(:first-child)
       margin-top: 1.3rem
@@ -122,17 +122,17 @@
       max-width: 50vw
       max-height: 50vh
       border-radius: var(--radius)
-      box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-d)
+      box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
     a
-      color: var(--color-text-link)
+      color: hsl(220, 65%, 60%)
       text-decoration: underline
       text-decoration-thickness: .08em
       text-underline-offset: .3em
       transition: all .3s ease
-      text-decoration-color: var(--tsp)
+      text-decoration-color: #00000000
       &:hover
-        color: var(--color-text-link-hover)
-        text-decoration-color: var(--color-text-link-hover)
+        color: hsl(220, 65%, 70%)
+        text-decoration-color: hsl(220, 65%, 70%)
     h4
       font-size: 1.5rem
       font-weight: bold
@@ -147,7 +147,7 @@
         height: .15rem
         border-radius: var(--radius)
         transform: translate( calc( -100% - 2rem ) , -50%)
-        background-color: var(--color-text-primary)
+        background-color: hsl(0, 0%, 82%)
         transition: all .3s ease
         opacity: 0
       &.active::before
@@ -158,7 +158,7 @@
     blockquote
       margin-inline: 0
       padding: 1rem 1.2rem
-      background-color: var(--color-bg-primary)
+      background-color: hsl(0, 0%, 18%)
       border-radius: calc( var(--radius) * .4 )
     ul, ol
       padding-left: 1rem

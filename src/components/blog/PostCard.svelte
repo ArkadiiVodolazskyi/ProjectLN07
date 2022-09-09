@@ -37,18 +37,18 @@
     border-radius: calc( var(--radius) + .3rem )
     position: relative
     transition: all .2s ease-out
-    box-shadow: 0 0 .1rem .1rem var(--color-bg-primary-o)
+    box-shadow: 0 0 .1rem .1rem hsl(0, 0%, 18%, .4)
     &:hover .backgrop
       transform: translate(-50%, -30%)
     .thumnail_wrapper
       display: block
       border-radius: var(--radius)
       overflow: hidden
-      box-shadow: 0 .2rem .3rem .1rem var(--color-bg-primary-o)
+      box-shadow: 0 .2rem .3rem .1rem hsl(0, 0%, 18%, .4)
       position: relative
       z-index: 20
       padding-top: 100%
-      background-color: var(--color-bg-primary-d)
+      background-color: hsl(0, 0%, 10%)
     .backgrop
       position: absolute
       z-index: 30
@@ -70,5 +70,5 @@
       max-height: 85%
       width: auto
       height: auto
-      box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-do)
+      box-shadow: 0 0 .3rem .2rem hsla(0, 0%, 13%, .6)
 </style>

@@ -56,7 +56,7 @@
     backdrop-filter: blur(5px)
     a
       padding: var(--links-padding)
-      fill: var(--color-text-primary)
+      fill: hsl(0, 0%, 82%)
     .wrapper
       display: flex
       align-items: center
@@ -91,5 +91,5 @@
       text-transform: uppercase
       position: relative
       &:hover, &.active
-        color: var(--color-text-link-hover)
+        color: hsl(220, 65%, 70%)
 </style>

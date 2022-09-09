@@ -19,8 +19,8 @@
 <style lang="sass">
 .tools_block
 	padding: 1.5rem 2rem
-	background-color: var(--color-bg-primary-do)
-	box-shadow: inset 0px 0px 8px 5px var(--color-bg-primary-d)
+	background-color: hsla(0, 0%, 13%, .6)
+	box-shadow: inset 0px 0px 8px 5px hsl(0, 0%, 10%)
 	border-radius: calc( var(--radius) / 2 )
 	&:not(:first-of-type)
 		margin-top: 2rem

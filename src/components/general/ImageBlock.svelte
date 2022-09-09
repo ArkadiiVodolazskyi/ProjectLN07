@@ -46,7 +46,7 @@
       right: 0
       width: 1.5rem
       height: 1.5rem
-      stroke: var(--color-text-primary)
+      stroke: hsl(0, 0%, 82%)
       transform-origin: center
       transition: opacity .3s ease
       opacity: 0

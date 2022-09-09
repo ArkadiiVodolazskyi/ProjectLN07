@@ -132,7 +132,7 @@
         height: auto
         max-width: 100%
         max-height: 100%
-        box-shadow: 0 0 .5rem .2rem var(--color-bg-primary-d)
+        box-shadow: 0 0 .5rem .2rem hsl(0, 0%, 10%)
     .title
       text-align: right
       font-size: inherit

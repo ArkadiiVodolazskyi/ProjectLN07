@@ -75,10 +75,10 @@
     &:not(:first-child)
       margin-left: .8rem
     a
-      fill: var(--color-text-primary)
+      fill: hsl(0, 0%, 82%)
       stroke: none
       &:hover
-        fill: var(--color-accent-primary)
+        fill: hsl(273, 44%, 35%)
     svg
       width: var(--iconsize)
       height: var(--iconsize)

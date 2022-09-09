@@ -162,7 +162,7 @@
 			margin-left: .4rem
 			width: 1rem
 			height: 1rem
-			stroke: var(--color-text-link)
+			stroke: hsl(220, 65%, 60%)
 	.footnotes
 		width: 100%
 		font-size: .9rem
@@ -177,12 +177,12 @@
 		border-radius: calc(var(--radius) * .2)
 		padding: .8rem
 		cursor: pointer
-		background-color: var(--color-bg-primary-do)
-		box-shadow: 0 0 .3rem .2rem var(--color-bg-primary-d)
+		background-color: hsla(0, 0%, 13%, .6)
+		box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
 		transition: all .25s ease
 		transform: translate(-50%, -15%) scale(.95)
 		&:hover
-			border-color: var(--color-accent-primary-d)
+			border-color: hsl(273, 44%, 25%)
 		.close
 			position: absolute
 			z-index: 6
@@ -195,15 +195,15 @@
 			align-items: center
 			justify-content: center
 			border-radius: 50%
-			background-color: var(--color-bg-primary)
+			background-color: hsl(0, 0%, 18%)
 			border: 2px solid var(--trs)
 			svg
 				width: 100%
 				height: 100%
-				fill: var(--color-text-primary-o)
+				fill: hsla(0, 0%, 82%, 0.5)
 			&:hover
-				border-color: var(--color-accent-primary)
+				border-color: hsl(273, 44%, 35%)
 				svg
-					fill: var(--color-accent-primary)
+					fill: hsl(273, 44%, 35%)
 					transform: rotate(90deg) scale(1.3)
 </style>

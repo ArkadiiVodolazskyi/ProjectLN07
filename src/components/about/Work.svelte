@@ -30,5 +30,5 @@
 	padding: .5rem
 	border-radius: calc( var(--radius) / 3 )
 	&:hover
-		background-color: var(--color-bg-primary-inverted-50)
+		background-color: hsl(0, 0%, 42%)
 </style>

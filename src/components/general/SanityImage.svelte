@@ -52,7 +52,7 @@
       visibility: hidden
       max-width: 80vw
       max-height: 80vh
-      box-shadow: 0 0 20rem 20rem var(--color-bg-primary-d)
+      box-shadow: 0 0 20rem 20rem hsl(0, 0%, 10%)
     &.active
       opacity: 1
       visibility: visible
