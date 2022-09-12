@@ -40,7 +40,7 @@
 
 <style lang="sass">
   footer
-    --bg-opacity: .4
+    --bg-opacity: .6
     display: grid
   .bg_shadow, .content
     grid-row: 1 / -1
@@ -50,7 +50,7 @@
     z-index: 0
     backdrop-filter: blur(10px)
     svg
-      fill: hsl(0, 0%, 7%, .3)
+      fill: hsl(0, 0%, 7%, var(--bg-opacity))
   .content
     position: relative
     z-index: 5

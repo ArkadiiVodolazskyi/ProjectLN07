@@ -1,5 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 
+	<symbol id="arrow_left" viewBox="0 0 404 362" fill="none">
+		<path d="M116.667 10L10 116.667L116.667 223.333" stroke-linecap="round" stroke-linejoin="round"/>
+		<path d="M10 116.667H180.667C298.491 116.667 394 212.176 394 330V351.333" stroke-linecap="round" stroke-linejoin="round"/>
+	</symbol>
+
 	<symbol id="bookshelf" viewBox="1 10 99 80">
 		<rect x="2.821" y="84.558" width="94.858" height="3.773"></rect>
 		<path d="M27.106,83.311H11.459V13.118h15.647V83.311z M13.354,81.407H25.21V14.999H13.354V81.407z"></path>

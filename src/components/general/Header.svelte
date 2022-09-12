@@ -52,7 +52,7 @@
     --links-padding: .8rem
     padding: calc( var(--links-padding) * .2 ) 0
     font-family: var(--font-family-accent)
-    background-color: hsl(0, 0%, 10%, .3)
+    background-color: hsl(0, 0%, 10%, .5)
     backdrop-filter: blur(5px)
     a
       padding: var(--links-padding)

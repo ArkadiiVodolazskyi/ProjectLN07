@@ -117,6 +117,7 @@
 
 <style lang="sass">
 	.main_content
+		padding-top: 1rem
 		display: grid
 		grid-template-columns: 1fr var(--block-width-content) 1fr
 		grid-template-rows: auto
@@ -131,11 +132,17 @@
 		padding-top: 3rem
 		position: sticky
 		top: 0
+		font-size: .95rem
 	.contents_item
+		text-decoration: underline
+		text-decoration-color: #00000000
+		text-underline-offset: .25em
+		text-decoration-thickness: .05em
 		transition: all .25s ease
-		opacity: .4
+		opacity: .6
 		&:hover, &.active
 			opacity: 1
+			text-decoration-color: inherit
 		a
 			display: flex
 			align-items: center

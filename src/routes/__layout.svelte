@@ -43,7 +43,8 @@
     // TODO: maybe use relief pattern, like crumpled paper or something
     // TODO: style scrollbar, check in Chrome
     background-color: hsl(0, 0%, 18%)
-    background: radial-gradient(ellipse at bottom, hsl(273, 44%, 15%) 0%, hsl(213, 48%, 5%) 100%)
+    // background: radial-gradient(ellipse at bottom, hsl(273, 44%, 20%) 0%, hsl(213, 48%, 15%) 100%)
+    background: linear-gradient(to top, hsl(273, 44%, 15%) 0%, hsl(213, 48%, 12%) 100%)
     background-position: center
     min-height: 100vh
     display: flex
@@ -53,7 +54,6 @@
     overflow-x: hidden
     overflow-y: auto
   main
-    padding: 3rem 0
     flex-grow: 1
   ul
     margin: 0

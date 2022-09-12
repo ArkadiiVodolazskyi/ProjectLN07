@@ -43,28 +43,34 @@
   <title>{title}</title>
 </svelte:head>
 
-<article style="--gradient: {build_css_gradient};">
+<article class="blog_article" style="--gradient: {build_css_gradient};">
 
-  <div class="wrapper">
+  <!-- TODO: add button 'back to all posts' -->
+  <!-- TODO: simplify the intro, try to think about mobile versions -->
+  <div class="intro">
+    <div class="wrapper">
+      <a class="back_to_posts" href="/blog">
+        <svg class="arrow"><use xlink:href="../src/img/icons.svg#arrow_left"></use></svg>
+        <span>Все посты</span>
+      </a>
 
-    <!-- TODO: add button 'back to all posts' -->
-    <!-- TODO: simplify the intro, try to think about mobile versions -->
-    {#if image}
-      <div class="intro">
-        <h2 class="title">
-          {title}
-        </h2>
-        <div class="image_wrapper">
-          <img class="image" src="{urlFor(image)}" alt="{title}">
-        </div>
-        <ul class="authors">
-          {@html authors.map(author => `<li>${author.name}</li>`)}
-        </ul>
-        <time class="book_first_published">
-          {book_first_published}
-        </time>
+      <!-- Add hover-shatterring effect -->
+      <div class="image_wrapper">
+        <img class="image" src="{urlFor(image)}" alt="{title}">
       </div>
-    {/if}
+
+      <h2 class="title">
+        {title}
+      </h2>
+
+      <ul class="authors">
+        {@html authors.map(author => `<li>${author.name}</li>`)}
+      </ul>
+
+      <time class="book_first_published">
+        {book_first_published}
+      </time>
+    </div>
   </div>
 
   <BlogArticle
@@ -99,18 +105,12 @@
 </article>
 
 <style lang="sass">
-  // TODO: add box-shadow
-  // TODO: use different font-family
+  .blog_article
+    padding-bottom: 2rem
   .intro
-    font-size: 1.7rem
-    height: 70vh
-    display: grid
-    grid-template-columns: 25% 50% 25%
-    grid-template-rows: 95% 5%
-    align-items: center
     position: relative
     z-index: 10
-    padding: 1rem
+    box-shadow: inset 0 0 .5rem .5rem hsl(0deg, 0%, 10%, .5)
     &::before
       content: ''
       position: absolute
@@ -119,29 +119,69 @@
       top: 0
       right: 0
       bottom: 0
-      opacity: .7
-      border-radius: var(--radius)
+      opacity: .5
       background: var(--gradient)
-    .image_wrapper
-      padding: 1rem
-      width: 100%
-      height: 100%
-      .image
-        display: block
-        width: auto
-        height: auto
-        max-width: 100%
-        max-height: 100%
-        box-shadow: 0 0 .5rem .2rem hsl(0, 0%, 10%)
+    .wrapper
+      font-size: 1.7rem
+      display: grid
+      grid-template-rows: 2rem 1fr 2rem
+      grid-template-columns: 25% 50% 25%
+      align-items: center
+      font-family: var(--font-family-semiaccent)
+      font-weight: 500
+      padding: 2rem 0
+      .back_to_posts
+        grid-row: 1
+        grid-column: 1 / span 3
+        font-family: var(--font-family-accent)
+        font-weight: 400
+        font-size: 1.1rem
+        display: flex
+        align-items: center
+        text-transform: uppercase
+        background-color: hsl(0, 0%, 10%, .6  )
+        width: max-content
+        max-width: 25%
+        padding: .4em .5em
+        border-radius: calc( var(--radius) * .4 )
+        .arrow
+          margin-right: .5em
+          width: .8em
+          height: .8em
+          stroke-width: 2em
+          stroke: hsl(0deg, 0%, 82%)
+      .image_wrapper
+        grid-row: 1 / span 2
+        grid-column: 2
+        display: flex
+        align-items: center
+        justify-content: center
+        padding: 0 3rem
+        .image
+          display: block
+          width: auto
+          height: auto
+          max-width: 100%
+          max-height: 30rem
+          box-shadow: 0 0 .5rem .2rem hsl(0, 0%, 10%)
     .title
+      grid-row: 2
+      grid-column: 1
       text-align: right
       font-size: inherit
+      font-family: inherit
     .authors
+      grid-row: 2
+      grid-column: 3
       text-align: left
       font-size: inherit
     .book_first_published
-      grid-column: span 3
+      padding-top: 2rem
+      grid-row: 3
+      grid-column: 2
       text-align: center
+      font-size: .85em
+      font-weight: 400
 
   .meta
     margin: 2em auto 0
