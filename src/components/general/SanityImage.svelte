@@ -45,14 +45,18 @@
       opacity: 1
     &.preview
       position: fixed
-      z-index: 20
+      z-index: inherit
       top: 50%
       left: 50%
       transform: translate(-50%, -50%)
       visibility: hidden
-      max-width: 80vw
-      max-height: 80vh
-      box-shadow: 0 0 20rem 20rem hsl(0, 0%, 10%)
+      max-width: 70vw
+      max-height: 70vh
+      cursor: pointer
+      border-radius: inherit
+      box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
+      &:hover
+        transform: translate(-50%, -50%) scale(1.02)
     &.active
       opacity: 1
       visibility: visible

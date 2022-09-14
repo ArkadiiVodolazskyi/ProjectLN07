@@ -187,7 +187,7 @@
 		cursor: pointer
 		background-color: hsla(0, 0%, 13%, .6)
 		box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
-		transition: all .25s ease
+		transition: opacity .25s ease
 		transform: translate(-50%, -15%) scale(.95)
 		&:hover
 			border-color: hsl(273, 44%, 25%)
@@ -205,13 +205,14 @@
 			border-radius: 50%
 			background-color: hsl(0, 0%, 18%)
 			border: 2px solid var(--trs)
+			transform-origin: center
 			svg
 				width: 100%
 				height: 100%
 				fill: hsla(0, 0%, 82%, 0.5)
 			&:hover
 				border-color: hsl(273, 44%, 35%)
+				transform: translate(50%, -50%) scale(1.2)
 				svg
-					fill: hsl(273, 44%, 35%)
-					transform: rotate(90deg) scale(1.3)
+					fill: hsl(273, 44%, 45%)
 </style>

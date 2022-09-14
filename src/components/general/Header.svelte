@@ -1,8 +1,6 @@
 <script>
   import { page } from '$app/stores';
 
-  // TODO: make more space for Header
-
   const links = [
     {
       title: 'Главная',

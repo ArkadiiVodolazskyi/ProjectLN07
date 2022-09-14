@@ -19,11 +19,21 @@
   // Import components
   import Header from '$components/general/Header.svelte';
   import Footer from '$components/general/Footer.svelte';
+
+  import {onMount} from 'svelte';
+
+  let close_overlay;
+  onMount(() => {
+    close_overlay.addEventListener('click', e => e.target.closest('body').classList.remove('overlay'));
+  });
 </script>
 
 <Header />
 
 <main>
+  <button class="close_overlay" data-action="close_overlay" bind:this={close_overlay}>
+    <svg><use xlink:href="../src/img/icons.svg#cross"></use></svg>
+  </button>
   <slot />
 </main>
 
@@ -53,6 +63,48 @@
     max-width: 100vw
     overflow-x: hidden
     overflow-y: auto
+    position: relative
+    z-index: 1
+    &::before
+      content: ''
+      position: fixed
+      z-index: 95
+      left: 0
+      top: 0
+      right: 0
+      bottom: 0
+      width: 100%
+      height: 100%
+      background-color: var(--tsp)
+      backdrop-filter: blur(2px)
+      transition: opacity .25 ease-in
+      opacity: 0
+      visibility: hidden
+    &::after
+      content: ''
+      position: fixed
+      z-index: 100
+      left: 0
+      top: 0
+      right: 0
+      bottom: 0
+      width: 100vw
+      height: 100vh
+      background: linear-gradient(to top, hsl(273, 44%, 15%) 0%, hsl(213, 48%, 12%) 100%)
+      transition: opacity .25 ease-in
+      box-shadow: inset 0 0 .25rem .4rem hsl(0, 0%, 0%, .5)
+      opacity: 0
+      visibility: hidden
+    &.overlay
+      &::before
+        opacity: 1
+        visibility: visible
+      &::after
+        opacity: .8
+        visibility: visible
+      .close_overlay
+        opacity: 1
+        visibility: visible
   main
     flex-grow: 1
   ul
@@ -106,6 +158,31 @@
     max-width: var(--block-width-wrapper)
     margin: 0 auto
 
+  .close_overlay
+    position: fixed
+    z-index: 500
+    top: 0
+    right: 0
+    width: 1.5rem
+    height: 1.5rem
+    padding: 2.5rem
+    box-sizing: content-box
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    transform-origin: center
+    border: none
+    opacity: 0
+    visibility: hidden
+    svg
+      width: 100%
+      height: 100%
+      fill: hsla(0, 0%, 82%, 0.7)
+    &:hover
+      transform: scale(1.2)
+      svg
+        fill: hsl(273, 44%, 45%)
+
   // Portable text
 
   .portable_text
@@ -113,11 +190,57 @@
     position: relative
     > *:not(:first-child)
       margin-top: 1.3rem
-    .image_figure img
-      max-width: 50vw
-      max-height: 50vh
+    .image_figure
+      position: relative
+      z-index: 150
       border-radius: var(--radius)
-      box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
+      .image_wrapper
+        width: max-content
+        max-width: 100%
+        margin: 0 auto
+        position: relative
+        transition: box-shadow .25s ease, transform .2s ease-in
+        border-radius: inherit
+        &::before
+          content: ''
+          position: absolute
+          z-index: 1
+          left: 50%
+          top: 50%
+          transform: translate(-50%, -50%)
+          width: calc( 100% + .15rem )
+          height: calc( 100% + .15rem )
+          background: var(--gradient)
+          border-radius: inherit
+          transition: opacity .25s ease
+          opacity: 0
+        .icon
+          position: absolute
+          z-index: 7
+          top: 0
+          right: 0
+          width: 1.5rem
+          height: 1.5rem
+          stroke: hsl(0, 0%, 82%)
+          transform-origin: center
+          transition: opacity .25s ease-in-out
+          opacity: 0
+          transform: translate(-1rem, 1rem) rotate(180deg)
+        img
+          max-width: 45vw
+          max-height: 45vh
+          position: relative
+          z-index: 2
+          border-radius: inherit
+          border-radius: var(--radius)
+        &:hover
+          transform: scale(1.02)
+          box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
+          &::before
+            opacity: 1
+          .icon
+            opacity: 1
+            transform: translate(-1rem, 1rem) rotate(0deg)
     a
       color: hsl(220, 65%, 60%)
       text-decoration: underline
