@@ -46,15 +46,14 @@
   html
     font-size: var(--font-size-primary)
     font-family: var(--font-family-general)
-    color: hsl(0, 0%, 82%)
+    color: var(--tx-1)
     line-height: 1.4
     scroll-behavior: smooth
   body
     // TODO: maybe use relief pattern, like crumpled paper or something
     // TODO: style scrollbar, check in Chrome
-    background-color: hsl(0, 0%, 18%)
-    // background: radial-gradient(ellipse at bottom, hsl(273, 44%, 20%) 0%, hsl(213, 48%, 15%) 100%)
-    background: linear-gradient(to top, hsl(273, 44%, 15%) 0%, hsl(213, 48%, 12%) 100%)
+    background-color: var(--bg-1)
+    background: linear-gradient(to top, var(--gr-1))
     background-position: center
     min-height: 100vh
     display: flex
@@ -77,7 +76,7 @@
       height: 100%
       background-color: var(--tsp)
       backdrop-filter: blur(2px)
-      transition: opacity .25 ease-in
+      transition: opacity var(--tr-1)
       opacity: 0
       visibility: hidden
     &::after
@@ -90,9 +89,9 @@
       bottom: 0
       width: 100vw
       height: 100vh
-      background: linear-gradient(to top, hsl(273, 44%, 15%) 0%, hsl(213, 48%, 12%) 100%)
-      transition: opacity .25 ease-in
-      box-shadow: inset 0 0 .25rem .4rem hsl(0, 0%, 0%, .5)
+      background: linear-gradient(to top, var(--gr-1))
+      transition: opacity var(--tr-1)
+      box-shadow: var(--shd-2)
       opacity: 0
       visibility: hidden
     &.overlay
@@ -133,24 +132,24 @@
     fill: inherit
     stroke: inherit
     transform-origin: center
-    transition: all .25s ease
+    transition: all var(--tr-2)
     *
       fill: inherit
       stroke: inherit
   a
     text-decoration: none
     color: inherit
-    transition: color .2s ease-out
+    transition: color var(--tr-3)
     &.link:hover
-      color: hsl(220, 65%, 70%)
-      fill: hsl(273, 44%, 35%)
-      stroke: hsl(273, 44%, 35%)
+      color: var(--tx-2)
+      fill: var(--accent-1)
+      stroke: var(--accent-1)
   img
     display: block
     margin: 0 auto
   button
     cursor: pointer
-    transition: all .25s ease
+    transition: all var(--tr-2)
 
   // Classes
 
@@ -177,11 +176,11 @@
     svg
       width: 100%
       height: 100%
-      fill: hsla(0, 0%, 82%, 0.7)
+      fill: var(--tx-1-o70)
     &:hover
       transform: scale(1.2)
       svg
-        fill: hsl(273, 44%, 45%)
+        fill: var(--accent-1-l10)
 
   // Portable text
 
@@ -199,7 +198,7 @@
         max-width: 100%
         margin: 0 auto
         position: relative
-        transition: box-shadow .25s ease, transform .2s ease-in
+        transition: box-shadow var(--tr-2), transform .2s ease-in
         border-radius: inherit
         &::before
           content: ''
@@ -212,7 +211,7 @@
           height: calc( 100% + .15rem )
           background: var(--gradient)
           border-radius: inherit
-          transition: opacity .25s ease
+          transition: opacity var(--tr-2)
           opacity: 0
         .icon
           position: absolute
@@ -221,9 +220,9 @@
           right: 0
           width: 1.5rem
           height: 1.5rem
-          stroke: hsl(0, 0%, 82%)
+          stroke: var(--tx-1)
           transform-origin: center
-          transition: opacity .25s ease-in-out
+          transition: opacity var(--tr-2)-in-out
           opacity: 0
           transform: translate(-1rem, 1rem) rotate(180deg)
         img
@@ -235,22 +234,22 @@
           border-radius: var(--radius)
         &:hover
           transform: scale(1.02)
-          box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
+          box-shadow: var(--shd-1)
           &::before
             opacity: 1
           .icon
             opacity: 1
             transform: translate(-1rem, 1rem) rotate(0deg)
     a
-      color: hsl(220, 65%, 60%)
+      color: var(--tx-2)
       text-decoration: underline
       text-decoration-thickness: .08em
       text-underline-offset: .3em
       transition: all .3s ease
-      text-decoration-color: #00000000
+      text-decoration-color: var(--tsp)
       &:hover
-        color: hsl(220, 65%, 70%)
-        text-decoration-color: hsl(220, 65%, 70%)
+        color: var(--tx-2)
+        text-decoration-color: var(--tx-2)
     h4
       font-size: 1.5rem
       font-weight: bold
@@ -265,7 +264,7 @@
         height: .15rem
         border-radius: var(--radius)
         transform: translate( calc( -100% - 2rem ) , -50%)
-        background-color: hsl(0, 0%, 82%)
+        background-color: var(--tx-1)
         transition: all .3s ease
         opacity: 0
       &.active::before
@@ -276,7 +275,7 @@
     blockquote
       margin-inline: 0
       padding: 1rem 1.2rem
-      background-color: hsl(0, 0%, 18%)
+      background-color: var(--bg-1)
       border-radius: calc( var(--radius) * .4 )
     ul, ol
       padding-left: 1rem

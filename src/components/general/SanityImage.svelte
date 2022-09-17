@@ -38,7 +38,7 @@
 
 <style lang="sass">
   img
-    transition: all .25s ease
+    transition: all var(--tr-2)
     opacity: 0
     cursor: pointer
     &.loaded
@@ -54,7 +54,7 @@
       max-height: 70vh
       cursor: pointer
       border-radius: inherit
-      box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
+      box-shadow: var(--shd-4)
       &:hover
         transform: translate(-50%, -50%) scale(1.02)
     &.active

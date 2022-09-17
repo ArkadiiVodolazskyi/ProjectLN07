@@ -1,41 +1,40 @@
 :root {
 
+	/* Transitions */
+	--tr-1: .25 ease-in;
+	--tr-2: .25s ease;
+	--tr-3: .2s ease-out;
+
 	/* Colors */
+	--tsp: #00000000;
 
-	/* TODO: try / add more / use better colors */
-  /* Interesting variants for #5E3281 (https://mycolor.space/?hex=%235E3281&sub=1) */
-  /* #00c9b0 #005b5f #8b0073 #307ea6  #e15871 */
+	--tx-1: hsl(0, 0%, 82%);
+	--tx-1-o50: hsl(0, 0%, 82%, .5);
+	--tx-1-o70: hsla(0, 0%, 82%, .7);
+	--tx-2: hsl(220, 65%, 70%);
+	--bg-1: hsl(0, 0%, 18%);
+	--bg-1-o50: hsl(0, 0%, 25%, .5);
 
-	/* Namespaces:
+	--accent-1-d10: var(--accent-1-d10);
+	--accent-1: hsl(273, 44%, 35%);
+	--accent-1-l10: hsl(273, 44%, 45%);
 
-		General
-		--c-bg-1 background
-		--c-tx-1 text
+	--gr-1: hsl(273, 44%, 15%) 0%, hsl(213, 48%, 12%) 100%;
 
-		Specialized
-		--c-ac-1 accent
-		--c-li-1 link
-		--c-sh-1 shadow
-
-		Flags:
-		-d10 darken 10%
-		-l10 lighten 10%
-		-o10 opacity 10%
-	*/
-
-	/* TODO: refacotor colors and color names */
-	/* TODO: more clear accent onhover color */
-
+	/* Shadows */
+	--shd-1: 0 .2rem .2rem .3rem  hsl(0, 0%, 10%, .2);
+	--shd-2: inset 0 0 .25rem .4rem hsl(0, 0%, 0%, .5);
+	--shd-3: inset 0 0 .5rem .5rem hsl(0deg, 0%, 10%, .5);
+	--shd-4: 0 .2rem .3rem .1rem hsl(0, 0%, 10%, 0.3);
+	--shd-5: 0 0 .5rem .2rem hsl(0, 0%, 10%);
 
 	/* Fonts */
-
 	--font-size-primary: 18px;
 	--font-family-general: 'Bellota Text', sans-serif;
 	--font-family-semiaccent: 'Rubik', sans-serif;
 	--font-family-accent: 'Montserrat', sans-serif;
 
 	/* Sizes */
-
 	--block-width-wrapper: 1200px;
 	--block-width-content: 900px;
 	--radius: 1.5rem;

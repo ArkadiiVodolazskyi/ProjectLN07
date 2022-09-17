@@ -36,9 +36,9 @@
 		cursor: pointer
 		position: relative
 		transition: all .3s ease
-		border: 1px solid hsla(0, 0%, 82%, 0.5)
+		border: 1px solid var(--tx-1-o50)
 		&:hover, &.active
-			border-color: hsl(273, 44%, 35%)
+			border-color: var(--accent-1)
 	.footnotes .footnote
 		transition: opacity .3s ease
 		opacity: 0

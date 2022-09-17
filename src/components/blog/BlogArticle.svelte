@@ -135,10 +135,10 @@
 		font-size: .95rem
 	.contents_item
 		text-decoration: underline
-		text-decoration-color: #00000000
+		text-decoration-color: var(--tsp)
 		text-underline-offset: .25em
 		text-decoration-thickness: .05em
-		transition: all .25s ease
+		transition: all var(--tr-2)
 		opacity: .6
 		&:hover, &.active
 			opacity: 1
@@ -149,14 +149,14 @@
 			justify-content: space-between
 			padding: .3rem 0
 			position: relative
-	// TODO: add box-shadow
 	.content
 		text-align: justify
 		margin: 2em auto 0
 		border-radius: var(--radius)
 		line-height: 1.5rem
 		padding-inline: 4rem
-		background-color: hsl(0, 0%, 25%, .5)
+		background-color: var(--bg-1-o50)
+		box-shadow: var(--shd-1)
 	.printed_wrapper
 		text-align: center
 		margin: 0 0 2rem
@@ -170,7 +170,7 @@
 			margin-left: .4rem
 			width: 1rem
 			height: 1rem
-			stroke: hsl(220, 65%, 60%)
+			stroke: var(--tx-2)
 	.footnotes
 		width: 100%
 		font-size: .9rem
@@ -185,12 +185,12 @@
 		border-radius: calc(var(--radius) * .2)
 		padding: .8rem
 		cursor: pointer
-		background-color: hsla(0, 0%, 13%, .6)
-		box-shadow: 0 0 .3rem .2rem hsl(0, 0%, 10%)
-		transition: opacity .25s ease
+		background-color: var(--bg-1-o50)
+		box-shadow: var(--shd-4)
+		transition: opacity var(--tr-2)
 		transform: translate(-50%, -15%) scale(.95)
 		&:hover
-			border-color: hsl(273, 44%, 25%)
+			border-color: var(--accent-1-d10)
 		.close
 			position: absolute
 			z-index: 6
@@ -203,16 +203,16 @@
 			align-items: center
 			justify-content: center
 			border-radius: 50%
-			background-color: hsl(0, 0%, 18%)
+			background-color: var(--bg-1)
 			border: 2px solid var(--trs)
 			transform-origin: center
 			svg
 				width: 100%
 				height: 100%
-				fill: hsla(0, 0%, 82%, 0.5)
+				fill: var(--tx-1-o50)
 			&:hover
-				border-color: hsl(273, 44%, 35%)
+				border-color: var(--accent-1)
 				transform: translate(50%, -50%) scale(1.2)
 				svg
-					fill: hsl(273, 44%, 45%)
+					fill: var(--accent-1-l10)
 </style>

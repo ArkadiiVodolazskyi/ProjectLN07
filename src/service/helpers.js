@@ -97,9 +97,8 @@ export const slugify = (text, separator = '-') => {
   return text;
 }
 
-const body = document.body;
-
 export const overlay = (state = true) => {
+  const body = document.body;
   if (state) {
     body.classList.add('overlay');
   } else {

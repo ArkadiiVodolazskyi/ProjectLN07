@@ -36,15 +36,14 @@
   .post_card
     border-radius: calc( var(--radius) + .3rem )
     position: relative
-    transition: all .2s ease-out
-    box-shadow: 0 0 .1rem .1rem hsl(0, 0%, 18%, .4)
+    transition: all var(--tr-3)
+    box-shadow: var(--shd-1)
     &:hover .backgrop
       transform: translate(-50%, -30%)
     .thumnail_wrapper
       display: block
       border-radius: var(--radius)
       overflow: hidden
-      box-shadow: 0 .2rem .3rem .1rem hsl(0, 0%, 18%, .4)
       position: relative
       z-index: 20
       padding-top: 100%

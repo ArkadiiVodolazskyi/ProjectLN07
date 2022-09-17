@@ -45,8 +45,6 @@
 
 <article class="blog_article" style="--gradient: {build_css_gradient};">
 
-  <!-- TODO: add button 'back to all posts' -->
-  <!-- TODO: simplify the intro, try to think about mobile versions -->
   <div class="intro">
     <div class="wrapper">
       <a class="back_to_posts" href="/blog">
@@ -82,11 +80,10 @@
   />
 
   <div class="meta">
-    <!-- TODO: add spaces between categories -->
     {#if categories.length}
       <div class="categories">
         <h6>Категории: </h6>
-        <ul class="categories">
+        <ul class="categories_list">
           {@html categories.map(category => `<li>${category.title}</li>`)}
         </ul>
       </div>
@@ -110,7 +107,7 @@
   .intro
     position: relative
     z-index: 10
-    box-shadow: inset 0 0 .5rem .5rem hsl(0deg, 0%, 10%, .5)
+    box-shadow: var(--shd-3)
     &::before
       content: ''
       position: absolute
@@ -139,17 +136,21 @@
         display: flex
         align-items: center
         text-transform: uppercase
-        background-color: hsl(0, 0%, 10%, .6  )
+        background-color: hsl(0, 0%, 10%, .6)
         width: max-content
         max-width: 25%
         padding: .4em .5em
         border-radius: calc( var(--radius) * .4 )
+        box-shadow: var(--shd-4)
+        transition: background-color .2s ease
         .arrow
           margin-right: .5em
           width: .8em
           height: .8em
           stroke-width: 2em
-          stroke: hsl(0deg, 0%, 82%)
+          stroke: var(--tx-1)
+        &:hover
+          background-color: var(--accent-1)
       .image_wrapper
         grid-row: 1 / span 2
         grid-column: 2
@@ -163,7 +164,7 @@
           height: auto
           max-width: 100%
           max-height: 30rem
-          box-shadow: 0 0 .5rem .2rem hsl(0, 0%, 10%)
+          box-shadow: var(--shd-5)
     .title
       grid-row: 2
       grid-column: 1
@@ -183,18 +184,21 @@
       font-size: .85em
       font-weight: 400
 
-  .meta
-    margin: 2em auto 0
-    border-radius: var(--radius)
-    line-height: 1.5rem
-    padding-inline: 2rem
-    text-align: center
-    > *:not(:first-child)
-      margin-top: .5rem
-    .categories, .post_publish_date
-      display: flex
-      align-items: center
-      justify-content: center
-      h6
-        margin-right: 0.5rem
+  :global
+    .meta
+      margin: 2em auto 0
+      border-radius: var(--radius)
+      line-height: 1.5rem
+      padding-inline: 2rem
+      text-align: center
+      > *:not(:first-child)
+        margin-top: .2rem
+      .categories, .post_publish_date
+        display: flex
+        align-items: center
+        justify-content: center
+        h6
+          margin-right: 0.5rem
+      .categories_list li:not(:first-child)
+        margin-left: .2rem
 </style>
