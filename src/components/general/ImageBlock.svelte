@@ -6,6 +6,7 @@
   export let portableText;
   $: ({value} = portableText);
 
+  // TODO: fix
   const toggle_preview = e => {
     if (e.target.classList.contains('main')) {
       e.target.closest('.image_figure').querySelector('.preview')?.classList.add('active');

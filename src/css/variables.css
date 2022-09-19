@@ -1,5 +1,7 @@
 :root {
 
+	/* TODO: use Sass variables as :global or <global> inside index.svelte instead of CSS variables */
+
 	/* Transitions */
 	--tr-1: .25 ease-in;
 	--tr-2: .25s ease;

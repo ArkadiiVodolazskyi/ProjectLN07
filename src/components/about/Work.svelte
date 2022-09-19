@@ -14,6 +14,7 @@
 </script>
 
 <a class="card work" href={link.current}>
+	<!-- TODO: use background image -->
 	{#if post_thumbnail_url}
 		<img src={post_thumbnail_url} alt={title}>
 	{/if}

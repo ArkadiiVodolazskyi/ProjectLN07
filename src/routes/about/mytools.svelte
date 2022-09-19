@@ -1,6 +1,6 @@
 <script>
-	export let tools_categories;
 	import Tools from "$components/about/Tools.svelte";
+	export let tools_categories;
 </script>
 
 <svelte:head>

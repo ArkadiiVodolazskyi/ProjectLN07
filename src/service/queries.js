@@ -33,3 +33,16 @@ export const getToolsCategoriesQuery = () => {
 export const getPortfoliosQuery = () => {
   return /* groq */ `*[_type == "work"]`;
 }
+
+export const getSnippetsQuery = () => {
+  return /* groq */ `*[_type == "snippet"]{
+    title,
+    slug,
+    description,
+    tags[]->{
+      title,
+      image,
+      color
+    }
+  }`;
+}

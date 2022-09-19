@@ -184,6 +184,7 @@
 
   // Portable text
 
+  // TODO: work with colors
   .portable_text
     padding-block: 3rem
     position: relative

@@ -6,17 +6,14 @@
   import Chapter from '$components/general/Chapter.svelte';
 	import Footnote from '$components/general/Footnote.svelte';
 
-	// TODO: tidy up the code, maybe split into components
-
-  export let contents_list;
-  export let body_chaptered;
-	export let printed_version;
-	export let authors;
-	export let title;
+  export let contents_list,
+						body_chaptered,
+						printed_version,
+						authors,
+						title;
 	$: active_chapter_index = null;
+	let footnote, close_footnote;
 	const scroll_padding = -200;
-	let footnote;
-	let close_footnote;
 	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
 
   onMount(() => {
@@ -30,6 +27,7 @@
 		footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 		close_footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 
+		// TODO: fix errors
 		let scroll_check = null;
     window.addEventListener('scroll', e => {
 			clearInterval(scroll_check);

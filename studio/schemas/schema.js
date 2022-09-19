@@ -8,6 +8,8 @@ import post_category from './documents/post_category';
 import work from './documents/work';
 import tool from './documents/tool';
 import tool_category from './documents/tool_category';
+import snippet from './documents/snippet';
+import tech_tag from './documents/tech_tag';
 
 export default createSchema({
   name: 'default',
@@ -18,6 +20,8 @@ export default createSchema({
     portableText,
     work,
     tool,
-    tool_category
+    tool_category,
+    snippet,
+    tech_tag
   ])
 })
