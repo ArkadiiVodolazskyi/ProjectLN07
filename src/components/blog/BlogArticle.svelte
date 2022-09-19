@@ -40,10 +40,6 @@
 				chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
 
 				for (let i = 0; i < chapters_list.length; i++) {
-					if (scroll > chapters_list[0].offsetTop && i === chapters_list.length - 1) {
-						active_chapter_index = chapters_list.length - 1;
-						break;
-					}
 					if (scroll >= chapters_list[i].offsetTop - scroll_padding && scroll <= chapters_list[i + 1].offsetTop - scroll_padding) {
 						active_chapter_index = i;
 						chapters_list[active_chapter_index].node.classList.add('active');
@@ -54,8 +50,6 @@
 		});
   })
 </script>
-
-<!-- TODO: check for larger screens, add max-width -->
 
 <div class="main_content">
   <div class="contents">
