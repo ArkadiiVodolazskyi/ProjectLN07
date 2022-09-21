@@ -13,7 +13,7 @@
 						title;
 	$: active_chapter_index = null;
 	let footnote, close_footnote;
-	const scroll_padding = -200;
+	const scroll_padding = -300;
 	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
 
   onMount(() => {
@@ -27,7 +27,6 @@
 		footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 		close_footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 
-		// TODO: fix errors
 		let scroll_check = null;
     window.addEventListener('scroll', e => {
 			clearInterval(scroll_check);
@@ -38,13 +37,21 @@
 				chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
 
 				for (let i = 0; i < chapters_list.length; i++) {
-					if (scroll >= chapters_list[i].offsetTop - scroll_padding && scroll <= chapters_list[i + 1].offsetTop - scroll_padding) {
+					if (
+						chapters_list[i + 1] &&
+						scroll >= chapters_list[i].offsetTop - scroll_padding &&
+						scroll <= chapters_list[i + 1].offsetTop - scroll_padding
+					) {
 						active_chapter_index = i;
+						chapters_list[active_chapter_index].node.classList.add('active');
+						break;
+					} else {
+						active_chapter_index = chapters_list.length - 1;
 						chapters_list[active_chapter_index].node.classList.add('active');
 						break;
 					}
 				}
-			}, 100);
+			}, 50);
 		});
   })
 </script>
