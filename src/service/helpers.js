@@ -96,13 +96,3 @@ export const slugify = (text, separator = '-') => {
 
   return text;
 }
-
-export const overlay = (state = true) => {
-  const body = document.body;
-  if (state) {
-    body.classList.add('overlay');
-  } else {
-    body.classList.remove('overlay');
-  }
-  return !state;
-}

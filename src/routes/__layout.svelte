@@ -201,31 +201,6 @@
         position: relative
         transition: box-shadow var(--tr-2), transform .2s ease-in
         border-radius: inherit
-        &::before
-          content: ''
-          position: absolute
-          z-index: 1
-          left: 50%
-          top: 50%
-          transform: translate(-50%, -50%)
-          width: calc( 100% + .15rem )
-          height: calc( 100% + .15rem )
-          background: var(--gradient)
-          border-radius: inherit
-          transition: opacity var(--tr-2)
-          opacity: 0
-        .icon
-          position: absolute
-          z-index: 7
-          top: 0
-          right: 0
-          width: 1.5rem
-          height: 1.5rem
-          stroke: var(--tx-1)
-          transform-origin: center
-          transition: opacity var(--tr-2)-in-out
-          opacity: 0
-          transform: translate(-1rem, 1rem) rotate(180deg)
         img
           max-width: 45vw
           max-height: 45vh
@@ -233,14 +208,6 @@
           z-index: 2
           border-radius: inherit
           border-radius: var(--radius)
-        &:hover
-          transform: scale(1.02)
-          box-shadow: var(--shd-1)
-          &::before
-            opacity: 1
-          .icon
-            opacity: 1
-            transform: translate(-1rem, 1rem) rotate(0deg)
     a
       color: var(--tx-2)
       text-decoration: underline
