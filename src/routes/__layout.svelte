@@ -20,20 +20,12 @@
   import Header from '$components/general/Header.svelte';
   import Footer from '$components/general/Footer.svelte';
 
-  import {onMount} from 'svelte';
-
-  let close_overlay;
-  onMount(() => {
-    close_overlay.addEventListener('click', e => e.target.closest('body').classList.remove('overlay'));
-  });
+  // TODO: all the images -> to webp -> compress -> update.
 </script>
 
 <Header />
 
 <main>
-  <button class="close_overlay" data-action="close_overlay" bind:this={close_overlay}>
-    <svg><use xlink:href="../src/img/icons.svg#cross"></use></svg>
-  </button>
   <slot />
 </main>
 
