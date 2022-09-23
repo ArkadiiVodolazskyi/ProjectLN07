@@ -9,6 +9,7 @@
 		node: null
 	};
 
+	// TODO: fix - click on second footnote if first is showing -> then hide first, show second
 	onMount(() => {
 		footnote.node.addEventListener('click', e => {
 			const footnote_box = document.querySelector('.footnotes .footnote');

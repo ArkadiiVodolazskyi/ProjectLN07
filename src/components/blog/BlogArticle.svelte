@@ -27,6 +27,7 @@
 		footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 		close_footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 
+		// TODO: fix
 		let scroll_check = null;
     window.addEventListener('scroll', e => {
 			clearInterval(scroll_check);
@@ -139,6 +140,7 @@
 		text-decoration-thickness: .05em
 		transition: all var(--tr-2)
 		opacity: .6
+		// TODO: onhover background instead of underline
 		&:hover, &.active
 			opacity: 1
 			text-decoration-color: inherit
