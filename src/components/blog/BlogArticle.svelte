@@ -121,6 +121,7 @@
 		display: grid
 		grid-template-columns: 1fr var(--block-width-content) 1fr
 		grid-template-rows: auto
+		// TODO: add max-height + scroll
 	.contents
 		margin: 2em auto 0
 		line-height: 1.5rem

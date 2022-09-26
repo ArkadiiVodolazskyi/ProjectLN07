@@ -5,6 +5,8 @@ node_modules
 /package
 .env
 .netlify
+/src/img-to-webp/
+/src/img-webp/
 
 # The studio will be built in static/studio, which shouldn't be commited
 /static/studio
