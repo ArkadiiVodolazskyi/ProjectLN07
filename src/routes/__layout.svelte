@@ -180,8 +180,8 @@
   .portable_text
     padding-block: 3rem
     position: relative
-    > *:not(:first-child)
-      margin-top: 1.3rem
+    > :where(:not(:first-child))
+      margin-top: 1.3em
     .image_figure
       position: relative
       z-index: 150
@@ -198,8 +198,6 @@
           max-height: 45vh
           position: relative
           z-index: 2
-          border-radius: inherit
-          border-radius: var(--radius)
     a
       color: var(--tx-2)
       text-decoration: underline
@@ -210,10 +208,12 @@
       &:hover
         color: var(--tx-2)
         text-decoration-color: var(--tx-2)
-    h4
+    h4, h5
       font-size: 1.5rem
       font-weight: bold
       position: relative
+      padding: .2em 0
+      line-height: 1.3em
       &::before
         content: ''
         position: absolute
@@ -233,18 +233,22 @@
     .chapter_title
       scroll-margin-top: 2rem
     blockquote
-      margin-inline: 0
-      padding: 1rem 1.2rem
-      background-color: var(--bg-1)
+      margin: .5em 0 0
+      padding: .8em 1.2em
+      background-color: var(--bg-1-o50)
       border-radius: calc( var(--radius) * .4 )
+      line-height: 1.35em
     ul, ol
-      padding-left: 1rem
-      line-height: 1.4rem
+      padding-left: 1em
+      line-height: 1.4em
       li
         display: list-item
-        list-style-position: inside
+        list-style-position: outside
         &:not(:first-child)
-          margin-top: .5rem
+          margin-top: .75em
+        > ul, ol
+          padding: .75em 0 0 1.5em
+          list-style-type: disc
     ul
       list-style-type: square
 </style>

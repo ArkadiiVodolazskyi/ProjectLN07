@@ -121,30 +121,32 @@
 		display: grid
 		grid-template-columns: 1fr var(--block-width-content) 1fr
 		grid-template-rows: auto
-		// TODO: add max-height + scroll
 	.contents
 		margin: 2em auto 0
-		line-height: 1.5rem
-		padding-inline: 2rem
+		padding-left: 2em
 		position: relative
 	.contents_list
 		display: flex
 		flex-direction: column
-		padding-top: 3rem
+		padding: 1em 2em 0 0
 		position: sticky
 		top: 0
 		font-size: .95rem
+		max-height: 100vh
+		overflow-y: auto
+		overflow-x: hidden
+		list-style-position: outside
 	.contents_item
-		text-decoration: underline
-		text-decoration-color: var(--tsp)
-		text-underline-offset: .25em
-		text-decoration-thickness: .05em
+		border-radius: calc(var(--radius) / 3)
+		padding: .1em .4em
+		line-height: 1.2em
 		transition: all var(--tr-2)
 		opacity: .6
-		// TODO: onhover background instead of underline
+		&:not(:first-child)
+			margin-top: .3em
 		&:hover, &.active
 			opacity: 1
-			text-decoration-color: inherit
+			background-color: var(--accent-1)
 		a
 			display: flex
 			align-items: center
