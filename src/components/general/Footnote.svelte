@@ -3,30 +3,28 @@
   export let portableText;
 	const content = portableText.plainTextContent.split('[');
 	const text = content[0];
+	const footnote_text = content[1];
+	let has_footnote;
 
-	const footnote = {
-		text: content[1],
-		node: null
-	};
-
-	// TODO: fix - click on second footnote if first is showing -> then hide first, show second
 	onMount(() => {
-		footnote.node.addEventListener('click', e => {
-			const footnote_box = document.querySelector('.footnotes .footnote');
-			const footnote_box_text = footnote_box.querySelector('.text');
-			footnote_box_text.innerText = footnote.text;
+		const footnote_box = document.querySelector('.footnotes .footnote');
+		const footnote_box_text = footnote_box.querySelector('.text');
 
-			const chapter_parent = e.target.closest('.chapter_title');
-			const top = chapter_parent ? chapter_parent.offsetTop : footnote.node.offsetTop;
+		has_footnote.addEventListener('click', e => {
+			document.querySelectorAll('[data-action="show_footnote"]').forEach(el => el.classList.remove('active'));
+			footnote_box_text.innerText = footnote_text;
+
+			const chapter_parent = has_footnote.closest('.chapter_title');
+			const top = chapter_parent ? chapter_parent.offsetTop : has_footnote.offsetTop;
 			footnote_box.style.top = `${top}px`;
 
-			footnote_box.classList.toggle('active');
-			e.target.classList.toggle('active');
+			footnote_box.classList.add('active');
+			has_footnote.classList.add('active');
 		});
 	});
 </script>
 
-<span class="has_footnote" data-action="show_footnote" bind:this={footnote.node}>
+<span class="has_footnote" data-action="show_footnote" bind:this={has_footnote}>
 	{text}
 </span>
 
@@ -40,6 +38,7 @@
 		border: 1px solid var(--tx-1-o50)
 		&:hover, &.active
 			border-color: var(--accent-1)
+			background-color: var(--accent-1)
 	.footnotes .footnote
 		transition: opacity .3s ease
 		opacity: 0

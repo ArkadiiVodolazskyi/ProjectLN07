@@ -12,21 +12,19 @@
 						authors,
 						title;
 	$: active_chapter_index = null;
-	let footnote, close_footnote;
 	const scroll_padding = -300;
+	let footnote, close_footnote;
 	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
 
   onMount(() => {
+
+		// Chapters
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
 			return {
 				node: node,
 				offsetTop: node.offsetTop
 			}
 		});
-
-		footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
-		close_footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
-
 		let scroll_check = null;
     window.addEventListener('scroll', e => {
 			clearInterval(scroll_check);
@@ -45,10 +43,24 @@
 				}
 			}, 50);
 		});
+
+		// Footnotes
+		document.body.addEventListener('click', e => {
+			if (
+				e.target.closest('.footnote') !== footnote &&
+				e.target.closest('[data-action="close_footnote"]') !== close_footnote
+			) { return; }
+			footnote.classList.remove('active');
+			document.querySelector('.active[data-action="show_footnote"]').classList.remove('active');
+		});
+		footnote.addEventListener('click', e => footnote.classList.remove('active'));
+		close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
+
   })
 </script>
 
 <div class="main_content">
+
   <div class="contents">
     {#if contents_list.length}
       <ul class="contents_list">
@@ -98,12 +110,13 @@
 
 	<div class="footnotes">
 		<div class="footnote" bind:this={footnote}>
-			<div class="text"></div>
 			<button class="close" data-action="close_footnote" bind:this={close_footnote}>
 				<svg><use xlink:href="../src/img/icons.svg#cross"></use></svg>
 			</button>
+			<div class="text"></div>
 		</div>
 	</div>
+
 </div>
 
 <style lang="sass">
@@ -177,36 +190,34 @@
 		width: calc( 100% - 4rem )
 		left: 50%
 		border-radius: calc(var(--radius) * .2)
-		padding: .8rem
+		padding: 1em 1em 1em 1.2em
 		cursor: pointer
 		background-color: var(--bg-1-o50)
 		box-shadow: var(--shd-4)
-		transition: opacity var(--tr-2)
+		transition: opacity var(--tr-2), background-color var(--tr-2), transform var(--tr-2)
 		transform: translate(-50%, -15%) scale(.95)
 		&:hover
 			border-color: var(--accent-1-d10)
+			background-color: var(--bg-1-o25)
 		.close
-			position: absolute
-			z-index: 6
-			top: 0
-			right: 0
-			width: 1.6rem
-			height: 1.6rem
-			transform: translate(50%, -50%)
-			display: inline-flex
+			margin: 0 0 .5em .5em
+			float: right
+			display: flex
 			align-items: center
 			justify-content: center
+			width: 1.5rem
+			height: 1.5rem
 			border-radius: 50%
-			background-color: var(--bg-1)
-			border: 2px solid var(--trs)
-			transform-origin: center
+			border: 1px solid var(--tx-1-o50)
+			transition: border-color var(--tr-2), transform var(--tr-2)
 			svg
-				width: 100%
-				height: 100%
+				width: 90%
+				height: 90%
 				fill: var(--tx-1-o50)
+				transition: fill var(--tr-2)
 			&:hover
 				border-color: var(--accent-1)
-				transform: translate(50%, -50%) scale(1.2)
+				transform: scale(1.1)
 				svg
 					fill: var(--accent-1-l10)
 </style>
