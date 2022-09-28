@@ -27,7 +27,6 @@
 		footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 		close_footnote.addEventListener('click', e => e.target.closest('.footnote').classList.remove('active'));
 
-		// TODO: fix
 		let scroll_check = null;
     window.addEventListener('scroll', e => {
 			clearInterval(scroll_check);
@@ -37,18 +36,10 @@
 				active_chapter_index = null;
 				chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
 
-				for (let i = 0; i < chapters_list.length; i++) {
-					if (
-						chapters_list[i + 1] &&
-						scroll >= chapters_list[i].offsetTop - scroll_padding &&
-						scroll <= chapters_list[i + 1].offsetTop - scroll_padding
-					) {
+				for (let i = chapters_list.length - 1; i >= 0; i--) {
+					if (scroll >= chapters_list[i].offsetTop - scroll_padding) {
 						active_chapter_index = i;
-						chapters_list[active_chapter_index].node.classList.add('active');
-						break;
-					} else {
-						active_chapter_index = chapters_list.length - 1;
-						chapters_list[active_chapter_index].node.classList.add('active');
+						chapters_list[i].node.classList.add('active');
 						break;
 					}
 				}
@@ -138,7 +129,6 @@
 		list-style-position: outside
 	.contents_item
 		border-radius: calc(var(--radius) / 3)
-		padding: .1em .4em
 		line-height: 1.2em
 		transition: all var(--tr-2)
 		opacity: .6
@@ -151,8 +141,8 @@
 			display: flex
 			align-items: center
 			justify-content: space-between
-			padding: .3rem 0
 			position: relative
+			padding: .4em
 	.content
 		text-align: justify
 		margin: 2em auto 0
