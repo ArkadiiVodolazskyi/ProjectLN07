@@ -201,44 +201,59 @@
           z-index: 2
     a
       color: var(--tx-2)
-      text-decoration: underline
-      text-decoration-thickness: .08em
-      text-underline-offset: .3em
-      transition: all .3s ease
-      text-decoration-color: var(--tsp)
+      transition: color var(--tr-1)
+      display: inline-block
+      position: relative
+      &::after
+        content: ''
+        position: absolute
+        z-index: -1
+        left: 50%
+        bottom: 0
+        transform: translate(-50%, 0)
+        width: calc(100% + .3em)
+        height: 100%
+        background-color: var(--accent-1)
+        border-radius: calc(var(--radius) * .4)
+        transition: max-height var(--tr-1) // TODO: fix - no transition shown
+        max-height: 0
       &:hover
         color: var(--tx-2)
-        text-decoration-color: var(--tx-2)
+        &::after
+          max-height: 100%
     h4, h5
       font-size: 1.5rem
       font-weight: bold
       position: relative
       padding: .2em 0
-      line-height: 1.3em
+      --lh: 1.3em
+      line-height: var(--lh)
       &::before
         content: ''
         position: absolute
         z-index: 5
         left: 0
-        top: 50%
+        top: calc(var(--lh) * 0.6)
         width: 1.25rem
         height: .15rem
         border-radius: var(--radius)
-        transform: translate( calc( -100% - 2rem ) , -50%)
+        transform: translate( calc( -100% - 2rem ) , 0)
         background-color: var(--tx-1)
         transition: all .3s ease
         opacity: 0
       &.active::before
         opacity: .75
-        transform: translate( -2rem, -50%)
+        transform: translate( -2rem, 0)
     .chapter_title
       scroll-margin-top: 2rem
     blockquote
-      margin: .5em 0 0
-      padding: .8em 1.2em
-      background-color: var(--bg-1-o50)
+      width: 95%
+      margin-inline: auto
+      padding: 1.2em 1.5em
+      background-color: var(--accent-1-o15)
       border-radius: calc( var(--radius) * .4 )
       line-height: 1.35em
+      box-shadow: inset 0px 0px 2px 2px hsl(0, 0%, 10%, .35)
     ul, ol
       padding-left: 1em
       line-height: 1.4em

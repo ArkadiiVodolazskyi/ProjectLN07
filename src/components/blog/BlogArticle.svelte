@@ -62,6 +62,7 @@
 
 <div class="main_content">
 
+	<!-- TODO: fix flash while skipping 6-8+ chapters -->
   <div class="contents">
     {#if contents_list.length}
       <ul class="contents_list">

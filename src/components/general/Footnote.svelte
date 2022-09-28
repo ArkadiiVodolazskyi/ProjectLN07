@@ -11,6 +11,7 @@
 		const footnote_box_text = footnote_box.querySelector('.text');
 
 		has_footnote.addEventListener('click', e => {
+			footnote_box.classList.remove('active'); // TODO: fix bug - no animation on click on second footnote
 			document.querySelectorAll('[data-action="show_footnote"]').forEach(el => el.classList.remove('active'));
 			footnote_box_text.innerText = footnote_text;
 
@@ -30,17 +31,16 @@
 
 <style lang="sass" global>
 	.has_footnote
-		border-radius: calc(var(--radius) * .2)
+		border-radius: calc(var(--radius) * .1)
 		padding: 0 .2rem
 		cursor: pointer
 		position: relative
 		transition: all .3s ease
-		border: 1px solid hsl(var(--rtx-1) / .5)
+		border-bottom: 1px solid hsl(var(--rtx-1) / .5)
 		&:hover, &.active
 			border-color: var(--accent-1)
 			background-color: var(--accent-1)
 	.footnotes .footnote
-		transition: opacity .3s ease
 		opacity: 0
 		visibility: hidden
 		&.active
