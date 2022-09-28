@@ -1,6 +1,6 @@
 :root {
 
-	/* TODO: use Sass variables as :global or <global> inside index.svelte instead of CSS variables */
+	/* TODO: find a way to generate CSS variables in a tidy way */
 
 	/* Transitions */
 	--tr-1: .25 ease-in;
@@ -10,13 +10,13 @@
 	/* Colors */
 	--tsp: #00000000;
 
-	--tx-1: hsl(0, 0%, 82%);
-	--tx-1-o25: hsl(0, 0%, 82%, .25);
-	--tx-1-o50: hsl(0, 0%, 82%, .5);
-	--tx-1-o70: hsla(0, 0%, 82%, .7);
-	--tx-2: hsl(220, 65%, 70%);
+	--rtx-1: 0 0% 82%; /* hsl(0, 0%, 82%) */
+	--tx-1: hsl(var(--rtx-1)); /* ! Not editable with Inspector color picker ! */
+
+	--rtx-2: 220 65% 70%; /* hsl(220, 65%, 70%) */
+	--tx-2: hsl(var(--rtx-2));
+
 	--bg-1: hsl(0, 0%, 18%);
-	--bg-1-o25: hsl(0, 0%, 25%, .25);
 	--bg-1-o50: hsl(0, 0%, 25%, .5);
 
 	--accent-1-d10: var(--accent-1-d10);

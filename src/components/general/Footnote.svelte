@@ -35,7 +35,7 @@
 		cursor: pointer
 		position: relative
 		transition: all .3s ease
-		border: 1px solid var(--tx-1-o50)
+		border: 1px solid hsl(var(--rtx-1) / .5)
 		&:hover, &.active
 			border-color: var(--accent-1)
 			background-color: var(--accent-1)

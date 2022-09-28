@@ -5,6 +5,7 @@
   import ImageBlock from '$components/general/ImageBlock.svelte';
   import Chapter from '$components/general/Chapter.svelte';
 	import Footnote from '$components/general/Footnote.svelte';
+	import icons from '$icons';
 
   export let contents_list,
 						body_chaptered,
@@ -50,8 +51,8 @@
 				e.target.closest('.footnote') !== footnote &&
 				e.target.closest('[data-action="close_footnote"]') !== close_footnote
 			) { return; }
-			footnote.classList.remove('active');
-			document.querySelector('.active[data-action="show_footnote"]').classList.remove('active');
+			footnote?.classList.remove('active');
+			document?.querySelector('.active[data-action="show_footnote"]').classList.remove('active');
 		});
 		footnote.addEventListener('click', e => footnote.classList.remove('active'));
 		close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
@@ -84,7 +85,7 @@
 					data-action="download_printed_version"
 				>
 					<span>Скачать PDF версию</span>
-					<svg><use xlink:href="../src/img/icons.svg#download"></use></svg>
+					<svg><use xlink:href={`${icons}#download`}></use></svg>
 				</a>
 			</div>
 		{/if}
@@ -111,7 +112,7 @@
 	<div class="footnotes">
 		<div class="footnote" bind:this={footnote}>
 			<button class="close" data-action="close_footnote" bind:this={close_footnote}>
-				<svg><use xlink:href="../src/img/icons.svg#cross"></use></svg>
+				<svg><use xlink:href={`${icons}#cross`}></use></svg>
 			</button>
 			<div class="text"></div>
 		</div>
@@ -208,12 +209,12 @@
 			width: 1.5rem
 			height: 1.5rem
 			border-radius: 50%
-			border: 1px solid var(--tx-1-o50)
+			border: 1px solid hsl(var(--rtx-1) / .5)
 			transition: border-color var(--tr-2), transform var(--tr-2)
 			svg
 				width: 90%
 				height: 90%
-				fill: var(--tx-1-o50)
+				fill: hsl(var(--rtx-1) / .5)
 				transition: fill var(--tr-2)
 			&:hover
 				border-color: var(--accent-1)

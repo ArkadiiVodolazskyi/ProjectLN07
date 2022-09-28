@@ -1,10 +1,12 @@
-<script></script>
+<script>
+  import icons from '$icons';
+</script>
 
 <footer>
 
   <div class="bg_shadow">
     <svg class="opened_book" width="100%">
-      <use xlink:href="../src/img/icons.svg#opened_book"></use>
+      <use xlink:href={`${icons}#opened_book`}></use>
     </svg>
   </div>
 
@@ -14,21 +16,21 @@
         <li class="socials_item">
           <a class="socials_link" href="https://www.instagram.com/literary_note/" target="_blank" title="Открыть профиль Instagram в новой вкладке">
             <svg>
-              <use xlink:href="../src/img/icons.svg#int"></use>
+              <use xlink:href={`${icons}#int`}></use>
             </svg>
           </a>
         </li>
         <li class="socials_item centered">
           <a class="socials_link logo logo_av" href="https://github.com/ArkadiiVodolazskyi" target="_blank" title="Открыть профиль GitHub в новой вкладке">
             <svg>
-              <use xlink:href="../src/img/icons.svg#av"></use>
+              <use xlink:href={`${icons}#av`}></use>
             </svg>
           </a>
         </li>
         <li class="socials_item">
           <a class="socials_link" href="https://www.linkedin.com/in/vodolazskyi/" target="_blank" title="Написать мне в LinkedIn">
             <svg>
-              <use xlink:href="../src/img/icons.svg#linkedin"></use>
+              <use xlink:href={`${icons}#linkedin`}></use>
             </svg>
           </a>
         </li>

@@ -20,7 +20,8 @@
   import Header from '$components/general/Header.svelte';
   import Footer from '$components/general/Footer.svelte';
 
-  // TODO: all the images -> to webp -> compress -> update.
+  // TODO: interacting with CSS variables through JS - https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties#values_in_javascript
+  // TODO: good way to generate and use CSS variables - https://blog.jim-nielsen.com/2019/generating-shades-of-color-using-css-variables/
 </script>
 
 <Header />
@@ -33,12 +34,12 @@
 
 <style lang="sass" global>
 
-  // Tags
+  // ----------- Tags -----------
 
   html
     font-size: var(--font-size-primary)
     font-family: var(--font-family-general)
-    color: var(--tx-1)
+    color: hsl(var(--rtx-1))
     line-height: 1.4
     scroll-behavior: smooth
   body

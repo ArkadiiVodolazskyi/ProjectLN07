@@ -19,6 +19,7 @@ const config = {
           $src: path.resolve('./src/'),
           $img: path.resolve('./src/img'),
           $components: path.resolve('./src/components'),
+          $icons: path.resolve('./src/img/icons.svg'),
         }
       }
     }
