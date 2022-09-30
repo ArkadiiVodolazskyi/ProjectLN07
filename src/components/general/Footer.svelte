@@ -1,11 +1,11 @@
 <script>
-  import Use from './Use.svelte';
+  import Icon from './Icon.svelte';
 </script>
 
 <footer>
 
   <div class="bg_shadow">
-    <svg class="opened_book" width="100%"><Use type={'opened_book'} /></svg>
+    <Icon type={'opened_book'} />
   </div>
 
   <div class="content">
@@ -13,17 +13,17 @@
       <ul class="socials">
         <li class="socials_item">
           <a class="socials_link" href="https://www.instagram.com/literary_note/" target="_blank" title="Открыть профиль Instagram в новой вкладке">
-            <svg><Use type={'int'} /></svg>
+            <svg><Icon type={'int'} /></svg>
           </a>
         </li>
         <li class="socials_item centered">
           <a class="socials_link logo logo_av" href="https://github.com/ArkadiiVodolazskyi" target="_blank" title="Открыть профиль GitHub в новой вкладке">
-            <svg><Use type={'av'} /></svg>
+            <svg><Icon type={'av'} /></svg>
           </a>
         </li>
         <li class="socials_item">
           <a class="socials_link" href="https://www.linkedin.com/in/vodolazskyi/" target="_blank" title="Написать мне в LinkedIn">
-            <svg><Use type={'linkedin'} /></svg>
+            <svg><Icon type={'linkedin'} /></svg>
           </a>
         </li>
       </ul>
@@ -43,7 +43,7 @@
     position: relative
     z-index: 0
     backdrop-filter: blur(10px)
-    svg
+    :global(.ico_opened_book)
       fill: hsl(0, 0%, 7%, var(--bg-opacity))
   .content
     position: relative
