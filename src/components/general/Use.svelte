@@ -1,6 +1,5 @@
 <script>
-	import icons from '$icons';
 	export let type = '';
 </script>
 
-<use href={icons + `#${type}`}></use>
+<use href={`/icons.svg#${type}`}></use>
