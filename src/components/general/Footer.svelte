@@ -5,9 +5,7 @@
 <footer>
 
   <div class="bg_shadow">
-    <svg class="opened_book" width="100%">
-      <Use type={'opened_book'} />
-    </svg>
+    <svg class="opened_book" width="100%"><Use type={'opened_book'} /></svg>
   </div>
 
   <div class="content">
