@@ -2,6 +2,7 @@
   import {urlFor} from '$src/service/sanityClient.js';
   import {slugify} from '$src/service/helpers.js';
   import BlogArticle from '$components/blog/BlogArticle.svelte';
+  import Icon from '$components/general/Icon.svelte';
 
   export let post;
   const {
@@ -48,7 +49,7 @@
   <div class="intro">
     <div class="wrapper">
       <a class="back_to_posts" href="/blog">
-        <svg class="arrow"><use xlink:href="../src/img/icons.svg#arrow_left"></use></svg>
+        <Icon type={'arrow_left'} />
         <span>Все посты</span>
       </a>
 
@@ -143,7 +144,7 @@
         border-radius: calc( var(--radius) * .4 )
         box-shadow: var(--shd-4)
         transition: background-color .2s ease
-        .arrow
+        :global(svg)
           margin-right: .5em
           width: .8em
           height: .8em
