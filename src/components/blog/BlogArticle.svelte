@@ -5,7 +5,7 @@
   import ImageBlock from '$components/general/ImageBlock.svelte';
   import Chapter from '$components/general/Chapter.svelte';
 	import Footnote from '$components/general/Footnote.svelte';
-	import icons from '$icons';
+	import Icon from '$components/general/Icon.svelte';
 
   export let contents_list,
 						body_chaptered,
@@ -86,7 +86,7 @@
 					data-action="download_printed_version"
 				>
 					<span>Скачать PDF версию</span>
-					<svg><use xlink:href={`${icons}#download`}></use></svg>
+					<Icon type={'download'} />
 				</a>
 			</div>
 		{/if}
@@ -113,7 +113,7 @@
 	<div class="footnotes">
 		<div class="footnote" bind:this={footnote}>
 			<button class="close" data-action="close_footnote" bind:this={close_footnote}>
-				<svg><use xlink:href={`${icons}#cross`}></use></svg>
+				<Icon type={'cross'} />
 			</button>
 			<div class="text"></div>
 		</div>
@@ -175,7 +175,7 @@
 		display: flex
 		align-items: center
 		justify-content: center
-		svg
+		:global(svg)
 			margin-left: .4rem
 			width: 1rem
 			height: 1rem
@@ -212,7 +212,7 @@
 			border-radius: 50%
 			border: 1px solid hsl(var(--rtx-1) / .5)
 			transition: border-color var(--tr-2), transform var(--tr-2)
-			svg
+			:global(svg)
 				width: 90%
 				height: 90%
 				fill: hsl(var(--rtx-1) / .5)
@@ -220,6 +220,6 @@
 			&:hover
 				border-color: var(--accent-1)
 				transform: scale(1.1)
-				svg
+				:global(svg)
 					fill: var(--accent-1-l10)
 </style>
