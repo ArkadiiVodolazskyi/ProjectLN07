@@ -28,7 +28,11 @@
   {:else}
     <h3 class='title_authors'>
       <p class='title'>{title}</p>
-      <p class='authors'>{authors.map(author => author.name)}</p>
+
+      {#if authors && authors.length}
+        <p class='authors'>{authors.map(author => author.name)}</p>
+      {/if}
+
     </h3>
   {/if}
 </a>
@@ -85,4 +89,8 @@
     transition: transform 1s ease
     .title
       font-size: 1.5em
+      line-height: 1.1
+      font-weight: 600
+    .authors
+      margin-top: 1em
 </style>

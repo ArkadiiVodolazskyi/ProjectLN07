@@ -79,4 +79,8 @@
     &.centered :global(svg)
       width: calc(var(--iconsize) * 1.7)
       height: calc(var(--iconsize) * 1.7)
+
+  @media (max-width: 1280px)
+    .content
+      padding-bottom: .5em
 </style>

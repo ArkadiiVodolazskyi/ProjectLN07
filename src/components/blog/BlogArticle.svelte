@@ -32,11 +32,13 @@
 	}
 
 	const free_footnotes = () => {
-		footnote.classList.remove('active');
+		footnote?.classList.remove('active');
 		document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
 	}
 
   onMount(() => {
+
+		if (!body_chaptered) { return; }
 
 		// Chapters
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
@@ -75,8 +77,9 @@
 <div class="main_content">
 
 	<!-- TODO: fix flash while skipping 6-8+ chapters -->
+	<!-- TODO: add button to hide/show side menu -->
   <div class="contents">
-    {#if contents_list.length}
+    {#if contents_list && contents_list.length}
       <ul class="contents_list">
         {#each contents_list as contents_item, index}
           <li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`} bind:this={contents_item.node}>
@@ -134,19 +137,22 @@
 </div>
 
 <style lang="sass">
+	// TODO: mobile version
+	// at 1024px and less: side contents and footnotes become fixed: contents - to the left, footnotes - to the bottom
 	.main_content
 		padding-top: 1rem
 		display: grid
 		grid-template-columns: 1fr var(--block-width-content) 1fr
 		grid-template-rows: auto
+		--contents-padding: 2em
 	.contents
-		margin: 2em auto 0
-		padding-left: 2em
+		margin: var(--contents-padding) auto 0
+		padding-left: var(--contents-padding)
 		position: relative
 	.contents_list
 		display: flex
 		flex-direction: column
-		padding: 1em 2em 0 0
+		padding: calc(var(--contents-padding) * .5) var(--contents-padding) 0 0
 		position: sticky
 		top: 0
 		font-size: .95rem
@@ -195,13 +201,13 @@
 	.footnotes
 		width: 100%
 		font-size: .9rem
-		margin-top: 2em
+		margin-top: var(--contents-padding)
 		line-height: 1.3rem
 		position: relative
 	.footnote
 		position: absolute
 		z-index: 5
-		width: calc( 100% - 4rem )
+		width: calc( 100% - calc(var(--contents-padding) * 2) )
 		left: 50%
 		border-radius: calc(var(--radius) * .2)
 		padding: 1em 1em 1em 1.2em
@@ -234,4 +240,8 @@
 				transform: scale(1.1)
 				:global(svg)
 					fill: var(--accent-1-l10)
+
+	@media (max-width: 1440px)
+		.main_content
+			--contents-padding: 1em
 </style>

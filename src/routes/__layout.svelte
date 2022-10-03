@@ -99,6 +99,7 @@
         visibility: visible
   main
     flex-grow: 1
+    padding: 3rem 0
   ul
     margin: 0
     padding: 0

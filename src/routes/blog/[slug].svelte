@@ -10,11 +10,9 @@
     body,
     book_first_published,
     categories,
-    contents,
     gradient,
     image,
     publishedAt,
-    slug,
     title,
     printed_version
   } = post;
@@ -24,20 +22,23 @@
   const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%)`;
 
   const contents_list = [];
-  const body_chaptered = body.map(item => {
-    if (item.style === 'h4') {
-      const text = (item.children.reduce((sum, child) => sum + child.text, '')).split('[')[0];
-      const chapter_id = `ch-${slugify(text)}`;
+  const body_chaptered = !body ? null : (
+    body.map(item => {
+      if (item.style === 'h4') {
+        const text = (item.children.reduce((sum, child) => sum + child.text, '')).split('[')[0];
+        const chapter_id = `ch-${slugify(text)}`;
 
-      item.chapter_id = chapter_id;
-      contents_list.push({
-        text,
-        chapter_id,
-        node: null
-      });
-    }
-    return item;
-  });
+        item.chapter_id = chapter_id;
+        contents_list.push({
+          text,
+          chapter_id,
+          node: null
+        });
+      }
+      return item;
+    })
+  );
+
 </script>
 
 <svelte:head>
@@ -54,17 +55,23 @@
       </a>
 
       <!-- Add hover-shatterring effect -->
-      <div class="image_wrapper">
-        <img class="image" src="{urlFor(image)}" alt="{title}">
+      <div class="main_info">
+        <h2 class="title">
+          {title}
+        </h2>
+
+        {#if image}
+          <div class="image_wrapper">
+            <img class="image" src="{urlFor(image)}" alt="{title}">
+          </div>
+        {/if}
+
+        {#if authors.length}
+          <ul class="authors">
+            {@html authors.map(author => `<li>${author.name}</li>`)}
+          </ul>
+        {/if}
       </div>
-
-      <h2 class="title">
-        {title}
-      </h2>
-
-      <ul class="authors">
-        {@html authors.map(author => `<li>${author.name}</li>`)}
-      </ul>
 
       <time class="book_first_published">
         {book_first_published}
@@ -72,16 +79,18 @@
     </div>
   </div>
 
-  <BlogArticle
-    contents_list={contents_list}
-    body_chaptered={body_chaptered}
-    printed_version={printed_version}
-    authors={authors}
-    title={title}
-  />
+  {#if body_chaptered}
+    <BlogArticle
+      contents_list={contents_list}
+      body_chaptered={body_chaptered}
+      printed_version={printed_version}
+      authors={authors}
+      title={title}
+    />
+  {/if}
 
   <div class="meta">
-    {#if categories.length}
+    {#if categories && categories.length}
       <div class="categories">
         <h6>Категории: </h6>
         <ul class="categories_list">
@@ -109,6 +118,7 @@
     position: relative
     z-index: 10
     box-shadow: var(--shd-3)
+    text-align: center
     &::before
       content: ''
       position: absolute
@@ -121,16 +131,14 @@
       background: var(--gradient)
     .wrapper
       font-size: 1.7rem
-      display: grid
-      grid-template-rows: 2rem 1fr 2rem
-      grid-template-columns: 25% 50% 25%
-      align-items: center
       font-family: var(--font-family-semiaccent)
       font-weight: 500
       padding: 2rem 0
+      .main_info
+        display: flex
+        align-items: center
+        justify-content: center
       .back_to_posts
-        grid-row: 1
-        grid-column: 1 / span 3
         font-family: var(--font-family-accent)
         font-weight: 400
         font-size: 1.1rem
@@ -152,9 +160,12 @@
           stroke: var(--tx-1)
         &:hover
           background-color: var(--accent-1)
+      .title
+        flex-basis: 25%
+        font-size: inherit
+        font-family: inherit
       .image_wrapper
-        grid-row: 1 / span 2
-        grid-column: 2
+        flex-basis: 50%
         display: flex
         align-items: center
         justify-content: center
@@ -166,22 +177,12 @@
           max-width: 100%
           max-height: 30rem
           box-shadow: var(--shd-5)
-    .title
-      grid-row: 2
-      grid-column: 1
-      text-align: right
-      font-size: inherit
-      font-family: inherit
     .authors
-      grid-row: 2
-      grid-column: 3
-      text-align: left
+      flex-basis: 25%
       font-size: inherit
     .book_first_published
+      display: block
       padding-top: 2rem
-      grid-row: 3
-      grid-column: 2
-      text-align: center
       font-size: .85em
       font-weight: 400
 
