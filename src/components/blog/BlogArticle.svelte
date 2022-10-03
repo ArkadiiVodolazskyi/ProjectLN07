@@ -17,45 +17,57 @@
 	let footnote, close_footnote;
 	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
 
+	const update_active_chapter = chapters_list => {
+		const scroll = window.pageYOffset;
+		active_chapter_index = null;
+		chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
+
+		for (let i = chapters_list.length - 1; i >= 0; i--) {
+			if (scroll >= chapters_list[i].offsetTop - scroll_padding) {
+				active_chapter_index = i;
+				chapters_list[i].node.classList.add('active');
+				break;
+			}
+		}
+	}
+
+	const free_footnotes = () => {
+		footnote.classList.remove('active');
+		document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
+	}
+
   onMount(() => {
 
 		// Chapters
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
-			return {
-				node: node,
-				offsetTop: node.offsetTop
-			}
+			return { node: node, offsetTop: node.offsetTop }
 		});
 		let scroll_check = null;
+
+		// Watch scroll: chapters + footnotes
     window.addEventListener('scroll', e => {
 			clearInterval(scroll_check);
 			scroll_check = setInterval(() => {
 				clearInterval(scroll_check);
-				const scroll = window.pageYOffset;
-				active_chapter_index = null;
-				chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
-
-				for (let i = chapters_list.length - 1; i >= 0; i--) {
-					if (scroll >= chapters_list[i].offsetTop - scroll_padding) {
-						active_chapter_index = i;
-						chapters_list[i].node.classList.add('active');
-						break;
-					}
-				}
+				update_active_chapter(chapters_list);
+				free_footnotes();
 			}, 50);
 		});
 
 		// Footnotes
-		document.body.addEventListener('click', e => {
-			if (
-				e.target.closest('.footnote') !== footnote &&
-				e.target.closest('[data-action="close_footnote"]') !== close_footnote
-			) { return; }
-			footnote?.classList.remove('active');
-			document?.querySelector('.active[data-action="show_footnote"]').classList.remove('active');
-		});
-		footnote.addEventListener('click', e => footnote.classList.remove('active'));
-		close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
+		(() => {
+			document.body.addEventListener('click', e => {
+				if (
+					e.target.closest('.footnote') !== footnote &&
+					e.target.closest('[data-action="close_footnote"]') !== close_footnote
+				) { return; }
+				footnote?.classList.remove('active');
+				document?.querySelector('.active[data-action="show_footnote"]').classList.remove('active');
+			});
+
+			footnote.addEventListener('click', e => footnote.classList.remove('active'));
+			close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
+		})();
 
   })
 </script>

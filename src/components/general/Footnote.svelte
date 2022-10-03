@@ -11,16 +11,21 @@
 		const footnote_box_text = footnote_box.querySelector('.text');
 
 		has_footnote.addEventListener('click', e => {
-			footnote_box.classList.remove('active'); // TODO: fix bug - no animation on click on second footnote
-			document.querySelectorAll('[data-action="show_footnote"]').forEach(el => el.classList.remove('active'));
-			footnote_box_text.innerText = footnote_text;
+			if (e.target.classList.contains('active')) {
+				footnote_box.classList.remove('active');
+				has_footnote.classList.remove('active');
+			} else {
+				footnote_box.classList.remove('active');
+				document.querySelectorAll('[data-action="show_footnote"]').forEach(el => el.classList.remove('active'));
+				footnote_box_text.innerText = footnote_text;
 
-			const chapter_parent = has_footnote.closest('.chapter_title');
-			const top = chapter_parent ? chapter_parent.offsetTop : has_footnote.offsetTop;
-			footnote_box.style.top = `${top}px`;
+				const chapter_parent = has_footnote.closest('.chapter_title');
+				const top = chapter_parent ? chapter_parent.offsetTop : has_footnote.offsetTop;
+				footnote_box.style.top = `${top}px`;
 
-			footnote_box.classList.add('active');
-			has_footnote.classList.add('active');
+				footnote_box.classList.add('active');
+				has_footnote.classList.add('active');
+			}
 		});
 	});
 </script>
@@ -38,6 +43,7 @@
 		transition: all .3s ease
 		border-bottom: 1px solid hsl(var(--rtx-1) / .5)
 		&:hover, &.active
+			border-radius: calc(var(--radius) * .25)
 			border-color: var(--accent-1)
 			background-color: var(--accent-1)
 	.footnotes .footnote
@@ -46,5 +52,5 @@
 		&.active
 			opacity: 1
 			visibility: visible
-			transform: translate(-50%, -25%) scale(1) !important
+			transform: translate(-50%, -25%) scale(1)
 </style>
