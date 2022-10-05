@@ -52,23 +52,23 @@
   header
     --links-padding: 1rem
     padding: calc( var(--links-padding) * .2 ) 0
-    font-family: var(--font-family-accent)
+    font-family: $ff-accent
     background-color: hsl(0, 0%, 10%, .5)
     backdrop-filter: blur(5px)
     a
       padding: var(--links-padding)
-      fill: var(--tx-1)
+      fill: $tx-1
     .wrapper
       display: flex
       align-items: center
       justify-content: space-between
-      max-width: calc( var(--block-width-wrapper) + var(--links-padding) * 2 )
+      max-width: calc( $w-wrapper + var(--links-padding) * 2 )
       > *
         flex: 1 0 calc( 100% / 3 )
     .logo
       display: inline-flex
       align-items: center
-      fill: var(--tx-1)
+      fill: $tx-1
       h1
         font-size: 1.15em
         font-weight: 500
@@ -79,7 +79,7 @@
         margin-right: .6em
         fill: inherit
       &:hover
-        fill: var(--accent-1)
+        fill: $accent-1
     .site_title_wrapper
       text-transform: uppercase
       text-align: center
@@ -97,5 +97,5 @@
       text-transform: uppercase
       position: relative
       &:hover, &.active
-        color: var(--tx-2)
+        color: $tx-2
 </style>

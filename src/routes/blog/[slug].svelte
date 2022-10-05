@@ -113,11 +113,12 @@
 
 <style lang="sass">
   .blog_article
+    margin-top: -3rem
     padding-bottom: 2rem
   .intro
     position: relative
     z-index: 10
-    box-shadow: var(--shd-3)
+    box-shadow: $shd-3
     text-align: center
     &::before
       content: ''
@@ -131,7 +132,7 @@
       background: var(--gradient)
     .wrapper
       font-size: 1.7rem
-      font-family: var(--font-family-semiaccent)
+      font-family: $ff-semiaccent
       font-weight: 500
       padding: 2rem 0
       .main_info
@@ -139,7 +140,7 @@
         align-items: center
         justify-content: center
       .back_to_posts
-        font-family: var(--font-family-accent)
+        font-family: $ff-accent
         font-weight: 400
         font-size: 1.1rem
         display: flex
@@ -149,17 +150,17 @@
         width: max-content
         max-width: 25%
         padding: .4em .5em
-        border-radius: calc( var(--radius) * .4 )
-        box-shadow: var(--shd-4)
+        border-radius: calc( $rad * .4 )
+        box-shadow: $shd-4
         transition: background-color .2s ease
         :global(svg)
           margin-right: .5em
           width: .8em
           height: .8em
           stroke-width: 2em
-          stroke: var(--tx-1)
+          stroke: $tx-1
         &:hover
-          background-color: var(--accent-1)
+          background-color: $accent-1
       .title
         flex-basis: 25%
         font-size: inherit
@@ -176,7 +177,7 @@
           height: auto
           max-width: 100%
           max-height: 30rem
-          box-shadow: var(--shd-5)
+          box-shadow: $shd-5
     .authors
       flex-basis: 25%
       font-size: inherit
@@ -189,7 +190,7 @@
   :global
     .meta
       margin: 2em auto 0
-      border-radius: var(--radius)
+      border-radius: $rad
       line-height: 1.5rem
       padding-inline: 2rem
       text-align: center

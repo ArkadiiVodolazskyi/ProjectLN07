@@ -35,7 +35,7 @@
 
 <style lang="sass">
   img
-    transition: all var(--tr-2)
+    transition: all $tr-2
     opacity: 0
     &.loaded
       opacity: 1

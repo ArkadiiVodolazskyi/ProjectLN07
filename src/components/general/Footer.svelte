@@ -69,10 +69,10 @@
     &:not(:first-child)
       margin-left: .8rem
     a
-      fill: var(--tx-1)
+      fill: $tx-1
       stroke: none
       &:hover
-        fill: var(--accent-1)
+        fill: $accent-1
     :global(svg)
       width: var(--iconsize)
       height: var(--iconsize)

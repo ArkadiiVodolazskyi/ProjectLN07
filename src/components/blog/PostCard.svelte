@@ -39,12 +39,12 @@
 
 <style lang='sass'>
   .post_card
-    box-shadow: var(--shd-1)
+    box-shadow: $shd-1
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
-    border-radius: var(--radius)
+    border-radius: $rad
     overflow: hidden
     position: relative
     aspect-ratio: 1

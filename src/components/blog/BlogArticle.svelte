@@ -142,7 +142,7 @@
 	.main_content
 		padding-top: 1rem
 		display: grid
-		grid-template-columns: 1fr var(--block-width-content) 1fr
+		grid-template-columns: 1fr $w-content 1fr
 		grid-template-rows: auto
 		--contents-padding: 2em
 	.contents
@@ -161,15 +161,15 @@
 		overflow-x: hidden
 		list-style-position: outside
 	.contents_item
-		border-radius: calc(var(--radius) / 3)
+		border-radius: calc($rad / 3)
 		line-height: 1.2em
-		transition: all var(--tr-2)
+		transition: all $tr-2
 		opacity: .6
 		&:not(:first-child)
 			margin-top: .3em
 		&:hover, &.active
 			opacity: 1
-			background-color: var(--accent-1)
+			background-color: $accent-1
 		a
 			display: flex
 			align-items: center
@@ -179,15 +179,15 @@
 	.content
 		text-align: justify
 		margin: 2em auto 0
-		border-radius: var(--radius)
+		border-radius: $rad
 		line-height: 1.5rem
 		padding-inline: 4rem
-		background-color: var(--bg-1-o50)
-		box-shadow: var(--shd-1)
+		background-color: rgba($bg-1, 0.5)
+		box-shadow: $shd-1
 	.printed_wrapper
 		text-align: center
 		margin: 0 0 2rem
-		font-family: var(--font-family-semiaccent)
+		font-family: $ff-semiaccent
 		font-weight: 300
 	.download_printed
 		display: flex
@@ -197,7 +197,7 @@
 			margin-left: .4rem
 			width: 1rem
 			height: 1rem
-			stroke: var(--tx-2)
+			stroke: $tx-2
 	.footnotes
 		width: 100%
 		font-size: .9rem
@@ -209,16 +209,16 @@
 		z-index: 5
 		width: calc( 100% - calc(var(--contents-padding) * 2) )
 		left: 50%
-		border-radius: calc(var(--radius) * .2)
+		border-radius: calc($rad * .2)
 		padding: 1em 1em 1em 1.2em
 		cursor: pointer
-		background-color: var(--bg-1-o50)
-		box-shadow: var(--shd-4)
-		transition: opacity var(--tr-2), background-color var(--tr-2), transform var(--tr-2)
+		background-color: rgba($bg-1, 0.5)
+		box-shadow: $shd-4
+		transition: opacity $tr-2, background-color $tr-2, transform $tr-2
 		transform: translate(-50%, -15%) scale(.95)
 		&:hover
-			border-color: var(--accent-1-d10)
-			background-color: var(--bg-1-o25)
+			border-color: darken($accent-1, 10%)
+			background-color: rgba($bg-1, 0.25)
 		.close
 			margin: 0 0 .5em .5em
 			float: right
@@ -229,17 +229,17 @@
 			height: 1.5rem
 			border-radius: 50%
 			border: 1px solid hsl(var(--rtx-1) / .5)
-			transition: border-color var(--tr-2), transform var(--tr-2)
+			transition: border-color $tr-2, transform $tr-2
 			:global(svg)
 				width: 90%
 				height: 90%
 				fill: hsl(var(--rtx-1) / .5)
-				transition: fill var(--tr-2)
+				transition: fill $tr-2
 			&:hover
-				border-color: var(--accent-1)
+				border-color: $accent-1
 				transform: scale(1.1)
 				:global(svg)
-					fill: var(--accent-1-l10)
+					fill: lighten($accent-1, 10%)
 
 	@media (max-width: 1440px)
 		.main_content
