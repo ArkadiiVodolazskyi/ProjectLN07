@@ -19,6 +19,8 @@
 
   // ----------- Tags -----------
 
+  // TODO: change rem to em as much as possible. Use rem for only unique root elements or delete them at all.
+
   html
     font-size: $fs-primary
     font-family: $ff-general
@@ -153,7 +155,7 @@
     svg
       width: 100%
       height: 100%
-      fill: var(--tx-1-o70)
+      fill: rgba($tx-1, 0.7)
     &:hover
       transform: scale(1.2)
       svg
@@ -165,6 +167,7 @@
   .portable_text
     padding-block: 3rem
     position: relative
+    text-indent: 1.5em
     > :where(:not(:first-child))
       margin-top: 1.3em
     .image_figure
@@ -206,6 +209,7 @@
         &::after
           max-height: 100%
     h4, h5
+      text-indent: 0
       font-size: 1.5rem
       font-weight: bold
       position: relative
@@ -219,28 +223,46 @@
         left: 0
         top: calc(var(--lh) * 0.6)
         width: 1.25rem
-        height: .15rem
-        border-radius: $rad
-        transform: translate( calc( -100% - 2rem ) , 0)
-        background-color: $tx-1
+        height: .2rem
+        border-radius: $rad * 2
+        background: linear-gradient(to right, $gr-2)
         transition: all .3s ease
         opacity: 0
+        transform: translate( calc( -100% - 2rem ) , 0) scale(0)
       &.active::before
         opacity: .75
-        transform: translate( -2rem, 0)
+        transform: translate( -2rem, 0) scale(1)
     .chapter_title
       scroll-margin-top: 2rem
     blockquote
       width: 95%
       margin-inline: auto
       padding: 1.2em 1.5em
-      background-color: rgba($accent-1, 15%)
       border-radius: calc( $rad * .4 )
       line-height: 1.35em
       box-shadow: inset 0px 0px 2px 2px hsl(0, 0%, 10%, .35)
+      position: relative
+      mix-blend-mode: difference
+      // TODO: create mixin to add gradient with pseudo-class
+      &::before
+        content: ''
+        position: absolute
+        z-index: -1
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        width: 100%
+        height: 100%
+        background: linear-gradient(135deg, $gr-2)
+        border-radius: inherit
+        opacity: 0.5
+    // TODO: squash lists a bit
+    // TODO: use additional highlight of the list, like aside line, etc.
     ul, ol
       padding-left: 1em
       line-height: 1.4em
+      text-indent: 0.2em
       li
         display: list-item
         list-style-position: outside

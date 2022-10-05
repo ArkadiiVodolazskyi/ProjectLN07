@@ -19,7 +19,6 @@
 
   const date_published = new Date(publishedAt);
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
-  const build_css_gradient = `linear-gradient(${gradient.angle}deg, ${gradient.color_1} 0%, ${gradient.color_2} 100%)`;
 
   const contents_list = [];
   const body_chaptered = !body ? null : (
@@ -45,7 +44,16 @@
   <title>{title}</title>
 </svelte:head>
 
-<article class="blog_article" style="--gradient: {build_css_gradient};">
+<!-- TODO: organize components folder, move some from general to blog, etc. -->
+<!-- TODO: Divide content into components -->
+
+<article
+  class="blog_article"
+  style="
+    --gr-angle: {gradient.angle}deg;
+    --gr-color-1: {gradient.color_1};
+    --gr-color-2: {gradient.color_2};
+  ">
 
   <div class="intro">
     <div class="wrapper">
@@ -54,7 +62,7 @@
         <span>Все посты</span>
       </a>
 
-      <!-- Add hover-shatterring effect -->
+      <!-- TODO: Add hover-shatterring effect -->
       <div class="main_info">
         <h2 class="title">
           {title}
@@ -129,7 +137,7 @@
       right: 0
       bottom: 0
       opacity: .5
-      background: var(--gradient)
+      background: linear-gradient(var(--gr-angle), var(--gr-color-1) 0%, var(--gr-color-2) 100%)
     .wrapper
       font-size: 1.7rem
       font-family: $ff-semiaccent
@@ -157,6 +165,7 @@
           margin-right: .5em
           width: .8em
           height: .8em
+          fill: none
           stroke-width: 2em
           stroke: $tx-1
         &:hover

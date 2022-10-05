@@ -36,16 +36,17 @@
 
 <style lang="sass" global>
 	.has_footnote
-		border-radius: calc($rad * .1)
+		border-radius: 0
 		padding: 0 .2rem
 		cursor: pointer
 		position: relative
-		transition: all .3s ease
-		border-bottom: 1px solid hsl(var(--rtx-1) / .5)
+		transition: border-color $tr-2, background-color $tr-2
+		border-bottom: 2px solid $accent-1
+		font-weight: 600
 		&:hover, &.active
 			border-radius: calc($rad * .25)
-			border-color: $accent-1
-			background-color: $accent-1
+			border-color: $tsp
+			background: linear-gradient(to right, $gr-2)
 	.footnotes .footnote
 		opacity: 0
 		visibility: hidden

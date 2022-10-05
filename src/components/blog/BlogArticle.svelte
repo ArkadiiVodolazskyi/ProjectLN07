@@ -64,7 +64,7 @@
 					e.target.closest('[data-action="close_footnote"]') !== close_footnote
 				) { return; }
 				footnote?.classList.remove('active');
-				document?.querySelector('.active[data-action="show_footnote"]').classList.remove('active');
+				document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
 			});
 
 			footnote.addEventListener('click', e => footnote.classList.remove('active'));
@@ -165,11 +165,28 @@
 		line-height: 1.2em
 		transition: all $tr-2
 		opacity: .6
+		position: relative
+		z-index: 1
+		&::after
+			content: ''
+			position: absolute
+			z-index: -1
+			left: 0
+			top: 0
+			right: 0
+			bottom: 0
+			width: 100%
+			height: 100%
+			border-radius: inherit
+			transition: opacity $tr-1
+			opacity: 0
+			background: linear-gradient(to right, $gr-2)
 		&:not(:first-child)
 			margin-top: .3em
 		&:hover, &.active
 			opacity: 1
-			background-color: $accent-1
+			&::after
+				opacity: 1
 		a
 			display: flex
 			align-items: center
@@ -228,12 +245,12 @@
 			width: 1.5rem
 			height: 1.5rem
 			border-radius: 50%
-			border: 1px solid hsl(var(--rtx-1) / .5)
+			border: 1px solid rgba($tx-1, 0.5)
 			transition: border-color $tr-2, transform $tr-2
 			:global(svg)
 				width: 90%
 				height: 90%
-				fill: hsl(var(--rtx-1) / .5)
+				fill: rgba($tx-1, 0.5)
 				transition: fill $tr-2
 			&:hover
 				border-color: $accent-1
