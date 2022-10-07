@@ -21,7 +21,7 @@
 	padding: 1.5rem 2rem
 	background-color: hsla(0, 0%, 13%, .6)
 	box-shadow: inset 0px 0px 8px 5px hsl(0, 0%, 10%)
-	border-radius: calc( var(--radius) / 2 )
+	border-radius: calc( $rad / 2 )
 	&:not(:first-of-type)
 		margin-top: 2rem
 .category_title

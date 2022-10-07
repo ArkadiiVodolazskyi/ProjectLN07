@@ -1,27 +1,10 @@
 <script>
-  // Import sanitize css
-  import '../css/sanitize/assets.css';
-  import '../css/sanitize/forms.css';
-  import '../css/sanitize/reduce-motion.css';
-  import '../css/sanitize/sanitize.css';
-  import '../css/sanitize/system-ui.css';
-  import '../css/sanitize/typography.css';
-  import '../css/sanitize/ui-monospace.css';
-
-  // Import fonts
-  import '../css/fonts/Bellota_Text.css';
-  import '../css/fonts/Rubik.css';
-  import '../css/fonts/Montserrat.css';
-
-  // Import variables
-  import '../css/variables.css';
+  import '../css/sanitize.css';
+  import '../css/fonts.css';
 
   // Import components
   import Header from '$components/general/Header.svelte';
   import Footer from '$components/general/Footer.svelte';
-
-  // TODO: interacting with CSS variables through JS - https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties#values_in_javascript
-  // TODO: good way to generate and use CSS variables - https://blog.jim-nielsen.com/2019/generating-shades-of-color-using-css-variables/
 </script>
 
 <Header />
@@ -36,17 +19,19 @@
 
   // ----------- Tags -----------
 
+  // TODO: change rem to em as much as possible. Use rem for only unique root elements or delete them at all.
+
   html
-    font-size: var(--font-size-primary)
-    font-family: var(--font-family-general)
-    color: hsl(var(--rtx-1))
+    font-size: $fs-primary
+    font-family: $ff-general
+    color: $tx-1
     line-height: 1.4
     scroll-behavior: smooth
   body
     // TODO: maybe use relief pattern, like crumpled paper or something
     // TODO: style scrollbar, check in Chrome
-    background-color: var(--bg-1)
-    background: linear-gradient(to top, var(--gr-1))
+    background-color: $bg-1
+    background: linear-gradient(to top, $gr-1)
     background-position: center
     min-height: 100vh
     display: flex
@@ -67,9 +52,9 @@
       bottom: 0
       width: 100%
       height: 100%
-      background-color: var(--tsp)
+      background-color: $tsp
       backdrop-filter: blur(2px)
-      transition: opacity var(--tr-1)
+      transition: opacity $tr-1
       opacity: 0
       visibility: hidden
     &::after
@@ -82,9 +67,9 @@
       bottom: 0
       width: 100vw
       height: 100vh
-      background: linear-gradient(to top, var(--gr-1))
-      transition: opacity var(--tr-1)
-      box-shadow: var(--shd-2)
+      background: linear-gradient(to top, $gr-1)
+      transition: opacity $tr-1
+      box-shadow: $shd-2
       opacity: 0
       visibility: hidden
     &.overlay
@@ -99,23 +84,24 @@
         visibility: visible
   main
     flex-grow: 1
+    padding: 3rem 0
   ul
     margin: 0
     padding: 0
     li
       display: inline-block
   h1, h2, h3
-    font-family: var(--font-family-accent)
+    font-family: $ff-accent
     margin: 0
     font-weight: inherit
     font-size: inherit
   h4, h5
-    font-family: var(--font-family-semiaccent)
+    font-family: $ff-semiaccent
     margin: 0
     font-weight: inherit
     font-size: inherit
   h6
-    font-family: var(--font-family-general)
+    font-family: $ff-general
     margin: 0
     font-weight: inherit
     font-size: inherit
@@ -125,29 +111,30 @@
     fill: inherit
     stroke: inherit
     transform-origin: center
-    transition: all var(--tr-2)
+    transition: all $tr-2
     *
       fill: inherit
       stroke: inherit
   a
     text-decoration: none
     color: inherit
-    transition: color var(--tr-3)
+    transition: color $tr-3
     &.link:hover
-      color: var(--tx-2)
-      fill: var(--accent-1)
-      stroke: var(--accent-1)
+      color: $tx-2
+      fill: $accent-1
+      stroke: $accent-1
   img
     display: block
     margin: 0 auto
+    transition: all $tr-2
   button
     cursor: pointer
-    transition: all var(--tr-2)
+    transition: all $tr-2
 
   // Classes
 
   .wrapper
-    max-width: var(--block-width-wrapper)
+    max-width: $w-wrapper
     margin: 0 auto
 
   .close_overlay
@@ -169,11 +156,11 @@
     svg
       width: 100%
       height: 100%
-      fill: var(--tx-1-o70)
+      fill: rgba($tx-1, 0.7)
     &:hover
       transform: scale(1.2)
       svg
-        fill: var(--accent-1-l10)
+        fill: lighten($accent-1, 10%)
 
   // Portable text
 
@@ -181,18 +168,19 @@
   .portable_text
     padding-block: 3rem
     position: relative
+    text-indent: 1.5em
     > :where(:not(:first-child))
       margin-top: 1.3em
     .image_figure
       position: relative
       z-index: 150
-      border-radius: var(--radius)
+      border-radius: $rad
       .image_wrapper
         width: max-content
         max-width: 100%
         margin: 0 auto
         position: relative
-        transition: box-shadow var(--tr-2), transform .2s ease-in
+        transition: box-shadow $tr-2, transform .2s ease-in
         border-radius: inherit
         img
           max-width: 45vw
@@ -200,8 +188,8 @@
           position: relative
           z-index: 2
     a
-      color: var(--tx-2)
-      transition: color var(--tr-1)
+      color: $tx-2
+      transition: color $tr-1
       display: inline-block
       position: relative
       &::after
@@ -213,15 +201,16 @@
         transform: translate(-50%, 0)
         width: calc(100% + .3em)
         height: 100%
-        background-color: var(--accent-1)
-        border-radius: calc(var(--radius) * .4)
-        transition: max-height var(--tr-1) // TODO: fix - no transition shown
+        background-color: $accent-1
+        border-radius: calc($rad * .4)
+        transition: max-height $tr-1 // TODO: fix - no transition shown
         max-height: 0
       &:hover
-        color: var(--tx-2)
+        color: $tx-2
         &::after
           max-height: 100%
     h4, h5
+      text-indent: 0
       font-size: 1.5rem
       font-weight: bold
       position: relative
@@ -235,28 +224,46 @@
         left: 0
         top: calc(var(--lh) * 0.6)
         width: 1.25rem
-        height: .15rem
-        border-radius: var(--radius)
-        transform: translate( calc( -100% - 2rem ) , 0)
-        background-color: var(--tx-1)
+        height: .2rem
+        border-radius: $rad * 2
+        background: linear-gradient(to right, $gr-2)
         transition: all .3s ease
         opacity: 0
+        transform: translate( calc( -100% - 2rem ) , 0) scale(0)
       &.active::before
         opacity: .75
-        transform: translate( -2rem, 0)
+        transform: translate( -2rem, 0) scale(1)
     .chapter_title
       scroll-margin-top: 2rem
     blockquote
       width: 95%
       margin-inline: auto
       padding: 1.2em 1.5em
-      background-color: var(--accent-1-o15)
-      border-radius: calc( var(--radius) * .4 )
+      border-radius: calc( $rad * .4 )
       line-height: 1.35em
       box-shadow: inset 0px 0px 2px 2px hsl(0, 0%, 10%, .35)
+      position: relative
+      mix-blend-mode: difference
+      // TODO: create mixin to add gradient with pseudo-class
+      &::before
+        content: ''
+        position: absolute
+        z-index: -1
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+        width: 100%
+        height: 100%
+        background: linear-gradient(135deg, $gr-2)
+        border-radius: inherit
+        opacity: 0.5
+    // TODO: squash lists a bit
+    // TODO: use additional highlight of the list, like aside line, etc.
     ul, ol
       padding-left: 1em
       line-height: 1.4em
+      text-indent: 0.2em
       li
         display: list-item
         list-style-position: outside

@@ -69,14 +69,18 @@
     &:not(:first-child)
       margin-left: .8rem
     a
-      fill: var(--tx-1)
+      fill: $tx-1
       stroke: none
       &:hover
-        fill: var(--accent-1)
+        fill: $accent-1
     :global(svg)
       width: var(--iconsize)
       height: var(--iconsize)
     &.centered :global(svg)
       width: calc(var(--iconsize) * 1.7)
       height: calc(var(--iconsize) * 1.7)
+
+  @media (max-width: 1280px)
+    .content
+      padding-bottom: .5em
 </style>

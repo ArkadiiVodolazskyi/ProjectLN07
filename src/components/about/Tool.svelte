@@ -25,7 +25,7 @@
 .card
 	text-align: center
 	padding: .5rem
-	border-radius: calc( var(--radius) / 3 )
+	border-radius: calc( $rad / 3 )
 	&:hover
 		background-color: hsl(0, 0%, 42%)
 	.card_image

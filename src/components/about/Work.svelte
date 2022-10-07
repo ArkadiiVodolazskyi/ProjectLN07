@@ -14,7 +14,6 @@
 </script>
 
 <a class="card work" href={link.current}>
-	<!-- TODO: use background image -->
 	{#if post_thumbnail_url}
 		<img src={post_thumbnail_url} alt={title}>
 	{/if}
@@ -29,7 +28,7 @@
 <style lang="sass">
 .card
 	padding: .5rem
-	border-radius: calc( var(--radius) / 3 )
+	border-radius: calc( $rad / 3 )
 	&:hover
 		background-color: hsl(0, 0%, 42%)
 </style>

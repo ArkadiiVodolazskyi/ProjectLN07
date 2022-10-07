@@ -1,5 +1,5 @@
 <script>
-  import {urlFor} from '$src/service/sanityClient.js';
+  import SanityImage from '$components/general/SanityImage.svelte';
 
   export let post;
   const {
@@ -7,8 +7,6 @@
     title,
     authors
   } = post;
-
-  const post_thumbnail_url = post.image ? urlFor(post.image) : null;
 </script>
 
 <a
@@ -23,31 +21,35 @@
 >
   <div class="backgrop"></div>
 
-  {#if post_thumbnail_url}
-    <img class='tumbnail_img' src='{post_thumbnail_url}' alt='{post.title}'>
+  {#if post.image}
+    <SanityImage image={post.image} maxWidth={300} className={'post_card_thumb'} />
   {:else}
     <h3 class='title_authors'>
       <p class='title'>{title}</p>
-      <p class='authors'>{authors.map(author => author.name)}</p>
+
+      {#if authors && authors.length}
+        <p class='authors'>{authors.map(author => author.name)}</p>
+      {/if}
+
     </h3>
   {/if}
 </a>
 
 <style lang='sass'>
   .post_card
-    box-shadow: var(--shd-1)
+    box-shadow: $shd-1
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
-    border-radius: var(--radius)
+    border-radius: $rad
     overflow: hidden
     position: relative
     aspect-ratio: 1
     &:hover
       .backgrop
         transform: translate(-50%, -30%) rotate(-15deg)
-      .tumbnail_img
+      :global(img)
         transform: translate(-50%, -50%) scale(1.02)
         box-shadow: 0 0 .2rem .1rem hsla(0, 0%, 13%, .3)
       .title_authors
@@ -63,7 +65,7 @@
     transition: transform .4s ease
     transform: translate(-50%, -50%)
     background: linear-gradient((calc(var(--angle) * 1deg)), var(--grad1) 0%, var(--grad2) 100%)
-  .tumbnail_img
+  :global(.post_card_thumb)
     position: absolute
     z-index: 50
     top: 50%
@@ -74,7 +76,6 @@
     width: auto
     height: auto
     box-shadow: 0 0 .3rem .2rem hsla(0, 0%, 13%, .6)
-    transition: transform .4s ease, box-shadow .4s ease
   .title_authors
     padding: 2rem
     text-align: center
@@ -85,4 +86,8 @@
     transition: transform 1s ease
     .title
       font-size: 1.5em
+      line-height: 1.1
+      font-weight: 600
+    .authors
+      margin-top: 1em
 </style>

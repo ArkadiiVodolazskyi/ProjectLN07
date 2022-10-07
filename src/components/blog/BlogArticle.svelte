@@ -13,49 +13,72 @@
 						authors,
 						title;
 	$: active_chapter_index = null;
+	$: show_contents = true;
 	const scroll_padding = -300;
-	let footnote, close_footnote;
+	let footnote, close_footnote, contents_block, toggle_contents;
 	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
+
+	const update_active_chapter = chapters_list => {
+		const scroll = window.pageYOffset;
+		active_chapter_index = null;
+		chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
+
+		for (let i = chapters_list.length - 1; i >= 0; i--) {
+			if (scroll >= chapters_list[i].offsetTop - scroll_padding) {
+				active_chapter_index = i;
+				chapters_list[i].node.classList.add('active');
+				break;
+			}
+		}
+	}
+
+	const free_footnotes = () => {
+		footnote?.classList.remove('active');
+		document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
+	}
 
   onMount(() => {
 
+		if (!body_chaptered) { return; }
+
 		// Chapters
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
-			return {
-				node: node,
-				offsetTop: node.offsetTop
-			}
+			return { node: node, offsetTop: node.offsetTop }
 		});
 		let scroll_check = null;
+
+		// Watch scroll: chapters + footnotes
     window.addEventListener('scroll', e => {
 			clearInterval(scroll_check);
 			scroll_check = setInterval(() => {
 				clearInterval(scroll_check);
-				const scroll = window.pageYOffset;
-				active_chapter_index = null;
-				chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
-
-				for (let i = chapters_list.length - 1; i >= 0; i--) {
-					if (scroll >= chapters_list[i].offsetTop - scroll_padding) {
-						active_chapter_index = i;
-						chapters_list[i].node.classList.add('active');
-						break;
-					}
-				}
+				update_active_chapter(chapters_list);
+				free_footnotes();
 			}, 50);
 		});
 
 		// Footnotes
-		document.body.addEventListener('click', e => {
-			if (
-				e.target.closest('.footnote') !== footnote &&
-				e.target.closest('[data-action="close_footnote"]') !== close_footnote
-			) { return; }
-			footnote?.classList.remove('active');
-			document?.querySelector('.active[data-action="show_footnote"]').classList.remove('active');
-		});
-		footnote.addEventListener('click', e => footnote.classList.remove('active'));
-		close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
+		(() => {
+			document.body.addEventListener('click', e => {
+				if (
+					e.target.closest('.footnote') !== footnote &&
+					e.target.closest('[data-action="close_footnote"]') !== close_footnote
+				) { return; }
+				footnote?.classList.remove('active');
+				document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
+			});
+
+			footnote.addEventListener('click', e => footnote.classList.remove('active'));
+			close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
+		})();
+
+		// Toggle contents
+		(() => {
+			if (!toggle_contents) { return; }
+			toggle_contents.addEventListener('click', e => {
+				show_contents = !show_contents;
+			});
+		})();
 
   })
 </script>
@@ -63,17 +86,30 @@
 <div class="main_content">
 
 	<!-- TODO: fix flash while skipping 6-8+ chapters -->
-  <div class="contents">
-    {#if contents_list.length}
-      <ul class="contents_list">
-        {#each contents_list as contents_item, index}
-          <li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`} bind:this={contents_item.node}>
-            <a href={`#${contents_item.chapter_id}`}>
-              {contents_item.text}
-            </a>
-          </li>
-        {/each}
-      </ul>
+  <div
+		class="contents"
+		data-show={show_contents}
+		bind:this={contents_block}>
+    {#if contents_list && contents_list.length}
+
+			<div class="contents_wrapper">
+				<button
+					class="btn_contents"
+					data-action="toggle_contents"
+					bind:this={toggle_contents}
+					title={`${show_contents ? 'Скрыть' : 'Показать'} содержание`}></button>
+
+				<ul class="contents_list">
+					{#each contents_list as contents_item, index}
+						<li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`} bind:this={contents_item.node}>
+							<a href={`#${contents_item.chapter_id}`}>
+								{contents_item.text}
+							</a>
+						</li>
+					{/each}
+				</ul>
+
+			</div>
     {/if}
   </div>
 
@@ -122,36 +158,89 @@
 </div>
 
 <style lang="sass">
+	// TODO: mobile version
+	// at 1024px and less: side contents and footnotes become fixed: contents - to the left, footnotes - to the bottom
 	.main_content
 		padding-top: 1rem
 		display: grid
-		grid-template-columns: 1fr var(--block-width-content) 1fr
+		grid-template-columns: 1fr $w-content 1fr
 		grid-template-rows: auto
+		--contents-padding: 2em
 	.contents
-		margin: 2em auto 0
-		padding-left: 2em
+		width: 100%
+		margin: var(--contents-padding) auto 0
+		padding-left: var(--contents-padding)
 		position: relative
+		&[data-show='false']
+			.btn_contents
+				max-width: 2em
+				&::after
+					transform: rotate(1turn)
+			.contents_list
+				opacity: 0
+				visibility: hidden
+	.contents_wrapper
+		position: sticky
+		top: 1em
+		display: flex
+		flex-direction: column
+	.btn_contents
+		padding: 0
+		display: flex
+		width: calc(100% - var(--contents-padding))
+		max-width: 100%
+		align-items: center
+		justify-content: center
+		border-radius: $rad * 0.4
+		border-color: rgba($tx-1, 0.25)
+		color: rgba($tx-1, 0.25)
+		&::after
+			content: '\279C'
+			font-size: 1.3em
+			transition: transform $tr-2
+			transform: rotate(0.5turn)
+		&:hover
+			color: $accent-1
+			border-color: $accent-1
 	.contents_list
 		display: flex
 		flex-direction: column
-		padding: 1em 2em 0 0
-		position: sticky
-		top: 0
+		padding: calc(var(--contents-padding) * .5) var(--contents-padding) 0 0
 		font-size: .95rem
 		max-height: 100vh
 		overflow-y: auto
 		overflow-x: hidden
 		list-style-position: outside
+		transition: opacity $tr-2
+		opacity: 1
+		visibility: visible
 	.contents_item
-		border-radius: calc(var(--radius) / 3)
+		border-radius: $rad * 0.4
 		line-height: 1.2em
-		transition: all var(--tr-2)
+		transition: all $tr-2
 		opacity: .6
+		position: relative
+		z-index: 1
+		&::after
+			content: ''
+			position: absolute
+			z-index: -1
+			left: 0
+			top: 0
+			right: 0
+			bottom: 0
+			width: 100%
+			height: 100%
+			border-radius: inherit
+			transition: opacity $tr-1
+			opacity: 0
+			background: linear-gradient(to right, $gr-2)
 		&:not(:first-child)
 			margin-top: .3em
 		&:hover, &.active
 			opacity: 1
-			background-color: var(--accent-1)
+			&::after
+				opacity: 1
 		a
 			display: flex
 			align-items: center
@@ -161,15 +250,15 @@
 	.content
 		text-align: justify
 		margin: 2em auto 0
-		border-radius: var(--radius)
+		border-radius: $rad
 		line-height: 1.5rem
 		padding-inline: 4rem
-		background-color: var(--bg-1-o50)
-		box-shadow: var(--shd-1)
+		background-color: rgba($bg-1, 0.5)
+		box-shadow: $shd-1
 	.printed_wrapper
 		text-align: center
 		margin: 0 0 2rem
-		font-family: var(--font-family-semiaccent)
+		font-family: $ff-semiaccent
 		font-weight: 300
 	.download_printed
 		display: flex
@@ -179,28 +268,28 @@
 			margin-left: .4rem
 			width: 1rem
 			height: 1rem
-			stroke: var(--tx-2)
+			stroke: $tx-2
 	.footnotes
 		width: 100%
 		font-size: .9rem
-		margin-top: 2em
+		margin-top: var(--contents-padding)
 		line-height: 1.3rem
 		position: relative
 	.footnote
 		position: absolute
 		z-index: 5
-		width: calc( 100% - 4rem )
+		width: calc( 100% - calc(var(--contents-padding) * 2) )
 		left: 50%
-		border-radius: calc(var(--radius) * .2)
+		border-radius: calc($rad * .2)
 		padding: 1em 1em 1em 1.2em
 		cursor: pointer
-		background-color: var(--bg-1-o50)
-		box-shadow: var(--shd-4)
-		transition: opacity var(--tr-2), background-color var(--tr-2), transform var(--tr-2)
+		background-color: rgba($bg-1, 0.5)
+		box-shadow: $shd-4
+		transition: opacity $tr-2, background-color $tr-2, transform $tr-2
 		transform: translate(-50%, -15%) scale(.95)
 		&:hover
-			border-color: var(--accent-1-d10)
-			background-color: var(--bg-1-o25)
+			border-color: darken($accent-1, 10%)
+			background-color: rgba($bg-1, 0.25)
 		.close
 			margin: 0 0 .5em .5em
 			float: right
@@ -210,16 +299,20 @@
 			width: 1.5rem
 			height: 1.5rem
 			border-radius: 50%
-			border: 1px solid hsl(var(--rtx-1) / .5)
-			transition: border-color var(--tr-2), transform var(--tr-2)
+			border: 1px solid rgba($tx-1, 0.5)
+			transition: border-color $tr-2, transform $tr-2
 			:global(svg)
 				width: 90%
 				height: 90%
-				fill: hsl(var(--rtx-1) / .5)
-				transition: fill var(--tr-2)
+				fill: rgba($tx-1, 0.5)
+				transition: fill $tr-2
 			&:hover
-				border-color: var(--accent-1)
+				border-color: $accent-1
 				transform: scale(1.1)
 				:global(svg)
-					fill: var(--accent-1-l10)
+					fill: lighten($accent-1, 10%)
+
+	@media (max-width: 1440px)
+		.main_content
+			--contents-padding: 1em
 </style>
