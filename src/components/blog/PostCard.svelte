@@ -22,7 +22,7 @@
   <div class="backgrop"></div>
 
   {#if post.image}
-    <SanityImage image={post.image} />
+    <SanityImage image={post.image} maxWidth={300} className={'post_card_thumb'} />
   {:else}
     <h3 class='title_authors'>
       <p class='title'>{title}</p>
@@ -65,7 +65,7 @@
     transition: transform .4s ease
     transform: translate(-50%, -50%)
     background: linear-gradient((calc(var(--angle) * 1deg)), var(--grad1) 0%, var(--grad2) 100%)
-  :global(img)
+  :global(.post_card_thumb)
     position: absolute
     z-index: 50
     top: 50%

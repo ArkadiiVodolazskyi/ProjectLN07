@@ -1,8 +1,8 @@
 <script>
-  import {urlFor} from '$src/service/sanityClient.js';
   import {slugify} from '$src/service/helpers.js';
   import BlogArticle from '$components/blog/BlogArticle.svelte';
   import Icon from '$components/general/Icon.svelte';
+  import SanityImage from '$components/general/SanityImage.svelte';
 
   export let post;
   const {
@@ -70,7 +70,7 @@
 
         {#if image}
           <div class="image_wrapper">
-            <img class="image" src="{urlFor(image)}" alt="{title}">
+            <SanityImage image={image} maxWidth={600} className={'post_thumb'} />
           </div>
         {/if}
 
@@ -180,12 +180,13 @@
         align-items: center
         justify-content: center
         padding: 0 3rem
-        .image
+        height: 15em
+        :global(.post_thumb)
           display: block
           width: auto
           height: auto
           max-width: 100%
-          max-height: 30rem
+          max-height: 100%
           box-shadow: $shd-5
     .authors
       flex-basis: 25%
