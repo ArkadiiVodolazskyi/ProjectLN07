@@ -13,8 +13,9 @@
 						authors,
 						title;
 	$: active_chapter_index = null;
+	$: show_contents = true;
 	const scroll_padding = -300;
-	let footnote, close_footnote;
+	let footnote, close_footnote, contents_block, toggle_contents;
 	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
 
 	const update_active_chapter = chapters_list => {
@@ -71,24 +72,44 @@
 			close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
 		})();
 
+		// Toggle contents
+		(() => {
+			if (!toggle_contents) { return; }
+			toggle_contents.addEventListener('click', e => {
+				show_contents = !show_contents;
+			});
+		})();
+
   })
 </script>
 
 <div class="main_content">
 
 	<!-- TODO: fix flash while skipping 6-8+ chapters -->
-	<!-- TODO: add button to hide/show side menu -->
-  <div class="contents">
+  <div
+		class="contents"
+		data-show={show_contents}
+		bind:this={contents_block}>
     {#if contents_list && contents_list.length}
-      <ul class="contents_list">
-        {#each contents_list as contents_item, index}
-          <li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`} bind:this={contents_item.node}>
-            <a href={`#${contents_item.chapter_id}`}>
-              {contents_item.text}
-            </a>
-          </li>
-        {/each}
-      </ul>
+
+			<div class="contents_wrapper">
+				<button
+					class="btn_contents"
+					data-action="toggle_contents"
+					bind:this={toggle_contents}
+					title={`${show_contents ? 'Скрыть' : 'Показать'} содержание`}></button>
+
+				<ul class="contents_list">
+					{#each contents_list as contents_item, index}
+						<li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`} bind:this={contents_item.node}>
+							<a href={`#${contents_item.chapter_id}`}>
+								{contents_item.text}
+							</a>
+						</li>
+					{/each}
+				</ul>
+
+			</div>
     {/if}
   </div>
 
@@ -146,22 +167,55 @@
 		grid-template-rows: auto
 		--contents-padding: 2em
 	.contents
+		width: 100%
 		margin: var(--contents-padding) auto 0
 		padding-left: var(--contents-padding)
 		position: relative
+		&[data-show='false']
+			.btn_contents
+				max-width: 2em
+				&::after
+					transform: rotate(1turn)
+			.contents_list
+				opacity: 0
+				visibility: hidden
+	.contents_wrapper
+		position: sticky
+		top: 1em
+		display: flex
+		flex-direction: column
+	.btn_contents
+		padding: 0
+		display: flex
+		width: calc(100% - var(--contents-padding))
+		max-width: 100%
+		align-items: center
+		justify-content: center
+		border-radius: $rad * 0.4
+		border-color: rgba($tx-1, 0.25)
+		color: rgba($tx-1, 0.25)
+		&::after
+			content: '\279C'
+			font-size: 1.3em
+			transition: transform $tr-2
+			transform: rotate(0.5turn)
+		&:hover
+			color: $accent-1
+			border-color: $accent-1
 	.contents_list
 		display: flex
 		flex-direction: column
 		padding: calc(var(--contents-padding) * .5) var(--contents-padding) 0 0
-		position: sticky
-		top: 0
 		font-size: .95rem
 		max-height: 100vh
 		overflow-y: auto
 		overflow-x: hidden
 		list-style-position: outside
+		transition: opacity $tr-2
+		opacity: 1
+		visibility: visible
 	.contents_item
-		border-radius: calc($rad / 3)
+		border-radius: $rad * 0.4
 		line-height: 1.2em
 		transition: all $tr-2
 		opacity: .6
