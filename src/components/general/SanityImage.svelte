@@ -3,7 +3,7 @@
   import {onMount} from 'svelte';
   import {browser} from '$app/env';
 
-  export let image;
+  export let image, className;
   export let maxWidth = 1200;
   export let alt = undefined;
 
@@ -24,7 +24,7 @@
 
 {#if browser && image}
   <img
-    class:loaded
+    class={loaded ? 'loaded' : 'not_loaded'}
     loading='lazy'
     src={urlFor(image).width(maxWidth).fit('fillmax')}
     alt={alt || image.alt || ''}
@@ -35,7 +35,6 @@
 
 <style lang="sass">
   img
-    transition: all $tr-2
     opacity: 0
     &.loaded
       opacity: 1

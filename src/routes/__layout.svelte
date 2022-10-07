@@ -126,6 +126,7 @@
   img
     display: block
     margin: 0 auto
+    transition: all $tr-2
   button
     cursor: pointer
     transition: all $tr-2
