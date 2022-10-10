@@ -51,7 +51,7 @@
         transform: translate(-50%, -30%) rotate(-15deg)
       :global(img)
         transform: translate(-50%, -50%) scale(1.02)
-        box-shadow: 0 0 .2rem .1rem hsla(0, 0%, 13%, .3)
+        box-shadow: 0 0 .2em .1em hsla(0, 0%, 13%, .3)
       .title_authors
         transform: scale(1.08)
   .backgrop
@@ -75,9 +75,9 @@
     max-height: 85%
     width: auto
     height: auto
-    box-shadow: 0 0 .3rem .2rem hsla(0, 0%, 13%, .6)
+    box-shadow: 0 0 .3em .2em hsla(0, 0%, 13%, .6)
   .title_authors
-    padding: 2rem
+    padding: 2em
     text-align: center
     position: relative
     z-index: 50

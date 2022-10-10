@@ -121,8 +121,7 @@
 
 <style lang="sass">
   .blog_article
-    margin-top: -3rem
-    padding-bottom: 2rem
+    margin-top: -3em
   .intro
     position: relative
     z-index: 10
@@ -139,10 +138,10 @@
       opacity: .5
       background: linear-gradient(var(--gr-angle), var(--gr-color-1) 0%, var(--gr-color-2) 100%)
     .wrapper
-      font-size: 1.7rem
+      font-size: 1.7em
       font-family: $ff-semiaccent
       font-weight: 500
-      padding: 2rem 0
+      padding: 1em 0
       .main_info
         display: flex
         align-items: center
@@ -179,7 +178,7 @@
         display: flex
         align-items: center
         justify-content: center
-        padding: 0 3rem
+        padding: 0 2em
         height: 15em
         :global(.post_thumb)
           display: block
@@ -193,7 +192,7 @@
       font-size: inherit
     .book_first_published
       display: block
-      padding-top: 2rem
+      padding-top: 1em
       font-size: .85em
       font-weight: 400
 
@@ -201,17 +200,17 @@
     .meta
       margin: 2em auto 0
       border-radius: $rad
-      line-height: 1.5rem
-      padding-inline: 2rem
+      line-height: 1.5em
+      padding-inline: 2em
       text-align: center
       > *:not(:first-child)
-        margin-top: .2rem
+        margin-top: .2em
       .categories, .post_publish_date
         display: flex
         align-items: center
         justify-content: center
         h6
-          margin-right: 0.5rem
+          margin-right: 0.5em
       .categories_list li:not(:first-child)
-        margin-left: .2rem
+        margin-left: .2em
 </style>

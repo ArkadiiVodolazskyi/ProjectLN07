@@ -161,13 +161,12 @@
 	// TODO: mobile version
 	// at 1024px and less: side contents and footnotes become fixed: contents - to the left, footnotes - to the bottom
 	.main_content
-		padding-top: 1rem
+		padding-top: 1em
 		display: grid
 		grid-template-columns: 1fr $w-content 1fr
 		grid-template-rows: auto
 		--contents-padding: 2em
 	.contents
-		width: 100%
 		margin: var(--contents-padding) auto 0
 		padding-left: var(--contents-padding)
 		position: relative
@@ -206,7 +205,7 @@
 		display: flex
 		flex-direction: column
 		padding: calc(var(--contents-padding) * .5) var(--contents-padding) 0 0
-		font-size: .95rem
+		font-size: .95em
 		max-height: 100vh
 		overflow-y: auto
 		overflow-x: hidden
@@ -248,16 +247,17 @@
 			position: relative
 			padding: .4em
 	.content
+		width: 100% // fix bug - otherwise ignores box-sizing inside grid
 		text-align: justify
 		margin: 2em auto 0
 		border-radius: $rad
-		line-height: 1.5rem
-		padding-inline: 4rem
+		line-height: 1.5em
+		padding-inline: 4em
 		background-color: rgba($bg-1, 0.5)
 		box-shadow: $shd-1
 	.printed_wrapper
 		text-align: center
-		margin: 0 0 2rem
+		margin: 0 0 2em
 		font-family: $ff-semiaccent
 		font-weight: 300
 	.download_printed
@@ -265,15 +265,14 @@
 		align-items: center
 		justify-content: center
 		:global(svg)
-			margin-left: .4rem
-			width: 1rem
-			height: 1rem
+			margin-left: .4em
+			width: 1em
+			height: 1em
 			stroke: $tx-2
 	.footnotes
-		width: 100%
-		font-size: .9rem
+		font-size: .9em
 		margin-top: var(--contents-padding)
-		line-height: 1.3rem
+		line-height: 1.3em
 		position: relative
 	.footnote
 		position: absolute
@@ -296,8 +295,8 @@
 			display: flex
 			align-items: center
 			justify-content: center
-			width: 1.5rem
-			height: 1.5rem
+			width: 1.5em
+			height: 1.5em
 			border-radius: 50%
 			border: 1px solid rgba($tx-1, 0.5)
 			transition: border-color $tr-2, transform $tr-2
