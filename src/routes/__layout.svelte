@@ -19,7 +19,11 @@
 
   // ----------- Tags -----------
 
-  // TODO: change rem to em as much as possible. Use rem for only unique root elements or delete them at all.
+  // TODO: change em to em as much as possible. Use em for only unique root elements or delete them at all.
+
+  ::selection
+    background-color: $accent-1
+    text-shadow: 0 0 3px $bg-1
 
   html
     font-size: $fs-primary
@@ -84,7 +88,7 @@
         visibility: visible
   main
     flex-grow: 1
-    padding: 3rem 0
+    padding: 3em 0
   ul
     margin: 0
     padding: 0
@@ -142,9 +146,9 @@
     z-index: 500
     top: 0
     right: 0
-    width: 1.5rem
-    height: 1.5rem
-    padding: 2.5rem
+    width: 1.5em
+    height: 1.5em
+    padding: 2.5em
     box-sizing: content-box
     display: inline-flex
     align-items: center
@@ -166,7 +170,7 @@
 
   // TODO: work with colors
   .portable_text
-    padding-block: 3rem
+    padding-block: 3em
     position: relative
     text-indent: 1.5em
     > :where(:not(:first-child))
@@ -211,7 +215,7 @@
           max-height: 100%
     h4, h5
       text-indent: 0
-      font-size: 1.5rem
+      font-size: 1.5em
       font-weight: bold
       position: relative
       padding: .2em 0
@@ -223,18 +227,18 @@
         z-index: 5
         left: 0
         top: calc(var(--lh) * 0.6)
-        width: 1.25rem
-        height: .2rem
+        width: 1.25em
+        height: .2em
         border-radius: $rad * 2
         background: linear-gradient(to right, $gr-2)
         transition: all .3s ease
         opacity: 0
-        transform: translate( calc( -100% - 2rem ) , 0) scale(0)
+        transform: translate( calc( -100% - 2em ) , 0) scale(0)
       &.active::before
         opacity: .75
-        transform: translate( -2rem, 0) scale(1)
+        transform: translate( -2em, 0) scale(1)
     .chapter_title
-      scroll-margin-top: 2rem
+      scroll-margin-top: 2em
     blockquote
       width: 95%
       margin-inline: auto

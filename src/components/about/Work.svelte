@@ -27,7 +27,7 @@
 
 <style lang="sass">
 .card
-	padding: .5rem
+	padding: .5em
 	border-radius: calc( $rad / 3 )
 	&:hover
 		background-color: hsl(0, 0%, 42%)

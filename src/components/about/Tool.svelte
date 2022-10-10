@@ -24,14 +24,14 @@
 <style lang="sass">
 .card
 	text-align: center
-	padding: .5rem
+	padding: .5em
 	border-radius: calc( $rad / 3 )
 	&:hover
 		background-color: hsl(0, 0%, 42%)
 	.card_image
-		height: 3rem
+		height: 3em
 		width: auto
 	.card_title
-		margin-top: .5rem
-		font-size: 1.1rem
+		margin-top: .5em
+		font-size: 1.1em
 </style>

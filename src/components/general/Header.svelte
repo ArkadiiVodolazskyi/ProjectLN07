@@ -22,7 +22,7 @@
   <div class="wrapper">
     <div class="logo_wrapper">
       <a class="logo logo_ln" href='/'>
-        <!-- Create favicon from logo -->
+        <!-- TODO: create shattered animation on hover -->
         <div class="logo_icon_wrapper">
           <Icon type={'logo_ln_2'} className='logo_ln_icon' />
         </div>
@@ -99,12 +99,12 @@
       display: flex
       align-items: center
       justify-content: flex-end
-      font-size: .9rem
+      font-size: .9em
       font-weight: 500
     .link_item
       display: inline-flex
       &:not(:first-child)
-        margin-left: .5rem
+        margin-left: .5em
     .link
       text-transform: uppercase
       position: relative

@@ -17,7 +17,7 @@
   .posts
     display: grid
     grid-template-columns: repeat(3, 1fr)
-    gap: 3rem
+    gap: 3em
 
   @media (max-width: 1280px)
     .posts

@@ -24,7 +24,7 @@
 
 <style lang="sass">
 	.image_wrapper
-		height: 7rem
+		height: 7em
 		background-size: contain
 		background-position: center
 </style>

@@ -51,7 +51,7 @@
     display: flex
     align-items: flex-end
     justify-content: center
-    padding-bottom: 1rem
+    padding-bottom: 1em
   .wrapper
     display: flex
     flex-direction: column
@@ -61,13 +61,13 @@
     padding: 0
     display: flex
     align-items: center
-    --iconsize: 1.6rem
+    --iconsize: 1.6em
   .socials_item
     display: inline-flex
     align-items: center
     justify-content: center
     &:not(:first-child)
-      margin-left: .8rem
+      margin-left: .8em
     a
       fill: $tx-1
       stroke: none

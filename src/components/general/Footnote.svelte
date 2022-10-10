@@ -37,7 +37,7 @@
 <style lang="sass" global>
 	.has_footnote
 		border-radius: 0
-		padding: 0 .2rem
+		padding: 0 .2em
 		cursor: pointer
 		position: relative
 		transition: border-color $tr-2, background-color $tr-2
