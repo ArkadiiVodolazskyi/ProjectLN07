@@ -7,6 +7,8 @@
   import Footer from '$components/general/Footer.svelte';
 </script>
 
+<div class="relief"></div>
+
 <Header />
 
 <main>
@@ -34,9 +36,6 @@
   body
     // TODO: maybe use relief pattern, like crumpled paper or something
     // TODO: style scrollbar, check in Chrome
-    background-color: $bg-1
-    background: linear-gradient(to top, $gr-1)
-    background-position: center
     min-height: 100vh
     display: flex
     flex-direction: column
@@ -86,6 +85,31 @@
       .close_overlay
         opacity: 1
         visibility: visible
+  .relief
+    position: absolute
+    z-index: -1
+    inset: 0
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      z-index: inherit
+      inset: 0
+      background-size: cover
+      // TODO: find perfect texture and opacity
+      // TODO: pay attention to the size, maybe there's a need to resize to 1280 or 640
+      // background-image: url(../img/pattern-bgs/2.jpg)
+      // background-image: url(../img/pattern-bgs/3.jpg)
+      // background-image: url(../img/pattern-bgs/6.jpg)
+      opacity: .3
+    &::before
+      content: ''
+      display: block
+      position: absolute
+      z-index: inherit
+      inset: 0
+      background-color: $bg-1
+      background: linear-gradient(to top, $gr-1)
   main
     flex-grow: 1
     padding: 3em 0

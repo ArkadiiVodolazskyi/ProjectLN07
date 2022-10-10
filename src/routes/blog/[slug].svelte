@@ -122,7 +122,6 @@
 <style lang="sass">
   .blog_article
     margin-top: -3em
-    padding-bottom: 2em
   .intro
     position: relative
     z-index: 10
