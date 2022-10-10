@@ -23,7 +23,9 @@
     <div class="logo_wrapper">
       <a class="logo logo_ln" href='/'>
         <!-- Create favicon from logo -->
-        <Icon type={'logo_ln_1'} />
+        <div class="logo_icon_wrapper">
+          <Icon type={'logo_ln_2'} className='logo_ln_icon' />
+        </div>
         <h1>Literary Note</h1>
       </a>
     </div>
@@ -50,7 +52,7 @@
 
 <style lang="sass">
   header
-    --links-padding: 1rem
+    --links-padding: 0.6em
     padding: calc( var(--links-padding) * .2 ) 0
     font-family: $ff-accent
     background-color: hsl(0, 0%, 10%, .5)
@@ -68,18 +70,28 @@
     .logo
       display: inline-flex
       align-items: center
-      fill: $tx-1
+      fill: darken($bg-1, 10%)
+      &:hover
+        color: $tx-2
+        fill: darken($tx-2, 10%)
+        .logo_icon_wrapper
+          background-color: rgba($tx-1, 0.7)
+      .logo_icon_wrapper
+        width: 2em
+        height: 2em
+        padding: 2px
+        margin-right: .8em
+        border-radius: 0.05em
+        transition: background-color $tr-2
+        background-color: rgba($tx-1, 0.9)
+      :global(.logo_ln_icon)
+        width: 100%
+        height: 100%
+        fill: inherit
       h1
-        font-size: 1.15em
+        font-size: 1em
         font-weight: 500
         text-transform: uppercase
-      :global(svg)
-        width: 2.2em
-        height: 2.2em
-        margin-right: .6em
-        fill: inherit
-      &:hover
-        fill: $accent-1
     .site_title_wrapper
       text-transform: uppercase
       text-align: center

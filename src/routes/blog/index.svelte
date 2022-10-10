@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-  <title>Literary Note</title>
+  <title>Literary Note - Блог</title>
 </svelte:head>
 
 <PostsGrid {posts} />

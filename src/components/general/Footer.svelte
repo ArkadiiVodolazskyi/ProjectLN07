@@ -13,17 +13,17 @@
       <ul class="socials">
         <li class="socials_item">
           <a class="socials_link" href="https://www.instagram.com/literary_note/" target="_blank" title="Открыть профиль Instagram в новой вкладке">
-            <Icon type={'int'} />
+            <Icon type={'int'} className={'social_link_icon'} />
           </a>
         </li>
         <li class="socials_item centered">
           <a class="socials_link logo logo_av" href="https://github.com/ArkadiiVodolazskyi" target="_blank" title="Открыть профиль GitHub в новой вкладке">
-            <Icon type={'av'} />
+            <Icon type={'av'} className={'social_link_icon'} />
           </a>
         </li>
         <li class="socials_item">
           <a class="socials_link" href="https://www.linkedin.com/in/vodolazskyi/" target="_blank" title="Написать мне в LinkedIn">
-            <Icon type={'linkedin'} />
+            <Icon type={'linkedin'} className={'social_link_icon'} />
           </a>
         </li>
       </ul>
@@ -72,11 +72,11 @@
       fill: $tx-1
       stroke: none
       &:hover
-        fill: $accent-1
-    :global(svg)
+        fill: $tx-2
+    :global(.social_link_icon)
       width: var(--iconsize)
       height: var(--iconsize)
-    &.centered :global(svg)
+    &.centered :global(.social_link_icon)
       width: calc(var(--iconsize) * 1.7)
       height: calc(var(--iconsize) * 1.7)
 
