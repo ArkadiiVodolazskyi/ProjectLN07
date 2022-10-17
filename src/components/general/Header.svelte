@@ -24,7 +24,7 @@
       <a class="logo logo_ln" href='/'>
         <!-- TODO: create shattered animation on hover -->
         <div class="logo_icon_wrapper">
-          <Icon type={'logo_ln_2'} className='logo_ln_icon' />
+          <Icon type={'logo_ln'} className='logo_ln_icon' />
         </div>
         <h1>Literary Note</h1>
       </a>

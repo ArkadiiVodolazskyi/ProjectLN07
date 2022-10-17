@@ -7,16 +7,13 @@
 
   $: dimensions = image?.asset?._ref?.split('-')[2];
   $: [width, height] = dimensions.split('x').map(Number);
-
   $: aspectRatio = width / height;
 
   let imageRef;
   let loaded = false;
 
   onMount(() => {
-    imageRef.onload = () => {
-      loaded = true
-    }
+    imageRef.onload = () => loaded = true;
   })
 </script>
 

@@ -1,5 +1,5 @@
 <script>
-	import Footnote from '$components/general/Footnote.svelte';
+	import Footnote from '$components/blog/article/Footnote.svelte';
   export let portableText;
 	const chapter_id = portableText.value.chapter_id || '';
 	const text = portableText.value.children.reduce((sum, child) => sum + child.text, '');
