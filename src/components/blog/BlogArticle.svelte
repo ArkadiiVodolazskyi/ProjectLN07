@@ -1,83 +1,87 @@
 <script>
-  import {onMount} from 'svelte';
-  import {PortableText} from '@portabletext/svelte';
-  import Link from '$components/general/Link.svelte';
-  import ImageBlock from '$components/general/ImageBlock.svelte';
-	import Icon from '$components/general/Icon.svelte';
+  // import {onMount} from 'svelte';
+  // import {PortableText} from '@portabletext/svelte';
+  // import Link from '$components/general/Link.svelte';
+  // import ImageBlock from '$components/general/ImageBlock.svelte';
+	// import Icon from '$components/general/Icon.svelte';
 
-  import Chapter from './article/Chapter.svelte';
-	import Footnote from './article/Footnote.svelte';
+  // import Chapter from './article/Chapter.svelte';
+	// import Footnote from './article/Footnote.svelte';
 	import Contents from './article/Contents.svelte'
 
-  export let body_chaptered, printed_version, authors, title;
-	$: active_chapter_index = null;
+  export let body, printed_version, authors, title;
+	let active_chapter_index = null;
+	const handle_click_chapter = event => active_chapter_index = event.detail.index;
 
-	const scroll_padding = -300;
-	let footnote, close_footnote;
-	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
+	// const scroll_padding = -300;
+	// let footnote, close_footnote;
+	// const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
 
-	const update_active_chapter = chapters_list => {
-		const scroll = window.pageYOffset;
-		active_chapter_index = null;
-		chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
+	// const update_active_chapter = chapters_list => {
+	// 	const scroll = window.pageYOffset;
+	// 	active_chapter_index = null;
+	// 	chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
 
-		for (let i = chapters_list.length - 1; i >= 0; i--) {
-			if (scroll >= chapters_list[i].offsetTop - scroll_padding) {
-				active_chapter_index = i;
-				chapters_list[i].node.classList.add('active');
-				break;
-			}
-		}
-	}
+	// 	for (let i = chapters_list.length - 1; i >= 0; i--) {
+	// 		if (scroll >= chapters_list[i].offsetTop - scroll_padding) {
+	// 			active_chapter_index = i;
+	// 			chapters_list[i].node.classList.add('active');
+	// 			break;
+	// 		}
+	// 	}
+	// }
 
-	const free_footnotes = () => {
-		footnote?.classList.remove('active');
-		document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
-	}
+	// const free_footnotes = () => {
+	// 	footnote?.classList.remove('active');
+	// 	document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
+	// }
 
-  onMount(() => {
+  // onMount(() => {
 
-		if (!body_chaptered) { return; }
+	// 	if (!body_chaptered) { return; }
 
-		// Chapters
-		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
-			return { node: node, offsetTop: node.offsetTop }
-		});
-		let scroll_check = null;
+	// 	// Chapters
+	// 	const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
+	// 		return { node: node, offsetTop: node.offsetTop }
+	// 	});
+	// 	let scroll_check = null;
 
-		// Watch scroll: chapters + footnotes
-    window.addEventListener('scroll', e => {
-			clearInterval(scroll_check);
-			scroll_check = setInterval(() => {
-				clearInterval(scroll_check);
-				update_active_chapter(chapters_list);
-				free_footnotes();
-			}, 50);
-		});
+	// 	// Watch scroll: chapters + footnotes
+  //   window.addEventListener('scroll', e => {
+	// 		clearInterval(scroll_check);
+	// 		scroll_check = setInterval(() => {
+	// 			clearInterval(scroll_check);
+	// 			update_active_chapter(chapters_list);
+	// 			free_footnotes();
+	// 		}, 50);
+	// 	});
 
-		// Footnotes
-		(() => {
-			document.body.addEventListener('click', e => {
-				if (
-					e.target.closest('.footnote') !== footnote &&
-					e.target.closest('[data-action="close_footnote"]') !== close_footnote
-				) { return; }
-				footnote?.classList.remove('active');
-				document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
-			});
+	// 	// Footnotes
+	// 	(() => {
+	// 		document.body.addEventListener('click', e => {
+	// 			if (
+	// 				e.target.closest('.footnote') !== footnote &&
+	// 				e.target.closest('[data-action="close_footnote"]') !== close_footnote
+	// 			) { return; }
+	// 			footnote?.classList.remove('active');
+	// 			document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
+	// 		});
 
-			footnote.addEventListener('click', e => footnote.classList.remove('active'));
-			close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
-		})();
+	// 		footnote.addEventListener('click', e => footnote.classList.remove('active'));
+	// 		close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
+	// 	})();
 
-  })
+  // })
 </script>
 
 <div class="main_content">
 
-	<Contents {body_chaptered} />
+	<Contents
+		{body}
+		on:click_chapter={handle_click_chapter}
+	/>
 
-  <div class="portable_text content" data-watch="scroll">
+  <!-- <div class="portable_text content" data-watch="scroll">
 		{#if printed_version}
 			<div class="printed_wrapper">
 				<a
@@ -117,7 +121,7 @@
 			</button>
 			<div class="text"></div>
 		</div>
-	</div>
+	</div> -->
 
 </div>
 

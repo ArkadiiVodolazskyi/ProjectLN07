@@ -1,32 +1,30 @@
 <script>
-	export let body_chaptered;
+	import {slugify, trim_chapter} from '$src/service/helpers.js';
+	import {createEventDispatcher} from 'svelte';
 
-	const contents_list = [];
-  body_chaptered = !body ? null : (
-    body.map(item => {
-      if (item.style === 'h4') {
-        const text = (item.children.reduce((sum, child) => sum + child.text, '')).split('[')[0];
-        const chapter_id = `ch-${slugify(text)}`;
-
-        item.chapter_id = chapter_id;
-        contents_list.push({
-          text,
-          chapter_id,
-          node: null
-        });
-      }
-      return item;
-    })
-  );
+	const dispatch = createEventDispatcher();
+	$: active_chapter_index = null;
+	const change_active_index = index => {
+		active_chapter_index = index;
+		dispatch('click_chapter', {active_chapter_index});
+	};
+	export let body;
+	const contents_list = body && body.length ? (
+		body.filter(item => item.style === 'h4').
+			map(item => {
+				const text = trim_chapter(item);
+				return {text, id: `#ch-${slugify(text)}`};
+			})
+	) : [];
 
 	$: show_contents = true;
+	const toggle_contents = () => show_contents = !show_contents;
 </script>
 
 <!-- TODO: fix flash while skipping 6-8+ chapters -->
 <div
 	class="contents"
 	data-show={show_contents}
-	bind:this={contents_block}
 >
 	{#if contents_list && contents_list.length}
 
@@ -34,13 +32,16 @@
 			<button
 				class="btn_contents"
 				data-action="toggle_contents"
-				on:click={show_contents = !show_contents}
+				on:click={toggle_contents}
 				title={`${show_contents ? 'Скрыть' : 'Показать'} содержание`}></button>
 
 			<ul class="contents_list">
 				{#each contents_list as contents_item, index}
-					<li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`} bind:this={contents_item.node}>
-						<a href={`#${contents_item.chapter_id}`}>
+					<li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`}>
+						<a
+							href={contents_item.id}
+							on:click={() => change_active_index(index)}
+						>
 							{contents_item.text}
 						</a>
 					</li>

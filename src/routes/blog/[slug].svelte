@@ -1,5 +1,4 @@
 <script>
-  import {slugify} from '$src/service/helpers.js';
   import BlogArticle from '$components/blog/BlogArticle.svelte';
   import Meta from '$components/blog/Meta.svelte';
   import ArticleIntro from '$components/blog/ArticleIntro.svelte';
@@ -41,10 +40,9 @@
     {book_first_published}
   />
 
-  {#if body_chaptered}
+  {#if body}
     <BlogArticle
-      {contents_list}
-      {body_chaptered}
+      {body}
       {printed_version}
       {authors}
       {title}

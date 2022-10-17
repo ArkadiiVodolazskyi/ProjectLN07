@@ -96,3 +96,5 @@ export const slugify = (text, separator = '-') => {
 
   return text;
 }
+
+export const trim_chapter = chapter => (chapter.children.reduce((sum, child) => sum + child.text, '')).split('[')[0];
