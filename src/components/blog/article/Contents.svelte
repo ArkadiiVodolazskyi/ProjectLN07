@@ -21,7 +21,6 @@
 	const toggle_contents = () => show_contents = !show_contents;
 </script>
 
-<!-- TODO: fix flash while skipping 6-8+ chapters -->
 <div
 	class="contents"
 	data-show={show_contents}
@@ -37,7 +36,10 @@
 
 			<ul class="contents_list">
 				{#each contents_list as contents_item, index}
-					<li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`}>
+					<li
+						class={`contents_item ${index === active_chapter_index ? 'active' : ''}`}
+						data-chapter_index={index}
+					>
 						<a
 							href={contents_item.id}
 							on:click={() => change_active_index(index)}

@@ -18,7 +18,6 @@
 
   const date_published = new Date(publishedAt);
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
-
 </script>
 
 <svelte:head>

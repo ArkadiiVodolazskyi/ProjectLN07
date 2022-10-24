@@ -21,8 +21,6 @@
 
   // ----------- Tags -----------
 
-  // TODO: change em to em as much as possible. Use em for only unique root elements or delete them at all.
-
   ::selection
     background-color: $accent-1
     text-shadow: 0 0 3px $bg-1
