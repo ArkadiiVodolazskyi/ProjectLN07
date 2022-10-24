@@ -46,7 +46,10 @@
     overflow: hidden
     position: relative
     aspect-ratio: 1
+    opacity: 0.75
+    transition: opacity $tr-3
     &:hover
+      opacity: 1
       .backgrop
         transform: translate(-50%, -30%) rotate(-15deg)
       :global(img)

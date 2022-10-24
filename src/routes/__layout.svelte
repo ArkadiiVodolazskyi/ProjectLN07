@@ -93,13 +93,11 @@
       position: absolute
       z-index: inherit
       inset: 0
-      background-size: cover
-      // TODO: find perfect texture and opacity
-      // TODO: pay attention to the size, maybe there's a need to resize to 1280 or 640
-      // background-image: url(../img/pattern-bgs/2.jpg)
-      // background-image: url(../img/pattern-bgs/3.jpg)
-      // background-image: url(../img/pattern-bgs/6.jpg)
-      opacity: .3
+      background-image: url(../img/paper_texture.jpg)
+      background-repeat: repeat
+      filter: brightness(0.5)
+      opacity: .15
+
     &::before
       content: ''
       display: block
