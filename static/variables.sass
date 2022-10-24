@@ -32,6 +32,13 @@ $w-wrapper: 1200px
 $w-content: 900px
 $rad: 1.5rem
 
+// Mixins
+// TODO: add one argument (page, large, medium, small) to style blocks scrollbards a little differently
+@mixin scrollbar()
+	scrollbar-width: auto
+	scrollbar-color: $accent-1 rgba($accent-1, .25)
+	// TODO: style scrollbar for Chrome: https://medium.com/nerd-for-tech/how-to-style-scrollbars-with-css-1f8ac0b9599
+
 // Media for variables
 // @media (max-width: 1200px)
 // 	$block-width-wrapper

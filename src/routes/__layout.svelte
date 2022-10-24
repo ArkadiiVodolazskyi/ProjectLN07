@@ -31,9 +31,8 @@
     color: $tx-1
     line-height: 1.4
     scroll-behavior: smooth
+    @include scrollbar
   body
-    // TODO: maybe use relief pattern, like crumpled paper or something
-    // TODO: style scrollbar, check in Chrome
     min-height: 100vh
     display: flex
     flex-direction: column
