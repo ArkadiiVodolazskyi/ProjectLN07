@@ -56,7 +56,7 @@
 
 <style lang="sass">
 .contents
-	margin: var(--contents-padding) auto 0
+	margin: var(--contents-padding) .1em 0 0
 	padding-left: var(--contents-padding)
 	position: relative
 	&[data-show='false']

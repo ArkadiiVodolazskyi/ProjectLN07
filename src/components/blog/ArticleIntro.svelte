@@ -1,17 +1,45 @@
 <script>
+  import {onMount} from 'svelte';
 	import Icon from '$components/general/Icon.svelte';
   import SanityImage from '$components/general/SanityImage.svelte';
 	export let title, image, authors, book_first_published;
+
+  let intro, cursor_check, image_wrapper;
+
+  onMount(() => {
+    const intro_rect = intro.getBoundingClientRect();
+    const intro_center = {
+      x: intro_rect.width / 2,
+      y: intro_rect.height / 2
+    }
+
+    const follow_cursor = (x, y) => {
+      x = Math.round((x - intro_center.x) * 0.03);
+      y = Math.round((y - intro_center.y) * 0.02);
+      return {x, y};
+    }
+
+    intro.addEventListener('mousemove', e => {
+      clearInterval(cursor_check);
+      cursor_check = setInterval(() => {
+				clearInterval(cursor_check);
+				const translate = follow_cursor(e.x, e.y);
+        image_wrapper.style.transform = `translate(${translate.x}px, ${translate.y}px)`;
+			}, 10);
+    });
+
+    intro.addEventListener('mouseenter', () => image_wrapper.style.setProperty('--img-scale', 1.02));
+    intro.addEventListener('mouseleave', () => image_wrapper.style.setProperty('--img-scale', 1));
+  });
 </script>
 
-<div class="intro">
+<div class="intro" bind:this={intro}>
 	<div class="wrapper">
 		<a class="back_to_posts" href="/blog">
 			<Icon type={'arrow_left'} />
 			<span>Все посты</span>
 		</a>
 
-		<!-- TODO: Add hover-shatterring effect -->
 		<div class="main_info">
 			<h2 class="title">
 				{title}
@@ -19,7 +47,7 @@
 
 			{#if image}
       <!-- TODO: add loading spinner -->
-				<div class="image_wrapper">
+				<div class="image_wrapper" bind:this={image_wrapper}>
 					<SanityImage image={image} maxWidth={600} className={'post_thumb'} />
 				</div>
 			{/if}
@@ -96,6 +124,8 @@
         justify-content: center
         padding: 0 2em
         height: 15em
+        transition: transform $tr-2
+        --img-scale: 1
         :global(.post_thumb)
           display: block
           width: auto
@@ -103,6 +133,7 @@
           max-width: 100%
           max-height: 100%
           box-shadow: $shd-5
+          transform: scale(var(--img-scale, 1))
     .authors
       flex-basis: 25%
       font-size: inherit
