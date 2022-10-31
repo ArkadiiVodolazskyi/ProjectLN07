@@ -1,5 +1,5 @@
 <script>
-	export let size = '1.5em';
+	export let size = '2.5em';
 </script>
 
 <div
@@ -8,47 +8,40 @@
 ></div>
 
 <style lang="sass">
-	@keyframes fsc
-		50%
-			transform: translate(-50%, -50%) scaleY(-1)
-
-	@keyframes fbg
-		0%
-			background: $accent-2 none repeat scroll 0% 0%
-		50%
-			background: saturate($accent-1, 10%) none repeat scroll 0% 0%
-
-	@keyframes mov
-		0%
-			transform: none
-		20%
-			transform: none
-		100%
-			transform: translateY(1em) rotate(0.5turn)
-
-	@keyframes exp
-		0%
-			clip-path: inset(0 calc(var(--size) * 10) calc(var(--size) * 20) round 50%)
-		20%
-			clip-path: inset(0 calc(var(--size) * 10) calc(var(--size) * 20) round 50%)
-		100%
-			clip-path: inset(0 round 50% / 0px)
-
 	.spinner
-		overflow: hidden
-		position: relative
 		width: var(--size)
-		height: var(--size)
-		padding: var(--size)
-		border-radius: calc(var(--size) * 0.5)
-		animation: fbg 4s steps(1) -1s infinite, fsc 2s steps(1) infinite
-		&::after
+		height: calc(var(--size) * 0.85)
+		perspective: calc(var(--size) * 2)
+		border: calc(var(--size) * 0.06) solid $tx-1
+		position: relative
+		background-color: $accent-1
+		&::before, &::after
 			content: ''
 			position: absolute
-			top: 50%
-			left: 50%
-			margin: calc(var(--size) * -1) calc(var(--size) * -10)
-			padding: calc(var(--size) * 10)
-			transform-origin: 50% 0
-			animation: fbg 4s steps(1) -3s infinite, mov 1s infinite alternate, exp 1s ease-in infinite alternate
+			right: 0
+			top: 0
+			display: inline-block
+			width: 50%
+			height: 100%
+			overflow: hidden
+			background: $accent-1
+			transform-style: preserve-3d
+			transform-origin: left center
+
+	.spinner::before, .spinner::after
+		animation: pageTurn 2s ease-in infinite
+	.spinner::after
+		animation-delay: 1s
+
+	@keyframes pageTurn
+		0%
+			transform: rotateY(0deg)
+		20%
+			background: darken($accent-1, 10%)
+		40%
+			background: darken($accent-1, 15%)
+			transform: rotateY(-180deg)
+		100%
+			background: darken($accent-1, 20%)
+			transform: rotateY(-180deg)
 </style>

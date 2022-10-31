@@ -19,9 +19,10 @@
 </script>
 
 {#if browser && image}
-  <div class="image_box {loaded ? 'loaded' : ''}">
+  <!-- <div class="image_box {loaded ? 'loaded' : ''}"> -->
+  <div class="image_box">
     <Spinner />
-    <img
+    <!-- <img
       class={`${loaded ? 'loaded' : 'not_loaded'} ${className || ''}`}
       loading='lazy'
       src={urlFor(image).width(maxWidth || 1200).fit('fillmax')}
@@ -30,7 +31,7 @@
       alt={alt || image.alt || ''}
       bind:this={imageRef}
       style="aspect-ratio: {aspectRatio};"
-    />
+    /> -->
   </div>
 {/if}
 

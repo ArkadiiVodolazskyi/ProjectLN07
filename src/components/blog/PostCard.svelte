@@ -1,7 +1,7 @@
 <script>
   import SanityImage from '$components/general/SanityImage.svelte';
 
-  export let post;
+  export let post, index;
   const {
     gradient,
     title,
@@ -17,6 +17,7 @@
     --grad1: ${gradient.color_1};
     --grad2: ${gradient.color_2};
     --angle: ${gradient.angle};
+    --index: ${index};
   `}
 >
   <div class="backgrop"></div>
