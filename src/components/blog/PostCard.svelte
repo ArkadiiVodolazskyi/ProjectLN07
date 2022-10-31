@@ -57,9 +57,12 @@
         box-shadow: 0 0 .2em .1em hsla(0, 0%, 13%, .3)
       .title_authors
         transform: scale(1.08)
+    :global(.image_box)
+      width: 100%
+      height: 100%
   .backgrop
     position: absolute
-    z-index: 30
+    z-index: 0
     top: 50%
     left: 50%
     width: 200%

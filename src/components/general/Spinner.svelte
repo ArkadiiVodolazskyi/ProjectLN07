@@ -1,60 +1,54 @@
 <script>
-	export const size = '2em';
+	export let size = '1.5em';
 </script>
 
 <div
 	class="spinner"
-	style={`--size: ${size}`}
+	style={`--size: ${size};`}
 ></div>
 
-<style lang="scss">
-$p: 2em;
-$r: 1em;
-$b: 20*$r;
-$d: 2*($b - $r);
-$c: #001f3f, #f012be;
-$n: length($c);
-$q: 20%;
-$t: 1s;
+<style lang="sass">
+	@keyframes fsc
+		50%
+			transform: translate(-50%, -50%) scaleY(-1)
 
-.spinner {
-	overflow: hidden;
-	position: relative;
-	padding: $p;
-	border-radius: 1em;
-	animation:
-		fbg 2*$n*$t steps(1) #{-$t} infinite,
-		fsc 2*$t steps(1) infinite;
+	@keyframes fbg
+		0%
+			background: $accent-2 none repeat scroll 0% 0%
+		50%
+			background: saturate($accent-1, 10%) none repeat scroll 0% 0%
 
-	&::after {
-		position: absolute;
-		top: 50%; left: 50%;
-		margin: -$r (-.5*$d - $r);
-		padding: $b;
-		transform-origin: 50% 0;
-		animation:
-			fbg 2*$n*$t steps(1) -3*$t infinite,
-			mov $t infinite alternate,
-			exp $t ease-in infinite alternate;
-		content: ''
-	}
-}
+	@keyframes mov
+		0%
+			transform: none
+		20%
+			transform: none
+		100%
+			transform: translateY(1em) rotate(0.5turn)
 
-@keyframes fsc { 50% { transform: scaley(-1) } }
+	@keyframes exp
+		0%
+			clip-path: inset(0 calc(var(--size) * 10) calc(var(--size) * 20) round 50%)
+		20%
+			clip-path: inset(0 calc(var(--size) * 10) calc(var(--size) * 20) round 50%)
+		100%
+			clip-path: inset(0 round 50% / 0px)
 
-@keyframes fbg {
-	@for $i from 0 to $n {
-		#{$i/$n*100%} { background: nth($c, $i + 1) }
-	}
-}
-
-@keyframes mov {
-	0%, #{$q} { transform: none }
-	100% { transform: translatey($r) rotate(.5turn) }
-}
-
-@keyframes exp {
-	0%, #{$q} { clip-path: inset(0 .5*$d $d round 50%) }
-	100% { clip-path: inset(0 round 50%/ 0) }
-}
+	.spinner
+		overflow: hidden
+		position: relative
+		width: var(--size)
+		height: var(--size)
+		padding: var(--size)
+		border-radius: calc(var(--size) * 0.5)
+		animation: fbg 4s steps(1) -1s infinite, fsc 2s steps(1) infinite
+		&::after
+			content: ''
+			position: absolute
+			top: 50%
+			left: 50%
+			margin: calc(var(--size) * -1) calc(var(--size) * -10)
+			padding: calc(var(--size) * 10)
+			transform-origin: 50% 0
+			animation: fbg 4s steps(1) -3s infinite, mov 1s infinite alternate, exp 1s ease-in infinite alternate
 </style>

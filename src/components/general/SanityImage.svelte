@@ -40,18 +40,17 @@
     z-index: 1
     min-width: 100px
     min-height: 100px
+    --spinner: 1
+    &.loaded
+      --spinner: 0
     :global(.spinner)
       position: absolute
-      z-index: 2
-    //   left: 50%
-    //   top: 50%
-    //   width: 2em
-    //   height: 2em
-    //   background-color: rgba(#000, 0.2)
-    //   transition: opacity $tr-2
-    //   opacity: 1
-    // &.loaded::after
-    //   opacity: 0
+      z-index: inherit
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+      transition: opacity $tr-2
+      opacity: var(--spinner)
   img
     opacity: 0
     &.loaded
