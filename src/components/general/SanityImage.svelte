@@ -36,6 +36,8 @@
 
 <style lang="sass">
   .image_box
+    width: 100%
+    height: 100%
     position: relative
     z-index: 1
     min-width: 100px

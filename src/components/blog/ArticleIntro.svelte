@@ -46,7 +46,6 @@
 			</h2>
 
 			{#if image}
-      <!-- TODO: add loading spinner -->
 				<div class="image_wrapper" bind:this={image_wrapper}>
 					<SanityImage image={image} maxWidth={600} className={'post_thumb'} />
 				</div>
