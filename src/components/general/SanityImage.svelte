@@ -49,10 +49,15 @@
       left: 50%
       top: 50%
       transform: translate(-50%, -50%)
-      transition: opacity $tr-2
-      opacity: var(--spinner)
   img
     opacity: 0
     &.loaded
+      animation: fade_in 0.4s ease-in forwards
+      animation-delay: calc(var(--index) * 25ms)
+
+  @keyframes fade_in
+    from
+      opacity: 0
+    to
       opacity: 1
 </style>

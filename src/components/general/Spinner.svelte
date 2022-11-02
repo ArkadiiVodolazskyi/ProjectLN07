@@ -13,6 +13,7 @@
 		height: var(--size)
 		display: inline-block
 		position: relative
+		opacity: var(--spinner)
 		&::before,
 		&::after
 			content: ''
