@@ -1,5 +1,5 @@
 <script>
-	export let size = '2.5em';
+	export let size = '3.5em';
 </script>
 
 <div
@@ -10,38 +10,29 @@
 <style lang="sass">
 	.spinner
 		width: var(--size)
-		height: calc(var(--size) * 0.85)
-		perspective: calc(var(--size) * 2)
-		border: calc(var(--size) * 0.06) solid $tx-1
+		height: var(--size)
+		display: inline-block
 		position: relative
-		background-color: $accent-1
-		&::before, &::after
+		&::before,
+		&::after
 			content: ''
-			position: absolute
-			right: 0
-			top: 0
-			display: inline-block
-			width: 50%
+			width: 100%
 			height: 100%
-			overflow: hidden
-			background: $accent-1
-			transform-style: preserve-3d
-			transform-origin: left center
+			border-radius: 50%
+			position: absolute
+			left: 0
+			top: 0
+			animation: animloader 2s ease-in-out infinite
+			transform: scale(0)
+			border: 1px solid $tx-1
+		&::after
+			animation-delay: 0.75s
 
-	.spinner::before, .spinner::after
-		animation: pageTurn 2s ease-in infinite
-	.spinner::after
-		animation-delay: 1s
-
-	@keyframes pageTurn
+	@keyframes animloader
 		0%
-			transform: rotateY(0deg)
-		20%
-			background: darken($accent-1, 10%)
-		40%
-			background: darken($accent-1, 15%)
-			transform: rotateY(-180deg)
+			transform: scale(0)
+			opacity: 1
 		100%
-			background: darken($accent-1, 20%)
-			transform: rotateY(-180deg)
+			transform: scale(1)
+			opacity: 0
 </style>
