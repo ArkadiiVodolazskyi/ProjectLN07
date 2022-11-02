@@ -1,6 +1,5 @@
 <script>
   import { page } from '$app/stores';
-  import Icon from '$components/general/Icon.svelte';
 
   const links = [
     {
@@ -52,9 +51,9 @@
 <style lang="sass">
   .logo_icon_wrapper
     --size: 4em
-    --color: black
-    --shiftb: -1px
-    --shiftf: 1px
+    --color: #{darken($bg-1, 10%)}
+    --shiftb: -2px
+    --shiftf: 2px
     width: 2em
     height: 2em
     padding: 2px
@@ -62,13 +61,28 @@
     border-radius: 0.05em
     transition: background-color $tr-2
     background-color: rgba($tx-1, 0.9)
+    position: relative
+    &::before
+      content: ''
+      position: absolute
+      z-index: -1
+      left: 50%
+      top: 50%
+      width: calc(100% + 8px)
+      height: calc(100% + 8px)
+      background-color: #{$tsp}
+      transform-origin: center
+      border-radius: inherit
+      transition: opacity $tr-1, translate $tr-1, background-color $tr-4
+      opacity: 0
+      transform: translate(-50%, -50%) scale(0)
   .logo_ln
     aspect-ratio: 1
     position: relative
     i
       position: absolute
       background-color: var(--color)
-      transition: transform 0.3s ease-out
+      transition: transform 0.2s ease-in-out, height 0.2s ease-in-out
       &:nth-of-type(1)
         width: 18.4%
         height: 76.1%
@@ -126,20 +140,27 @@
         color: $tx-2
         fill: darken($tx-2, 10%)
         .logo_icon_wrapper
-          background-color: rgba($tx-1, 0.7)
+          background-color: rgba($tx-1, 0.8)
+          --color: #{darken($accent-1, 15%)}
+          &::before
+            opacity: 1
+            background-color: var(--color)
+            transform: translate(-50%, -50%) scale(1)
         .logo_ln i
           &:nth-of-type(1)
-            transform: translate(var(--shiftb), var(--shiftb))
+            transform: translate(var(--shiftf), var(--shiftf))
           &:nth-of-type(2)
-            transform: translate(var(--shiftb), var(--shiftf))
+            transform: translate(var(--shiftf), var(--shiftb))
           &:nth-of-type(3)
-            transform: translate(0, var(--shiftf))
-          &:nth-of-type(4)
-            transform: translate(0, var(--shiftf))
-          &:nth-of-type(5)
             transform: translate(0, var(--shiftb))
+          &:nth-of-type(4)
+            transform: translate(0, var(--shiftb))
+          &:nth-of-type(5)
+            height: 88%
+            transform: translate(calc(var(--shiftb) * 0.5), calc(var(--shiftf) + var(--shiftf) * 0.5))
           &:nth-of-type(6)
-            transform: translate(var(--shiftf), 0)
+            height: 86%
+            transform: translate(calc(var(--shiftb) * 0.5), calc(var(--shiftf) + var(--shiftf) * 0.5))
       h1
         font-size: 1em
         font-weight: 500
