@@ -21,21 +21,18 @@
 
   // ----------- Tags -----------
 
-  // TODO: change em to em as much as possible. Use em for only unique root elements or delete them at all.
-
   ::selection
     background-color: $accent-1
     text-shadow: 0 0 3px $bg-1
 
   html
+    @include scrollbar
     font-size: $fs-primary
     font-family: $ff-general
     color: $tx-1
     line-height: 1.4
     scroll-behavior: smooth
   body
-    // TODO: maybe use relief pattern, like crumpled paper or something
-    // TODO: style scrollbar, check in Chrome
     min-height: 100vh
     display: flex
     flex-direction: column
@@ -95,13 +92,10 @@
       position: absolute
       z-index: inherit
       inset: 0
-      background-size: cover
-      // TODO: find perfect texture and opacity
-      // TODO: pay attention to the size, maybe there's a need to resize to 1280 or 640
-      // background-image: url(../img/pattern-bgs/2.jpg)
-      // background-image: url(../img/pattern-bgs/3.jpg)
-      // background-image: url(../img/pattern-bgs/6.jpg)
-      opacity: .3
+      background-image: url(../img/paper_texture.jpg)
+      background-repeat: repeat
+      filter: brightness(0.5)
+      opacity: .15
     &::before
       content: ''
       display: block
@@ -189,117 +183,4 @@
       transform: scale(1.2)
       svg
         fill: lighten($accent-1, 10%)
-
-  // Portable text
-
-  // TODO: work with colors
-  .portable_text
-    padding-block: 3em
-    position: relative
-    text-indent: 1.5em
-    > :where(:not(:first-child))
-      margin-top: 1.3em
-    .image_figure
-      position: relative
-      z-index: 150
-      border-radius: $rad
-      .image_wrapper
-        width: max-content
-        max-width: 100%
-        margin: 0 auto
-        position: relative
-        transition: box-shadow $tr-2, transform .2s ease-in
-        border-radius: inherit
-        img
-          max-width: 45vw
-          max-height: 45vh
-          position: relative
-          z-index: 2
-    a
-      color: $tx-2
-      transition: color $tr-1
-      display: inline-block
-      position: relative
-      &::after
-        content: ''
-        position: absolute
-        z-index: -1
-        left: 50%
-        bottom: 0
-        transform: translate(-50%, 0)
-        width: calc(100% + .3em)
-        height: 100%
-        background-color: $accent-1
-        border-radius: calc($rad * .4)
-        transition: max-height $tr-1 // TODO: fix - no transition shown
-        max-height: 0
-      &:hover
-        color: $tx-2
-        &::after
-          max-height: 100%
-    h4, h5
-      text-indent: 0
-      font-size: 1.5em
-      font-weight: bold
-      position: relative
-      padding: .2em 0
-      --lh: 1.3em
-      line-height: var(--lh)
-      &::before
-        content: ''
-        position: absolute
-        z-index: 5
-        left: 0
-        top: calc(var(--lh) * 0.6)
-        width: 1.25em
-        height: .2em
-        border-radius: $rad * 2
-        background: linear-gradient(to right, $gr-2)
-        transition: all .3s ease
-        opacity: 0
-        transform: translate( calc( -100% - 2em ) , 0) scale(0)
-      &.active::before
-        opacity: .75
-        transform: translate( -2em, 0) scale(1)
-    .chapter_title
-      scroll-margin-top: 2em
-    blockquote
-      width: 95%
-      margin-inline: auto
-      padding: 1.2em 1.5em
-      border-radius: calc( $rad * .4 )
-      line-height: 1.35em
-      box-shadow: inset 0px 0px 2px 2px hsl(0, 0%, 10%, .35)
-      position: relative
-      mix-blend-mode: difference
-      // TODO: create mixin to add gradient with pseudo-class
-      &::before
-        content: ''
-        position: absolute
-        z-index: -1
-        left: 0
-        top: 0
-        right: 0
-        bottom: 0
-        width: 100%
-        height: 100%
-        background: linear-gradient(135deg, $gr-2)
-        border-radius: inherit
-        opacity: 0.5
-    // TODO: squash lists a bit
-    // TODO: use additional highlight of the list, like aside line, etc.
-    ul, ol
-      padding-left: 1em
-      line-height: 1.4em
-      text-indent: 0.2em
-      li
-        display: list-item
-        list-style-position: outside
-        &:not(:first-child)
-          margin-top: .75em
-        > ul, ol
-          padding: .75em 0 0 1.5em
-          list-style-type: disc
-    ul
-      list-style-type: square
 </style>

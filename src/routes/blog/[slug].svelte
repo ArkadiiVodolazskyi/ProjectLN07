@@ -1,8 +1,7 @@
 <script>
-  import {slugify} from '$src/service/helpers.js';
   import BlogArticle from '$components/blog/BlogArticle.svelte';
-  import Icon from '$components/general/Icon.svelte';
-  import SanityImage from '$components/general/SanityImage.svelte';
+  import Meta from '$components/blog/Meta.svelte';
+  import ArticleIntro from '$components/blog/ArticleIntro.svelte';
 
   export let post;
   const {
@@ -19,33 +18,11 @@
 
   const date_published = new Date(publishedAt);
   const date_published_formatted = Intl.DateTimeFormat('ru', {dateStyle: 'full'}).format(date_published);
-
-  const contents_list = [];
-  const body_chaptered = !body ? null : (
-    body.map(item => {
-      if (item.style === 'h4') {
-        const text = (item.children.reduce((sum, child) => sum + child.text, '')).split('[')[0];
-        const chapter_id = `ch-${slugify(text)}`;
-
-        item.chapter_id = chapter_id;
-        contents_list.push({
-          text,
-          chapter_id,
-          node: null
-        });
-      }
-      return item;
-    })
-  );
-
 </script>
 
 <svelte:head>
   <title>{title}</title>
 </svelte:head>
-
-<!-- TODO: organize components folder, move some from general to blog, etc. -->
-<!-- TODO: Divide content into components -->
 
 <article
   class="blog_article"
@@ -55,162 +32,31 @@
     --gr-color-2: {gradient.color_2};
   ">
 
-  <div class="intro">
-    <div class="wrapper">
-      <a class="back_to_posts" href="/blog">
-        <Icon type={'arrow_left'} />
-        <span>Все посты</span>
-      </a>
+  <ArticleIntro
+    {title}
+    {image}
+    {authors}
+    {book_first_published}
+  />
 
-      <!-- TODO: Add hover-shatterring effect -->
-      <div class="main_info">
-        <h2 class="title">
-          {title}
-        </h2>
-
-        {#if image}
-          <div class="image_wrapper">
-            <SanityImage image={image} maxWidth={600} className={'post_thumb'} />
-          </div>
-        {/if}
-
-        {#if authors.length}
-          <ul class="authors">
-            {@html authors.map(author => `<li>${author.name}</li>`)}
-          </ul>
-        {/if}
-      </div>
-
-      <time class="book_first_published">
-        {book_first_published}
-      </time>
-    </div>
-  </div>
-
-  {#if body_chaptered}
+  {#if body}
     <BlogArticle
-      contents_list={contents_list}
-      body_chaptered={body_chaptered}
-      printed_version={printed_version}
-      authors={authors}
-      title={title}
+      {body}
+      {printed_version}
+      {authors}
+      {title}
     />
   {/if}
 
-  <div class="meta">
-    {#if categories && categories.length}
-      <div class="categories">
-        <h6>Категории: </h6>
-        <ul class="categories_list">
-          {@html categories.map(category => `<li>${category.title}</li>`)}
-        </ul>
-      </div>
-    {/if}
-
-    {#if date_published_formatted}
-      <div class="post_publish_date">
-        <h6>Дата публикации: </h6>
-        <time datetime={publishedAt}>
-          {date_published_formatted}
-        </time>
-      </div>
-    {/if}
-  </div>
+  <Meta
+    categories={categories}
+    date_published_formatted={date_published_formatted}
+    publishedAt={publishedAt}
+  />
 
 </article>
 
 <style lang="sass">
   .blog_article
     margin-top: -3em
-  .intro
-    position: relative
-    z-index: 10
-    box-shadow: $shd-3
-    text-align: center
-    &::before
-      content: ''
-      position: absolute
-      z-index: -1
-      left: 0
-      top: 0
-      right: 0
-      bottom: 0
-      opacity: .5
-      background: linear-gradient(var(--gr-angle), var(--gr-color-1) 0%, var(--gr-color-2) 100%)
-    .wrapper
-      font-size: 1.7em
-      font-family: $ff-semiaccent
-      font-weight: 500
-      padding: 1em 0
-      .main_info
-        display: flex
-        align-items: center
-        justify-content: center
-      .back_to_posts
-        font-family: $ff-accent
-        font-weight: 400
-        font-size: 1.1rem
-        display: flex
-        align-items: center
-        text-transform: uppercase
-        background-color: hsl(0, 0%, 10%, .6)
-        width: max-content
-        max-width: 25%
-        padding: .4em .5em
-        border-radius: calc( $rad * .4 )
-        box-shadow: $shd-4
-        transition: background-color .2s ease
-        :global(svg)
-          margin-right: .5em
-          width: .8em
-          height: .8em
-          fill: none
-          stroke-width: 2em
-          stroke: $tx-1
-        &:hover
-          background-color: $accent-1
-      .title
-        flex-basis: 25%
-        font-size: inherit
-        font-family: inherit
-      .image_wrapper
-        flex-basis: 50%
-        display: flex
-        align-items: center
-        justify-content: center
-        padding: 0 2em
-        height: 15em
-        :global(.post_thumb)
-          display: block
-          width: auto
-          height: auto
-          max-width: 100%
-          max-height: 100%
-          box-shadow: $shd-5
-    .authors
-      flex-basis: 25%
-      font-size: inherit
-    .book_first_published
-      display: block
-      padding-top: 1em
-      font-size: .85em
-      font-weight: 400
-
-  :global
-    .meta
-      margin: 2em auto 0
-      border-radius: $rad
-      line-height: 1.5em
-      padding-inline: 2em
-      text-align: center
-      > *:not(:first-child)
-        margin-top: .2em
-      .categories, .post_publish_date
-        display: flex
-        align-items: center
-        justify-content: center
-        h6
-          margin-right: 0.5em
-      .categories_list li:not(:first-child)
-        margin-left: .2em
 </style>

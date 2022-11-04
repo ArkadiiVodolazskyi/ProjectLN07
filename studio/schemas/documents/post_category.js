@@ -1,3 +1,4 @@
+// TODO: add unique name required
 export default {
   title: 'Post category',
   name: 'post_category',

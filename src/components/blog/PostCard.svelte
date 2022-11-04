@@ -1,7 +1,7 @@
 <script>
   import SanityImage from '$components/general/SanityImage.svelte';
 
-  export let post;
+  export let post, index;
   const {
     gradient,
     title,
@@ -17,6 +17,7 @@
     --grad1: ${gradient.color_1};
     --grad2: ${gradient.color_2};
     --angle: ${gradient.angle};
+    --index: ${index};
   `}
 >
   <div class="backgrop"></div>
@@ -46,7 +47,13 @@
     overflow: hidden
     position: relative
     aspect-ratio: 1
+    opacity: 0.75
+    filter: grayscale(.3)
+    transition: opacity $tr-3, transform $tr-2
     &:hover
+      opacity: 1
+      filter: grayscale(0)
+      transform: scale(1.02)
       .backgrop
         transform: translate(-50%, -30%) rotate(-15deg)
       :global(img)
@@ -54,9 +61,12 @@
         box-shadow: 0 0 .2em .1em hsla(0, 0%, 13%, .3)
       .title_authors
         transform: scale(1.08)
+    :global(.image_box)
+      width: 100%
+      height: 100%
   .backgrop
     position: absolute
-    z-index: 30
+    z-index: 0
     top: 50%
     left: 50%
     width: 200%

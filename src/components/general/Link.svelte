@@ -1,5 +1,5 @@
 <script>
-  export let portableText
+  export let portableText;
 </script>
 
 <a href={portableText.value.href}>

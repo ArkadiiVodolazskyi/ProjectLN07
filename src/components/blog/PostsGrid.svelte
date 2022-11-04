@@ -6,8 +6,8 @@
 <section class="section_posts">
   <div class="wrapper">
     <div class="posts">
-      {#each posts as post (post.slug.current)}
-        <PostCard {post} />
+      {#each posts as post, index}
+        <PostCard {post} {index} />
       {/each}
     </div>
   </div>

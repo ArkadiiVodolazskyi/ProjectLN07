@@ -1,315 +1,171 @@
 <script>
   import {onMount} from 'svelte';
-  import {PortableText} from '@portabletext/svelte';
-  import Link from '$components/general/Link.svelte';
-  import ImageBlock from '$components/general/ImageBlock.svelte';
-  import Chapter from '$components/general/Chapter.svelte';
-	import Footnote from '$components/general/Footnote.svelte';
-	import Icon from '$components/general/Icon.svelte';
+	import Article from '$components/blog/article/Article.svelte'
+	import Contents from '$components/blog/article/Contents.svelte'
+	import PrintedVersion from '$components/blog/article/PrintedVersion.svelte'
+	import Footnotes from '$components/blog/article/Footnotes.svelte'
 
-  export let contents_list,
-						body_chaptered,
-						printed_version,
-						authors,
-						title;
-	$: active_chapter_index = null;
-	$: show_contents = true;
+  export let body, printed_version, authors, title;
+	let active_chapter_index = null;
+	const handle_click_chapter = event => active_chapter_index = event.detail.index;
+
+	let scroll_check = null;
 	const scroll_padding = -300;
-	let footnote, close_footnote, contents_block, toggle_contents;
-	const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`;
 
-	const update_active_chapter = chapters_list => {
+	const update_active_chapter = (contents_list, chapters_list) => {
 		const scroll = window.pageYOffset;
 		active_chapter_index = null;
+
+		contents_list.forEach(chapter => chapter.classList.remove('active'));
 		chapters_list.forEach(chapter => chapter.node.classList.remove('active'));
 
 		for (let i = chapters_list.length - 1; i >= 0; i--) {
 			if (scroll >= chapters_list[i].offsetTop - scroll_padding) {
 				active_chapter_index = i;
+				contents_list[i].classList.add('active');
 				chapters_list[i].node.classList.add('active');
 				break;
 			}
 		}
 	}
 
-	const free_footnotes = () => {
-		footnote?.classList.remove('active');
-		document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
-	}
-
   onMount(() => {
 
-		if (!body_chaptered) { return; }
+		if (!body) { return; }
 
-		// Chapters
+		const contents_list = document.querySelectorAll('.contents .contents_item');
 		const chapters_list = [...document.querySelectorAll('.content .chapter_title')].map(node => {
 			return { node: node, offsetTop: node.offsetTop }
 		});
-		let scroll_check = null;
 
-		// Watch scroll: chapters + footnotes
     window.addEventListener('scroll', e => {
 			clearInterval(scroll_check);
 			scroll_check = setInterval(() => {
 				clearInterval(scroll_check);
-				update_active_chapter(chapters_list);
-				free_footnotes();
+				update_active_chapter(contents_list, chapters_list);
 			}, 50);
 		});
-
-		// Footnotes
-		(() => {
-			document.body.addEventListener('click', e => {
-				if (
-					e.target.closest('.footnote') !== footnote &&
-					e.target.closest('[data-action="close_footnote"]') !== close_footnote
-				) { return; }
-				footnote?.classList.remove('active');
-				document.querySelector('.active[data-action="show_footnote"]')?.classList.remove('active');
-			});
-
-			footnote.addEventListener('click', e => footnote.classList.remove('active'));
-			close_footnote.addEventListener('click', e => footnote.classList.remove('active'));
-		})();
-
-		// Toggle contents
-		(() => {
-			if (!toggle_contents) { return; }
-			toggle_contents.addEventListener('click', e => {
-				show_contents = !show_contents;
-			});
-		})();
 
   })
 </script>
 
 <div class="main_content">
 
-	<!-- TODO: fix flash while skipping 6-8+ chapters -->
-  <div
-		class="contents"
-		data-show={show_contents}
-		bind:this={contents_block}>
-    {#if contents_list && contents_list.length}
-
-			<div class="contents_wrapper">
-				<button
-					class="btn_contents"
-					data-action="toggle_contents"
-					bind:this={toggle_contents}
-					title={`${show_contents ? 'Скрыть' : 'Показать'} содержание`}></button>
-
-				<ul class="contents_list">
-					{#each contents_list as contents_item, index}
-						<li class={`contents_item ${index === active_chapter_index ? 'active' : ''}`} bind:this={contents_item.node}>
-							<a href={`#${contents_item.chapter_id}`}>
-								{contents_item.text}
-							</a>
-						</li>
-					{/each}
-				</ul>
-
-			</div>
-    {/if}
-  </div>
+	<Contents {body} on:click_chapter={handle_click_chapter} />
 
   <div class="portable_text content" data-watch="scroll">
 		{#if printed_version}
-			<div class="printed_wrapper">
-				<a
-					class="download_printed"
-					href={`${printed_version}?dl=<${filename}.pdf>`}
-					data-action="download_printed_version"
-				>
-					<span>Скачать PDF версию</span>
-					<Icon type={'download'} />
-				</a>
-			</div>
+			{@const filename = `Рецензия - ${title} - ${authors.reduce((sum, author) => sum += author.name, '')}`}
+			<PrintedVersion {printed_version} {filename} />
 		{/if}
 
-    {#if body_chaptered}
-      <PortableText
-        value={body_chaptered}
-        components={{
-          types: {
-            image: ImageBlock
-          },
-          marks: {
-            link: Link,
-						code: Footnote
-          },
-          block: {
-            h4: Chapter
-          }
-        }}
-      />
+    {#if body}
+			<Article {body} />
     {/if}
   </div>
 
-	<div class="footnotes">
-		<div class="footnote" bind:this={footnote}>
-			<button class="close" data-action="close_footnote" bind:this={close_footnote}>
-				<Icon type={'cross'} />
-			</button>
-			<div class="text"></div>
-		</div>
-	</div>
+	<Footnotes />
 
 </div>
 
-<style lang="sass">
+<style lang="sass" global>
 	// TODO: mobile version
 	// at 1024px and less: side contents and footnotes become fixed: contents - to the left, footnotes - to the bottom
+
 	.main_content
 		padding-top: 1em
 		display: grid
 		grid-template-columns: 1fr $w-content 1fr
 		grid-template-rows: auto
 		--contents-padding: 2em
-	.contents
-		margin: var(--contents-padding) auto 0
-		padding-left: var(--contents-padding)
-		position: relative
-		&[data-show='false']
-			.btn_contents
-				max-width: 2em
-				&::after
-					transform: rotate(1turn)
-			.contents_list
-				opacity: 0
-				visibility: hidden
-	.contents_wrapper
-		position: sticky
-		top: 1em
-		display: flex
-		flex-direction: column
-	.btn_contents
-		padding: 0
-		display: flex
-		width: calc(100% - var(--contents-padding))
-		max-width: 100%
-		align-items: center
-		justify-content: center
-		border-radius: $rad * 0.4
-		border-color: rgba($tx-1, 0.25)
-		color: rgba($tx-1, 0.25)
-		&::after
-			content: '\279C'
-			font-size: 1.3em
-			transition: transform $tr-2
-			transform: rotate(0.5turn)
-		&:hover
-			color: $accent-1
-			border-color: $accent-1
-	.contents_list
-		display: flex
-		flex-direction: column
-		padding: calc(var(--contents-padding) * .5) var(--contents-padding) 0 0
-		font-size: .95em
-		max-height: 100vh
-		overflow-y: auto
-		overflow-x: hidden
-		list-style-position: outside
-		transition: opacity $tr-2
-		opacity: 1
-		visibility: visible
-	.contents_item
-		border-radius: $rad * 0.4
-		line-height: 1.2em
-		transition: all $tr-2
-		opacity: .6
-		position: relative
-		z-index: 1
-		&::after
-			content: ''
-			position: absolute
-			z-index: -1
-			left: 0
-			top: 0
-			right: 0
-			bottom: 0
-			width: 100%
-			height: 100%
-			border-radius: inherit
-			transition: opacity $tr-1
-			opacity: 0
-			background: linear-gradient(to right, $gr-2)
-		&:not(:first-child)
-			margin-top: .3em
-		&:hover, &.active
-			opacity: 1
-			&::after
-				opacity: 1
-		a
-			display: flex
-			align-items: center
-			justify-content: space-between
-			position: relative
-			padding: .4em
-	.content
+
+	.portable_text
 		width: 100% // fix bug - otherwise ignores box-sizing inside grid
 		text-align: justify
 		margin: 2em auto 0
 		border-radius: $rad
 		line-height: 1.5em
-		padding-inline: 4em
+		padding-inline: calc(var(--contents-padding) * 2)
 		background-color: rgba($bg-1, 0.5)
 		box-shadow: $shd-1
-	.printed_wrapper
-		text-align: center
-		margin: 0 0 2em
-		font-family: $ff-semiaccent
-		font-weight: 300
-	.download_printed
-		display: flex
-		align-items: center
-		justify-content: center
-		:global(svg)
-			margin-left: .4em
-			width: 1em
-			height: 1em
-			stroke: $tx-2
-	.footnotes
-		font-size: .9em
-		margin-top: var(--contents-padding)
-		line-height: 1.3em
+		padding-block: 3em
 		position: relative
-	.footnote
-		position: absolute
-		z-index: 5
-		width: calc( 100% - calc(var(--contents-padding) * 2) )
-		left: 50%
-		border-radius: calc($rad * .2)
-		padding: 1em 1em 1em 1.2em
-		cursor: pointer
-		background-color: rgba($bg-1, 0.5)
-		box-shadow: $shd-4
-		transition: opacity $tr-2, background-color $tr-2, transform $tr-2
-		transform: translate(-50%, -15%) scale(.95)
-		&:hover
-			border-color: darken($accent-1, 10%)
-			background-color: rgba($bg-1, 0.25)
-		.close
-			margin: 0 0 .5em .5em
-			float: right
-			display: flex
-			align-items: center
-			justify-content: center
-			width: 1.5em
-			height: 1.5em
-			border-radius: 50%
-			border: 1px solid rgba($tx-1, 0.5)
-			transition: border-color $tr-2, transform $tr-2
-			:global(svg)
-				width: 90%
-				height: 90%
-				fill: rgba($tx-1, 0.5)
-				transition: fill $tr-2
+		text-indent: 1.5em
+		> :where(:not(:first-child))
+			margin-top: 1.3em
+		.image_figure
+			position: relative
+			z-index: 150
+			border-radius: $rad
+			.image_wrapper
+				width: max-content
+				max-width: 100%
+				margin: 0 auto
+				position: relative
+				transition: box-shadow $tr-2, transform .2s ease-in
+				border-radius: inherit
+				img
+					position: relative
+					z-index: 2
+		a
+			color: $tx-2
+			transition: all $tr-2
+			text-decoration: underline
+			text-underline-offset: .3em
+			text-decoration-thickness: .05em
+			text-decoration-color: $tsp
 			&:hover
-				border-color: $accent-1
-				transform: scale(1.1)
-				:global(svg)
-					fill: lighten($accent-1, 10%)
+				text-decoration-color: inherit
+				text-underline-offset: .25em
+		h4, h5
+			text-indent: 0
+			font-size: 1.5em
+			font-weight: bold
+			position: relative
+			padding: .2em 0
+			--lh: 1.3em
+			line-height: var(--lh)
+			&::before
+				content: ''
+				position: absolute
+				z-index: 5
+				left: 0
+				top: calc(var(--lh) * 0.6)
+				width: 1.25em
+				height: .2em
+				border-radius: $rad * 2
+				background: linear-gradient(to right, $gr-2)
+				transition: all .3s ease
+				opacity: 0
+				transform: translate( calc( -100% - 2em ) , 0) scale(0)
+			&.active::before
+				opacity: .75
+				transform: translate( -2em, 0) scale(1)
+		.chapter_title
+			scroll-margin-top: 2em
+		blockquote
+			width: 95%
+			margin-inline: auto
+			padding: 1em 1.4em
+			border-radius: calc( $rad * .4 )
+			line-height: 1.4em
+			box-shadow: inset 0px 0px 2px 2px hsl(0, 0%, 10%, .35)
+			position: relative
+			background-color: darken($bg-1, 6%)
+		ul, ol
+			padding-left: 1em
+			line-height: 1.4em
+			text-indent: 0.2em
+			li
+				display: list-item
+				list-style-position: outside
+				&:not(:first-child)
+					margin-top: .75em
+				> ul, ol
+					padding: .75em 0 0 1.5em
+					list-style-type: disc
+		ul
+			list-style-type: square
 
 	@media (max-width: 1440px)
 		.main_content
