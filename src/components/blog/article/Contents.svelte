@@ -91,6 +91,7 @@
 		color: $accent-1
 		border-color: $accent-1
 .contents_list
+	@include scrollbar('block')
 	display: flex
 	flex-direction: column
 	margin: calc(var(--contents-padding) * 0.3) 0

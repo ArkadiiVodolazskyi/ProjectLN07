@@ -68,24 +68,104 @@
 
 </div>
 
-<style lang="sass">
+<style lang="sass" global>
 	// TODO: mobile version
 	// at 1024px and less: side contents and footnotes become fixed: contents - to the left, footnotes - to the bottom
+
 	.main_content
 		padding-top: 1em
 		display: grid
 		grid-template-columns: 1fr $w-content 1fr
 		grid-template-rows: auto
 		--contents-padding: 2em
-	.content
+
+	.portable_text
 		width: 100% // fix bug - otherwise ignores box-sizing inside grid
 		text-align: justify
 		margin: 2em auto 0
 		border-radius: $rad
 		line-height: 1.5em
-		padding-inline: 4em
+		padding-inline: calc(var(--contents-padding) * 2)
 		background-color: rgba($bg-1, 0.5)
 		box-shadow: $shd-1
+		padding-block: 3em
+		position: relative
+		text-indent: 1.5em
+		> :where(:not(:first-child))
+			margin-top: 1.3em
+		.image_figure
+			position: relative
+			z-index: 150
+			border-radius: $rad
+			.image_wrapper
+				width: max-content
+				max-width: 100%
+				margin: 0 auto
+				position: relative
+				transition: box-shadow $tr-2, transform .2s ease-in
+				border-radius: inherit
+				img
+					position: relative
+					z-index: 2
+		a
+			color: $tx-2
+			transition: all $tr-2
+			text-decoration: underline
+			text-underline-offset: .3em
+			text-decoration-thickness: .05em
+			text-decoration-color: $tsp
+			&:hover
+				text-decoration-color: inherit
+				text-underline-offset: .25em
+		h4, h5
+			text-indent: 0
+			font-size: 1.5em
+			font-weight: bold
+			position: relative
+			padding: .2em 0
+			--lh: 1.3em
+			line-height: var(--lh)
+			&::before
+				content: ''
+				position: absolute
+				z-index: 5
+				left: 0
+				top: calc(var(--lh) * 0.6)
+				width: 1.25em
+				height: .2em
+				border-radius: $rad * 2
+				background: linear-gradient(to right, $gr-2)
+				transition: all .3s ease
+				opacity: 0
+				transform: translate( calc( -100% - 2em ) , 0) scale(0)
+			&.active::before
+				opacity: .75
+				transform: translate( -2em, 0) scale(1)
+		.chapter_title
+			scroll-margin-top: 2em
+		blockquote
+			width: 95%
+			margin-inline: auto
+			padding: 1em 1.4em
+			border-radius: calc( $rad * .4 )
+			line-height: 1.4em
+			box-shadow: inset 0px 0px 2px 2px hsl(0, 0%, 10%, .35)
+			position: relative
+			background-color: darken($bg-1, 6%)
+		ul, ol
+			padding-left: 1em
+			line-height: 1.4em
+			text-indent: 0.2em
+			li
+				display: list-item
+				list-style-position: outside
+				&:not(:first-child)
+					margin-top: .75em
+				> ul, ol
+					padding: .75em 0 0 1.5em
+					list-style-type: disc
+		ul
+			list-style-type: square
 
 	@media (max-width: 1440px)
 		.main_content
