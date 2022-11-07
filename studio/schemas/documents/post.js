@@ -121,20 +121,39 @@ export default {
       }
     }
   ],
+
+  orderings: [
+    {
+      title: 'Posted Date, Newer',
+      name: 'releaseDateDesc',
+      by: [{field: 'publishedAt', direction: 'desc'}]
+    },
+    {
+      title: 'Title, ASC',
+      name: 'titleAsc',
+      by: [{field: 'title', direction: 'asc'}]
+    },
+    {
+      title: 'Title, DESC',
+      name: 'titleAsc',
+      by: [{field: 'title', direction: 'desc'}]
+    }
+  ],
+
   preview: {
     select: {
-      title: 'title',
       media: 'image',
-      // authors: 'authors', // TODO: preview for author names
-      book_first_published: 'book_first_published'
+      title: 'title',
+      book_first_published: 'book_first_published',
+      publishedAt: 'publishedAt'
     },
-    prepare({title = '-', media, book_first_published = ''}) {
-      const preparedTitle = `${title} (${book_first_published})`;
-      // const preparedAuthors = authors.map(author => { console.log(1, author, get_authors(author._ref)); });
+    prepare({media, title = '-', book_first_published = '', publishedAt = ''}) {
+      const date_published = new Date(publishedAt);
+      const date_published_formatted = Intl.DateTimeFormat('ru', {year: 'numeric', month: 'long', day: 'numeric'}).format(date_published);
       return {
-        title: preparedTitle,
         media,
-        // subtitle: preparedAuthors
+        title: `${title} (${book_first_published})`,
+        subtitle: date_published_formatted
       }
     }
   }
