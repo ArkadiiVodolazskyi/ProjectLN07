@@ -48,7 +48,7 @@
     position: relative
     aspect-ratio: 1
     opacity: 0.75
-    filter: grayscale(.3)
+    filter: grayscale(.2)
     transition: opacity $tr-3, transform $tr-2
     &:hover
       opacity: 1
@@ -93,6 +93,7 @@
     z-index: 50
     font-weight: 500
     text-transform: uppercase
+    text-shadow: 2px 2px 1px hsla(0, 0%, 13%, .5)
     transition: transform 1s ease
     .title
       font-size: 1.5em

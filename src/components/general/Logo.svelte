@@ -18,7 +18,7 @@
 			fill: darken($tx-2, 10%)
 			.logo_icon_wrapper
 				background-color: rgba($tx-1, 0.8)
-				--color: #{darken($accent-1, 15%)}
+				--color: #{darken($tx-2, 25%)}
 			&::before
 				opacity: 1
 				background-color: var(--color)
@@ -73,39 +73,33 @@
 			background-color: var(--color)
 			transition: transform 0.2s ease-in-out, height 0.2s ease-in-out
 			&:nth-of-type(1)
-				transition-delay: 0
 				width: 18.4%
 				height: 76.1%
 				left: 0
 				top: 0
 			&:nth-of-type(2)
-				transition-delay: 0
 				width: 18.4%
 				height: 18%
 				left: 0
 				top: 82%
 			&:nth-of-type(3)
-				transition-delay: .05s
 				width: 18.4%
 				height: 18%
 				left: 24.7%
 				top: 82%
 			&:nth-of-type(4)
-				transition-delay: .05s
 				clip-path: polygon(0 0, 100% 50%, 100% 100%, 0% 100%)
 				width: 18.4%
 				height: 83%
 				left: 42%
 				top: 17%
 			&:nth-of-type(5)
-				transition-delay: .1s
 				clip-path: polygon(50% 0, 100% 50%, 100% 100%, 0 0)
 				width: 41.2%
 				height: 100%
 				left: 42%
 				top: 0
 			&:nth-of-type(6)
-				transition-delay: .15s
 				width: 18.4%
 				height: 100%
 				right: 0

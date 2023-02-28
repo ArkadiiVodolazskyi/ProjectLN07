@@ -14,10 +14,6 @@ const randomColor = () => {
   return hexCode;
 }
 
-// TODO: create custom ordering + better preview in admin
-// https://www.sanity.io/docs/sort-orders
-// https://www.sanity.io/docs/structure-builder-reference#defaultOrdering-f1c765c41782
-
 export default {
   name: 'post',
   type: 'document',

@@ -30,6 +30,7 @@
 	}
 
   onMount(() => {
+		// TODO: add narrow progress track on the bottom of the page
 
 		if (!body) { return; }
 
